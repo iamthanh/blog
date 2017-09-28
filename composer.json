@@ -1,0 +1,16 @@
+{
+    "name": "thanh/blog",
+    "description": "blog for thanh",
+    "require": {
+        "slim/slim": "^3.8"
+    },
+    "config": {
+        "optimize-autoloader": true 	
+    },	
+    "authors": [
+        {
+            "name": "Thanh Tran",
+            "email": "nick120187@gmail.com"
+        }
+    ]
+}
