@@ -12,5 +12,10 @@
             "name": "Thanh Tran",
             "email": "nick120187@gmail.com"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "Blog\\": "src/"
+        }
+    }
 }
