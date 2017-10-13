@@ -57,7 +57,7 @@ class ComposerStaticInitcb18df7809ae61d5ad07a8082f0b6e6a
         ),
         'Blog\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src',
+            0 => __DIR__ . '/../..' . '/src/classes',
         ),
     );
 
