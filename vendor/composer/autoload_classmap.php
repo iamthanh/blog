@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Blog\\App' => $baseDir . '/src/classes/App.php',
+    'Blog\\Config' => $baseDir . '/src/classes/Config.php',
     'Blog\\Routes' => $baseDir . '/src/classes/Routes.php',
     'FastRoute\\BadRouteException' => $vendorDir . '/nikic/fast-route/src/BadRouteException.php',
     'FastRoute\\DataGenerator' => $vendorDir . '/nikic/fast-route/src/DataGenerator.php',

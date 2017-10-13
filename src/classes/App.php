@@ -14,13 +14,14 @@ class App {
     public $app;
 
     public function __construct() {
+        $app = new \Slim\App(['setting'=>Config::getConfig('slim')]);
+        $this->loadRoutes($app);
 
-        $this->app = new \Slim\App;
-        $this->loadRoutes();
+        // Return the \Slim\App
+        $app->run();
     }
 
-    public function loadRoutes() {
-
-        $this->app = new Routes($this->app);
+    public function loadRoutes($app) {
+        return new Routes($app);
     }
 }

@@ -2,6 +2,9 @@
 
 namespace Blog;
 
+use \Psr\Http\Message\ServerRequestInterface as Request;
+use \Psr\Http\Message\ResponseInterface as Response;
+
 class Routes {
 
     /**
@@ -12,7 +15,11 @@ class Routes {
      * @param \Slim\App $app
      */
     public function __construct(\Slim\App $app) {
-        error_log(print_r($app,true));
+        $app->get('/', function (Request $request, Response $response) {
+            $response->getBody()->write("Hello");
+            return $response;
+        });
 
+        return $app;
     }
 }
