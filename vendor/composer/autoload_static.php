@@ -75,6 +75,7 @@ class ComposerStaticInitcb18df7809ae61d5ad07a8082f0b6e6a
         'Blog\\App' => __DIR__ . '/../..' . '/src/classes/App.php',
         'Blog\\Config' => __DIR__ . '/../..' . '/src/classes/Config.php',
         'Blog\\Routes' => __DIR__ . '/../..' . '/src/classes/Routes.php',
+        'Blog\\Template' => __DIR__ . '/../..' . '/src/classes/Template.php',
         'FastRoute\\BadRouteException' => __DIR__ . '/..' . '/nikic/fast-route/src/BadRouteException.php',
         'FastRoute\\DataGenerator' => __DIR__ . '/..' . '/nikic/fast-route/src/DataGenerator.php',
         'FastRoute\\DataGenerator\\CharCountBased' => __DIR__ . '/..' . '/nikic/fast-route/src/DataGenerator/CharCountBased.php',

@@ -9,6 +9,7 @@ return array(
     'Blog\\App' => $baseDir . '/src/classes/App.php',
     'Blog\\Config' => $baseDir . '/src/classes/Config.php',
     'Blog\\Routes' => $baseDir . '/src/classes/Routes.php',
+    'Blog\\Template' => $baseDir . '/src/classes/Template.php',
     'FastRoute\\BadRouteException' => $vendorDir . '/nikic/fast-route/src/BadRouteException.php',
     'FastRoute\\DataGenerator' => $vendorDir . '/nikic/fast-route/src/DataGenerator.php',
     'FastRoute\\DataGenerator\\CharCountBased' => $vendorDir . '/nikic/fast-route/src/DataGenerator/CharCountBased.php',
