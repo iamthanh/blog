@@ -15,12 +15,19 @@ class Routes {
      * @param \Slim\App $app
      */
     public function __construct(\Slim\App $app) {
+
+        // Home page or root page
         $app->get('/', function (Request $request, Response $response) {
             $response->getBody()->write(
-                Template::load(
-                    'header.php', [
-                    'test'=>'this is great!'
-                ])
+                View::generateBlogView(['test'=>'this is great!'])
+            );
+            return $response;
+        });
+
+        $app->get('[/{params:.*}]', function ($request, $response, $args) {
+            $params = explode('/', $request->getAttribute('params'));
+            $response->getBody()->write(
+                View::generateBlogView($params)
             );
             return $response;
         });
