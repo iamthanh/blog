@@ -2,7 +2,8 @@
     "name": "thanh/blog",
     "description": "blog for thanh",
     "require": {
-        "slim/slim": "^3.8"
+        "slim/slim": "^3.8",
+        "doctrine/orm": "^2.5"
     },
     "config": {
         "optimize-autoloader": true 	
