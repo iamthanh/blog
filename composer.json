@@ -3,7 +3,8 @@
     "description": "blog for thanh",
     "require": {
         "slim/slim": "^3.8",
-        "doctrine/orm": "^2.5"
+        "doctrine/orm": "^2.5",
+        "symfony/yaml": "2.*"
     },
     "config": {
         "optimize-autoloader": true 	

@@ -14,7 +14,6 @@
     <div class="top-nav">
         <div class="nav-item" data-item="photography"><a href="/photography">photography</a></div>
         <div class="nav-item" data-item="web-stuff"><a href="/web">web stuff</a></div>
-        <div class="nav-item" data-item="cars"><a href="/cars">cars</a></div>
-        <div class="nav-item" data-item="audio"><a href="/audio">audio</a></div>
+        <div class="nav-item" data-item="random"><a href="/random">random</a></div>
     </div>
 </div>
