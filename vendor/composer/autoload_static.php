@@ -34,6 +34,10 @@ class ComposerStaticInitcb18df7809ae61d5ad07a8082f0b6e6a
         array (
             'FastRoute\\' => 10,
         ),
+        'E' => 
+        array (
+            'Entities\\' => 9,
+        ),
         'D' => 
         array (
             'Doctrine\\Instantiator\\' => 22,
@@ -88,6 +92,10 @@ class ComposerStaticInitcb18df7809ae61d5ad07a8082f0b6e6a
         'FastRoute\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/fast-route/src',
+        ),
+        'Entities\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/entities',
         ),
         'Doctrine\\Instantiator\\' => 
         array (
@@ -878,6 +886,8 @@ class ComposerStaticInitcb18df7809ae61d5ad07a8082f0b6e6a
         'Doctrine\\ORM\\Utility\\IdentifierFlattener' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Utility/IdentifierFlattener.php',
         'Doctrine\\ORM\\Utility\\PersisterHelper' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Utility/PersisterHelper.php',
         'Doctrine\\ORM\\Version' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Version.php',
+        'Entities\\BlogEntry' => __DIR__ . '/../..' . '/src/entities/BlogEntry.php',
+        'Entities\\Blogs' => __DIR__ . '/../..' . '/src/entities/Blogs.php',
         'FastRoute\\BadRouteException' => __DIR__ . '/..' . '/nikic/fast-route/src/BadRouteException.php',
         'FastRoute\\DataGenerator' => __DIR__ . '/..' . '/nikic/fast-route/src/DataGenerator.php',
         'FastRoute\\DataGenerator\\CharCountBased' => __DIR__ . '/..' . '/nikic/fast-route/src/DataGenerator/CharCountBased.php',

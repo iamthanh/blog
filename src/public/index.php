@@ -6,4 +6,4 @@ require_once __DIR__.'/../../vendor/autoload.php';
 require_once __DIR__.'/../doctrine-bootstrap.php';
 
 // Run the app
-new \Blog\App;
+new \Blog\App($entityManager);

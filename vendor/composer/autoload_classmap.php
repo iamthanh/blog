@@ -739,6 +739,8 @@ return array(
     'Doctrine\\ORM\\Utility\\IdentifierFlattener' => $vendorDir . '/doctrine/orm/lib/Doctrine/ORM/Utility/IdentifierFlattener.php',
     'Doctrine\\ORM\\Utility\\PersisterHelper' => $vendorDir . '/doctrine/orm/lib/Doctrine/ORM/Utility/PersisterHelper.php',
     'Doctrine\\ORM\\Version' => $vendorDir . '/doctrine/orm/lib/Doctrine/ORM/Version.php',
+    'Entities\\BlogEntry' => $baseDir . '/src/entities/BlogEntry.php',
+    'Entities\\Blogs' => $baseDir . '/src/entities/Blogs.php',
     'FastRoute\\BadRouteException' => $vendorDir . '/nikic/fast-route/src/BadRouteException.php',
     'FastRoute\\DataGenerator' => $vendorDir . '/nikic/fast-route/src/DataGenerator.php',
     'FastRoute\\DataGenerator\\CharCountBased' => $vendorDir . '/nikic/fast-route/src/DataGenerator/CharCountBased.php',

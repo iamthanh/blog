@@ -13,9 +13,19 @@ class App {
     // Object of \Slim\App
     public $app;
 
-    public function __construct() {
+    public static $container;
+
+    /**
+     * @var \Doctrine\ORM\EntityManager $container
+     */
+    public static $entityManager;
+
+    public function __construct($entityManager) {
         $app = new \Slim\App(['setting'=>Config::getConfig('slim')]);
         $this->loadRoutes($app);
+
+        static::$container = $app->getContainer();
+        static::$entityManager = $entityManager;
 
         // Return the \Slim\App
         $app->run();
