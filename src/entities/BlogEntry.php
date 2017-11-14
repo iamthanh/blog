@@ -33,4 +33,16 @@ class BlogEntry {
     public function setEntryName($name) {
         $this->entryName = $name;
     }
+
+    public function getTitle() {
+        return $this->title;
+    }
+
+    public function getBody() {
+        return $this->body;
+    }
+
+    public function getHeaderImage() {
+        return $this->headerImage;
+    }
 }

@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Blog\\App' => $baseDir . '/src/classes/App.php',
+    'Blog\\Blogs' => $baseDir . '/src/classes/Blog.php',
     'Blog\\Config' => $baseDir . '/src/classes/Config.php',
     'Blog\\Routes' => $baseDir . '/src/classes/Routes.php',
     'Blog\\Template' => $baseDir . '/src/classes/Template.php',

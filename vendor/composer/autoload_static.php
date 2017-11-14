@@ -154,6 +154,7 @@ class ComposerStaticInitcb18df7809ae61d5ad07a8082f0b6e6a
 
     public static $classMap = array (
         'Blog\\App' => __DIR__ . '/../..' . '/src/classes/App.php',
+        'Blog\\Blogs' => __DIR__ . '/../..' . '/src/classes/Blog.php',
         'Blog\\Config' => __DIR__ . '/../..' . '/src/classes/Config.php',
         'Blog\\Routes' => __DIR__ . '/../..' . '/src/classes/Routes.php',
         'Blog\\Template' => __DIR__ . '/../..' . '/src/classes/Template.php',

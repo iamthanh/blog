@@ -41,4 +41,20 @@ class Blogs {
     public function setBlogEntryId($id) {
         $this->blogEntryId = $id;
     }
+
+    public function getBlogTopic() {
+        return $this->blogTopic;
+    }
+
+    public function setBlogTopic($topic) {
+        $this->blogTopic = $topic;
+    }
+
+    public function getDateCreated() {
+        return $this->created;
+    }
+
+    public function getDateUpdated() {
+        return $this->updated;
+    }
 }

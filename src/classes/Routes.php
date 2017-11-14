@@ -17,27 +17,35 @@ class Routes {
      * @param \Slim\App $app
      */
     public function __construct(\Slim\App $app) {
+
         /**
          * Home page or root page
          */
         $app->get('/', function (Request $request, Response $response) {
 
-            $blogs = App::$entityManager->getRepository('Entities\Blogs')->findAll();
+            // Getting all recent blogs (all topics)
+            $blogs = Blogs::getAllRecentBlogs();
 
             $response->getBody()->write(
-                View::generateBlogView(['blogs'=>$blogs])
+                View::generateBlogView(['blogs' => $blogs])
             );
             return $response;
         });
 
         /**
-         * For blog pages
+         * For blog topic/single pages
          */
         $app->get('/blog/[{params:.*}]', function (Request $request, Response $response, $args) {
+
             $params = explode('/', $request->getAttribute('params'));
+            $topic = isset($params[0]) ? $params[0] : '';
+            $blogName = isset($params[1]) ? $params[1] : '';
+
+            // Getting all blogs by topic
+            $blogs = Blogs::getAllRecentBlogsByTopic($topic);
 
             $response->getBody()->write(
-                View::generateBlogView($params)
+                View::generateBlogView(['blogs'=>$blogs])
             );
             return $response;
         });
