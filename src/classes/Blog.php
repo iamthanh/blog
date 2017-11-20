@@ -10,20 +10,7 @@ class Blogs {
      * @return array
      */
     public static function getAllRecentBlogs() {
-        $blogsData = App::$entityManager->getRepository('Entities\Blogs')->findBy([], ['created'=>'DESC'], 10);
-        return static::getCompleteBlogsData($blogsData);
-    }
-
-    public static function getCompleteBlogsData($blogsData) {
-        $completeBlogData = [];
-
-        // Fetching the blog entries
-        foreach($blogsData as $blog) {
-            $blogEntryData = static::getBlogEntryDataByBlogEntryId($blog->getBlogEntryId());
-            $completeBlogData[] = static::getAssembleBlogData($blog, $blogEntryData);
-        }
-
-        return $completeBlogData;
+        return App::$entityManager->getRepository('Entities\Blogs')->findBy(['status'=>'active'], ['created'=>'DESC'], 10);
     }
 
     /**
@@ -33,37 +20,35 @@ class Blogs {
      * @return array
      */
     public static function getAllRecentBlogsByTopic($topic='') {
-        $blogsData = App::$entityManager->getRepository('Entities\Blogs')->findBy(['blogTopic'=>$topic]);
-        return static::getCompleteBlogsData($blogsData);
+        return App::$entityManager->getRepository('Entities\Blogs')->findBy(['blogTopic'=>$topic,'status'=>'active']);
+    }
+
+    /**
+     * Gets the data for a single blog posting
+     *
+     * @param $topic
+     * @param $blogUrl
+     * @return array
+     */
+    public static function getSingleBlogDetails($topic, $blogUrl) {
+        /**
+         * @var $blog \Entities\Blogs
+         */
+        $blogData = App::$entityManager->getRepository('Entities\Blogs')->findOneBy(['url'=>$blogUrl, 'blogTopic'=>$topic, 'status'=>'active']);
+        $blogEntryData = App::$entityManager->getRepository('Entities\BlogEntry')->findBy(['id'=>$blogData->getId()]);
+        return [
+            'data' => $blogData,
+            'entry' => $blogEntryData[0]
+        ];
     }
 
     /**
      * This will return the blog entry data based on the blog entry id
      *
      * @param $blogEntryId
-     * @return \Entities\BlogEntry
+     * @return \Entities\BlogEntry|Object
      */
     public static function getBlogEntryDataByBlogEntryId($blogEntryId) {
         return App::$entityManager->getRepository('Entities\BlogEntry')->findOneBy(['id'=>$blogEntryId]);
-    }
-
-    /**
-     * This will piece together the data for a single blog used for displaying on the front-end
-     *
-     * @param $blogData
-     * @param $blogEntryData
-     * @return array
-     */
-    public static function getAssembleBlogData(\Entities\Blogs $blogData, \Entities\BlogEntry $blogEntryData) {
-        return [
-            'id' => $blogData->getId(),
-            'topic' => $blogData->getBlogTopic(),
-            'dateCreated' => $blogData->getDateCreated(),
-            'dateUpdated' => $blogData->getDateUpdated(),
-            'name' => $blogEntryData->getEntryName(),
-            'title' => $blogEntryData->getTitle(),
-            'body' => $blogEntryData->getBody(),
-            'headerImage' => $blogEntryData->getHeaderImage()
-        ];
     }
 }

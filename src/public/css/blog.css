@@ -1,22 +1,91 @@
-.article-container {
+.listing-container {
   max-width: 1000px;
-  margin: 100px auto 0;
+  margin: 100px auto 100px;
   box-sizing: border-box;
   display: flex;
 }
-.article-container .side-bar {
+.listing-container .side-bar {
   flex: 0 1 25%;
   order: 1;
 }
-.article-container .blog-collection {
+.listing-container .blog-collection {
   flex: 0 1 75%;
   order: 0;
 }
-.article-container .blog-collection .single-blog {
+.listing-container .blog-collection .single-blog {
   margin: 0 0 50px;
-  border-bottom: 1px solid lightgrey;
+  border-bottom: 2px dashed #efefef;
   padding-bottom: 50px;
 }
-.article-container .blog-collection .single-blog .blog-body {
+.listing-container .blog-collection .single-blog:last-child {
+  margin-bottom: 0;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.listing-container .blog-collection .single-blog .blog-title {
+  font-family: Raleway;
+}
+.listing-container .blog-collection .single-blog .blog-title span {
+  vertical-align: middle;
+}
+.listing-container .blog-collection .single-blog .blog-title .title-text {
+  text-transform: uppercase;
+  font-size: 22px;
+}
+.listing-container .blog-collection .single-blog .blog-title .title-text a {
+  color: #444;
+}
+.listing-container .blog-collection .single-blog .blog-title .title-topic {
+  font-size: 15px;
+  margin-left: 15px;
+}
+.listing-container .blog-collection .single-blog .blog-title .title-topic a {
+  color: #a3a3a3;
+}
+.listing-container .blog-collection .single-blog .blog-title .title-topic a:hover {
+  color: #333;
+}
+.listing-container .blog-collection .single-blog .blog-date-created {
+  font-size: 12px;
+  font-family: 'Raleway';
+}
+.listing-container .blog-collection .single-blog .blog-body {
   text-align: justify;
+  font-family: 'Quicksand';
+  font-size: 16px;
+  margin-top: 18px;
+  color: #808080;
+}
+.main-blog-title {
+  max-width: 1000px;
+  margin: 100px auto 0;
+  box-sizing: border-box;
+}
+.main-blog-title .blog-title {
+  border-top: 2px dashed #e0e0e0;
+  padding-top: 50px;
+}
+.main-blog-title .blog-title .title-text {
+  font-family: 'Quicksand';
+  font-size: 38px;
+  color: #444;
+}
+.main-blog-title .blog-title .title-short-description {
+  font-family: 'Quicksand';
+  font-size: 20px;
+  color: #777;
+}
+.main-blog-title .blog-topic a {
+  color: #444;
+}
+.main-body-container {
+  max-width: 1000px;
+  margin: 25px auto 100px;
+  box-sizing: border-box;
+}
+.main-body-container .body {
+  font-size: 20px;
+  font-family: 'Quicksand';
+  font-weight: 300;
+  margin-top: 35px;
 }

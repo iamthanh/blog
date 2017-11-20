@@ -1,6 +1,6 @@
-.article-container {
+.listing-container {
   max-width: 1000px;
-  margin: 100px auto 0;
+  margin: 100px auto 100px;
   box-sizing: border-box;
   display: flex;
 
@@ -15,24 +15,113 @@
 
     .single-blog {
       margin: 0 0 50px;
-      border-bottom: 1px solid lightgrey;
+      border-bottom: 2px dashed #efefef;
       padding-bottom: 50px;
 
-      .blog-title {
-
+      &:last-child {
+        margin-bottom: 0;
+        border-bottom: none;
+        padding-bottom: 0;
       }
 
-      .blog-topic {
+      .blog-title {
+        font-family: Raleway;
 
+        span {
+          vertical-align: middle;
+        }
+
+        .title-text {
+          text-transform: uppercase;
+          font-size: 22px;
+
+          a {
+            color: #444;
+          }
+        }
+
+        .title-topic {
+          font-size: 15px;
+          margin-left: 15px;
+
+          a {
+            color: #a3a3a3;
+
+            &:hover {
+              color: #333;
+            }
+          }
+        }
       }
 
       .blog-date-created {
-
+        font-size: 12px;
+        font-family: 'Raleway';
       }
 
       .blog-body {
         text-align: justify;
+        font-family: 'Quicksand';
+        font-size: 16px;
+        margin-top: 18px;
+        color: #808080;
       }
     }
+  }
+}
+
+.main-blog-title {
+  max-width: 1000px;
+  margin: 100px auto 0;
+  box-sizing: border-box;
+
+  .blog-title {
+    border-top: 2px dashed #e0e0e0;
+    padding-top: 50px;
+
+    .title-text {
+      font-family: 'Quicksand';
+      font-size: 38px;
+      color: #444;
+    }
+
+    .title-short-description {
+      font-family: 'Quicksand';
+      font-size: 20px;
+      color: #777;
+    }
+  }
+
+  .blog-topic {
+    a {
+      color: #444;
+    }
+  }
+
+  .blog-date-created {
+
+  }
+}
+
+.main-body-container {
+  max-width: 1000px;
+  margin: 25px auto 100px;
+  box-sizing: border-box;
+
+  .header-image {
+    img {
+
+    }
+  }
+
+  .body {
+    font-size: 20px;
+    font-family: 'Quicksand';
+    font-weight: 300;
+    margin-top: 35px;
+  }
+
+  .blog-comments {
+
   }
 }

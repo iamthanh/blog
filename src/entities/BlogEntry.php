@@ -10,12 +10,6 @@ class BlogEntry {
     /** @Id @Column(type="integer") @GeneratedValue **/
     protected $id;
 
-    /** @Column(type="string") **/
-    protected $entryName;
-
-    /** @Column(type="string") **/
-    protected $title;
-
     /** @Column(type="text") **/
     protected $body;
 
@@ -24,18 +18,6 @@ class BlogEntry {
 
     public function getId() {
         return $this->id;
-    }
-
-    public function getEntryName() {
-        return $this->entryName;
-    }
-
-    public function setEntryName($name) {
-        $this->entryName = $name;
-    }
-
-    public function getTitle() {
-        return $this->title;
     }
 
     public function getBody() {
