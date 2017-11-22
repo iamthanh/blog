@@ -18,7 +18,7 @@ class Projects {
     /** @Column(type="string") **/
     protected $thumbnail;
 
-    /** @Column(type="text") **/
+    /** @Column(type="string") **/
     protected $description;
 
     /** @Column(type="text") **/

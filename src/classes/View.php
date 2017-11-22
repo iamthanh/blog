@@ -17,7 +17,7 @@ class View {
     const BLOG_BODY = 'blog/body.php';
 
     // Defined projects template paths
-    const PROJECTS_PATH_LISTING = 'projects/projectsListing.php';
+    const PROJECTS_PATH_LISTING = 'projects/listing.php';
 
     /**
      * This will put together the templates necessary for a blogs listing

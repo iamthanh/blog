@@ -6,11 +6,12 @@
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans|Quicksand:300,400|Raleway" rel="stylesheet">
     <link rel="stylesheet" href="/src/public/css/header.css">
     <link rel="stylesheet" href="/src/public/css/blog.css">
+    <link rel="stylesheet" href="/src/public/css/projects.css">
     <script src="https://use.fontawesome.com/ea714fcd83.js"></script>
 </head>
 <body>
 
-<div class="header">
+<div class="nav-header">
     <div class="top-image">
         <a href="/"><img src="//via.placeholder.com/180x220"></a>
     </div>
