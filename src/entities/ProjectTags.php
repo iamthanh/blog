@@ -3,20 +3,20 @@
 namespace Entities;
 
 /**
- * @Entity @Table(name="ProjectLinks")
+ * @Entity @Table(name="ProjectTags")
  **/
-class ProjectLinks {
+class ProjectTags {
     /** @Id @Column(type="integer") @GeneratedValue **/
     protected $id;
 
-    /** @Column(type="integer") **/
+    /**
+     * @Column(type="integer")
+     *
+     **/
     protected $projectId;
 
     /** @Column(type="string") **/
-    protected $type;
-
-    /** @Column(type="string") **/
-    protected $path;
+    protected $tagName;
 
     public function getId() {
         return $this->id;
@@ -26,11 +26,7 @@ class ProjectLinks {
         return $this->projectId;
     }
 
-    public function getType() {
-        return $this->type;
-    }
-
-    public function getPath() {
-        return $this->path;
+    public function getTagName() {
+        return $this->tagName;
     }
 }

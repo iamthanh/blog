@@ -10,7 +10,7 @@ class Blogs {
      * @return array
      */
     public static function getAllRecentBlogs() {
-        return App::$entityManager->getRepository('Entities\Blogs')->findBy(['status'=>'active'], ['created'=>'DESC'], 10);
+        return App::$entityManager->getRepository('Entities\Blogs')->findBy(['status'=>['active']], ['created'=>'DESC'], 10);
     }
 
     /**
@@ -28,18 +28,21 @@ class Blogs {
      *
      * @param $topic
      * @param $blogUrl
-     * @return array
+     * @return array|boolean
      */
     public static function getSingleBlogDetails($topic, $blogUrl) {
         /**
          * @var $blog \Entities\Blogs
          */
         $blogData = App::$entityManager->getRepository('Entities\Blogs')->findOneBy(['url'=>$blogUrl, 'blogTopic'=>$topic, 'status'=>'active']);
-        $blogEntryData = App::$entityManager->getRepository('Entities\BlogEntry')->findBy(['id'=>$blogData->getId()]);
-        return [
-            'data' => $blogData,
-            'entry' => $blogEntryData[0]
-        ];
+        if ($blogData) {
+            $blogEntryData = App::$entityManager->getRepository('Entities\BlogEntry')->findBy(['id'=>$blogData->getId()]);
+            return [
+                'data' => $blogData,
+                'entry' => $blogEntryData[0]
+            ];
+        }
+        return false;
     }
 
     /**

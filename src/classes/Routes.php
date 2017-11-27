@@ -35,51 +35,55 @@ class Routes {
         /**
          * Route for displaying all blogs by a topic name
          */
-        $app->get('/blog/{topic}', function (Request $request, Response $response, $args) {
-            // @todo sanitize $args['topic'] to make sure its safe
+        $app->get('/blogs/{topic}', function (Request $request, Response $response, $args) {
+            // @todo sanitize $args to make sure its safe
 
             // Getting all blogs by topic
             $blogs = Blogs::getAllRecentBlogsByTopic($args['topic']);
-
-            $response->getBody()->write(
-                View::generateBlogView(['blogs'=>$blogs])
-            );
-            return $response;
+            if (!empty($blogs)) {
+                return $response->getBody()->write(View::generateBlogView(['blogs'=>$blogs]));
+            } else {
+                return $response->getBody()->write(View::generateNotFoundView());
+            }
         });
 
         /**
          * Route for displaying a single blog posting
          */
         $app->get('/blog/{topic}/{blogUrl}', function (Request $request, Response $response, $args) {
+            // @todo sanitize $args to make sure its safe
 
-            // Getting all blogs by topic
+            // Getting details about this specific blog
             $blog = Blogs::getSingleBlogDetails($args['topic'], $args['blogUrl']);
-            $response->getBody()->write(
-                View::generateBlogDetailView($blog['data'], $blog['entry'])
-            );
-            return $response;
+            if ($blog) {
+                return $response->getBody()->write(
+                    View::generateBlogDetailView($blog['data'], $blog['entry'])
+                );
+            } else {
+                return $response->getBody()->write(View::generateNotFoundView());
+            }
         });
 
         /**
          * Route for getting all of the projects; projects listing
          */
-        $app->get('/projects', function (Request $request, Response $response, $args) {
+        $app->get('/projects[/{tag}]', function (Request $request, Response $response, $args) {
+            // @todo sanitize $args to make sure its safe
 
-            $projects = Projects::getAllRecentProjects();
-            $response->getBody()->write(
+            // Getting all recent projects
+            $projects = Projects::getAllRecentProjects($args['tag']);
+
+            return $response->getBody()->write(
                 View::generateProjectsView(['projects'=>$projects])
             );
-            return $response;
-        });
-
-        $app->get('/project/[{params:.*}]', function (Request $request, Response $response, $args) {
-
         });
 
         /**
          * For api calls
          */
         $app->map($this->allowed_api_methods, '/api[/{params:.*}]', function (Request $request, Response $response, $args) {
+            // @todo sanitize params to make sure its safe
+
             return $response->withJson([
                 'test'=>$request->getAttribute('params')
             ]);

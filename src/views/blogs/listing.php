@@ -9,7 +9,7 @@
                     <div class="blog-date-created"><?= $blog->getDateCreated()->format('F jS, Y') ?></div>
                     <div class="blog-title">
                         <span class="title-text"><a href="/blog/<?= $blog->getBlogTopic() ?>/<?= $blog->getUrl() ?>"><?= $blog->getTitle() ?></a></span>
-                        <span class="title-topic"><a href="<?= $blog->getBlogTopic() ?>"><?= $blog->getBlogTopic() ?></a></span>
+                        <span class="title-topic"><a href="/blogs/<?= $blog->getBlogTopic() ?>"><?= $blog->getBlogTopic() ?></a></span>
                     </div>
                     <div class="blog-body"><?= $blog->getDescription() ?></div>
                     <?php

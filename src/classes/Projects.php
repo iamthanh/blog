@@ -6,11 +6,28 @@ class Projects {
 
     /**
      * This will get all of the recent projects
-     * @return mixed
+     *
+     * @param string $tag optional if displaying the projects filtered by tag
+     * @return array
      */
-    public static function getAllRecentProjects() {
-        $projects = App::$entityManager->getRepository('Entities\Projects')->findBy(['status'=>'active'], ['created'=>'DESC']);
-        return static::getCompleteProjectsData($projects);
+    public static function getAllRecentProjects($tag='') {
+
+        $qb = App::$entityManager->createQueryBuilder();
+        $qb->select('p')
+            ->from('Entities\Projects', 'p')
+            ->where($qb->expr()->eq('p.status', ':status'))
+            ->orderBy('p.created','DESC')
+            ->setParameter('status', 'active');
+
+        // Checking if we have any tags to filter
+        if ($tag) {
+            $qb->innerJoin('Entities\ProjectTags', 'pt', 'WITH', $qb->expr()->eq('pt.projectId', 'p.id'))
+                ->andWhere($qb->expr()->eq('pt.tagName', ':tag'))
+                ->setParameter('tag', $tag);
+        }
+
+        $query = $qb->getQuery();
+        return static::getCompleteProjectsData($query->getResult());
     }
 
     /**
