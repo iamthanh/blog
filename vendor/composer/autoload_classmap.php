@@ -743,7 +743,6 @@ return array(
     'Doctrine\\ORM\\Version' => $vendorDir . '/doctrine/orm/lib/Doctrine/ORM/Version.php',
     'Entities\\BlogEntry' => $baseDir . '/src/entities/BlogEntry.php',
     'Entities\\Blogs' => $baseDir . '/src/entities/Blogs.php',
-    'Entities\\ProjectLinks' => $baseDir . '/src/entities/ProjectLinks.php',
     'Entities\\ProjectTags' => $baseDir . '/src/entities/ProjectTags.php',
     'Entities\\Projects' => $baseDir . '/src/entities/Projects.php',
     'FastRoute\\BadRouteException' => $vendorDir . '/nikic/fast-route/src/BadRouteException.php',

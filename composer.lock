@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d04b45b4353a5728e8d59fcb7ea7d94f",
+    "hash": "fb20821f4f1b8f546b907b9bd659755a",
     "content-hash": "fe51b29422329b49bbdbaf13111ec71a",
     "packages": [
         {
@@ -322,16 +322,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "v2.6.2",
+            "version": "v2.6.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "1a4ee83a5a709555f2c6f9057a3aacf892451c7e"
+                "reference": "e3eed9b1facbb0ced3a0995244843a189e7d1b13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/1a4ee83a5a709555f2c6f9057a3aacf892451c7e",
-                "reference": "1a4ee83a5a709555f2c6f9057a3aacf892451c7e",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/e3eed9b1facbb0ced3a0995244843a189e7d1b13",
+                "reference": "e3eed9b1facbb0ced3a0995244843a189e7d1b13",
                 "shasum": ""
             },
             "require": {
@@ -391,7 +391,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2017-08-28 11:02:56"
+            "time": "2017-11-19 13:38:54"
         },
         {
             "name": "doctrine/inflector",
@@ -570,16 +570,16 @@
         },
         {
             "name": "doctrine/orm",
-            "version": "v2.5.12",
+            "version": "v2.5.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "984535cadc609e9eef8c89414aa3568ee97aa79f"
+                "reference": "93103f44a3e36e7b48165b6e6b736833f33b18ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/984535cadc609e9eef8c89414aa3568ee97aa79f",
-                "reference": "984535cadc609e9eef8c89414aa3568ee97aa79f",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/93103f44a3e36e7b48165b6e6b736833f33b18ef",
+                "reference": "93103f44a3e36e7b48165b6e6b736833f33b18ef",
                 "shasum": ""
             },
             "require": {
@@ -642,7 +642,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2017-10-23 18:21:04"
+            "time": "2017-11-27 23:25:55"
         },
         {
             "name": "nikic/fast-route",
@@ -885,16 +885,16 @@
         },
         {
             "name": "slim/slim",
-            "version": "3.8.1",
+            "version": "3.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/slimphp/Slim.git",
-                "reference": "5385302707530b2bccee1769613ad769859b826d"
+                "reference": "4086d0106cf5a7135c69fce4161fe355a8feb118"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slimphp/Slim/zipball/5385302707530b2bccee1769613ad769859b826d",
-                "reference": "5385302707530b2bccee1769613ad769859b826d",
+                "url": "https://api.github.com/repos/slimphp/Slim/zipball/4086d0106cf5a7135c69fce4161fe355a8feb118",
+                "reference": "4086d0106cf5a7135c69fce4161fe355a8feb118",
                 "shasum": ""
             },
             "require": {
@@ -952,20 +952,20 @@
                 "micro",
                 "router"
             ],
-            "time": "2017-03-19 17:55:20"
+            "time": "2017-11-26 19:13:09"
         },
         {
             "name": "symfony/console",
-            "version": "v3.3.10",
+            "version": "v3.3.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "116bc56e45a8e5572e51eb43ab58c769a352366c"
+                "reference": "63cd7960a0a522c3537f6326706d7f3b8de65805"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/116bc56e45a8e5572e51eb43ab58c769a352366c",
-                "reference": "116bc56e45a8e5572e51eb43ab58c769a352366c",
+                "url": "https://api.github.com/repos/symfony/console/zipball/63cd7960a0a522c3537f6326706d7f3b8de65805",
+                "reference": "63cd7960a0a522c3537f6326706d7f3b8de65805",
                 "shasum": ""
             },
             "require": {
@@ -1020,20 +1020,20 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2017-10-02 06:42:24"
+            "time": "2017-11-16 15:24:32"
         },
         {
             "name": "symfony/debug",
-            "version": "v3.3.10",
+            "version": "v3.3.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "eb95d9ce8f18dcc1b3dfff00cb624c402be78ffd"
+                "reference": "74557880e2846b5c84029faa96b834da37e29810"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/eb95d9ce8f18dcc1b3dfff00cb624c402be78ffd",
-                "reference": "eb95d9ce8f18dcc1b3dfff00cb624c402be78ffd",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/74557880e2846b5c84029faa96b834da37e29810",
+                "reference": "74557880e2846b5c84029faa96b834da37e29810",
                 "shasum": ""
             },
             "require": {
@@ -1076,7 +1076,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2017-10-02 06:42:24"
+            "time": "2017-11-10 16:38:39"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -1139,16 +1139,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.8.28",
+            "version": "v2.8.31",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "842fb6df22180244b4c65935ce1a88d324e5ff9e"
+                "reference": "d819bf267e901727141fe828ae888486fd21236e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/842fb6df22180244b4c65935ce1a88d324e5ff9e",
-                "reference": "842fb6df22180244b4c65935ce1a88d324e5ff9e",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/d819bf267e901727141fe828ae888486fd21236e",
+                "reference": "d819bf267e901727141fe828ae888486fd21236e",
                 "shasum": ""
             },
             "require": {
@@ -1184,7 +1184,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-10-05 14:38:30"
+            "time": "2017-11-05 15:25:56"
         }
     ],
     "packages-dev": [],

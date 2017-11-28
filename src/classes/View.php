@@ -4,6 +4,12 @@ namespace Blog;
 
 class View {
 
+    // Defining prefixes for paths
+    const BLOGS_PREFIX = '/blogs';
+    const BLOG_PREFIX = '/blog';
+    const PROJECTS_PREFIX = '/projects';
+    const PROJECT_PREFIX = '/project';
+
     // Defined universal template paths
     const PATH_HEADER = 'header.php';
 

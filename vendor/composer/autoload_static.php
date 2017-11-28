@@ -890,7 +890,6 @@ class ComposerStaticInitcb18df7809ae61d5ad07a8082f0b6e6a
         'Doctrine\\ORM\\Version' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Version.php',
         'Entities\\BlogEntry' => __DIR__ . '/../..' . '/src/entities/BlogEntry.php',
         'Entities\\Blogs' => __DIR__ . '/../..' . '/src/entities/Blogs.php',
-        'Entities\\ProjectLinks' => __DIR__ . '/../..' . '/src/entities/ProjectLinks.php',
         'Entities\\ProjectTags' => __DIR__ . '/../..' . '/src/entities/ProjectTags.php',
         'Entities\\Projects' => __DIR__ . '/../..' . '/src/entities/Projects.php',
         'FastRoute\\BadRouteException' => __DIR__ . '/..' . '/nikic/fast-route/src/BadRouteException.php',
