@@ -83,6 +83,17 @@ class Routes {
         });
 
         /**
+         * Route for a single project page
+         */
+        $app->get('/project/{projectUrl}', function (Request $request, Response $response, $args) {
+
+            $project = Projects::getSingleProject($args['projectUrl']);
+            return $response->getBody()->write(
+                View::generateSingleProjectView($project)
+            );
+        });
+
+        /**
          * For api calls
          */
         $app->map($this->allowed_api_methods, '/api[/{params:.*}]', function (Request $request, Response $response, $args) {

@@ -19,12 +19,15 @@ class View {
     const BLOGS_PATH_FOOTER = 'blogs/footer.php';
 
     // Defined paths for a single blog posting
-    const BLOG_TITLE = 'blog/title.php';
-    const BLOG_BODY = 'blog/body.php';
+    const BLOG_TITLE_PATH = 'blog/title.php';
+    const BLOG_BODY_PATH = 'blog/body.php';
 
     // Defined projects template paths
     const PROJECTS_PATH_LISTING = 'projects/listing.php';
     const PROJECTS_PATH_SIDE = 'projects/side.php';
+
+    const PROJECT_TITLE_PATH = 'project/title.php';
+    const PROJECT_BODY_PATH = 'project/body.php';
 
     /**
      * This will put together the templates necessary for a blogs listing
@@ -50,8 +53,8 @@ class View {
     public static function generateBlogDetailView(\Entities\Blogs $data, \Entities\BlogEntry $entry) {
 
         $page = Template::load(static::PATH_HEADER);
-        $page .= Template::load(static::BLOG_TITLE, $data);
-        $page .= Template::load(static::BLOG_BODY, $entry);
+        $page .= Template::load(static::BLOG_TITLE_PATH, $data);
+        $page .= Template::load(static::BLOG_BODY_PATH, $entry);
 
         return $page;
     }
@@ -66,6 +69,14 @@ class View {
         $page = Template::load(static::PATH_HEADER);
         $page .= Template::load(static::PROJECTS_PATH_LISTING, $model);
         $page .= Template::load(static::PROJECTS_PATH_SIDE, $model);
+
+        return $page;
+    }
+
+    public static function generateSingleProjectView($model=[]) {
+        $page = Template::load(static::PATH_HEADER);
+        $page .= Template::load(static::PROJECT_TITLE_PATH, $model);
+        $page .= Template::load(static::PROJECT_BODY_PATH, $model);
 
         return $page;
     }

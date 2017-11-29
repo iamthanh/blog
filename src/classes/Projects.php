@@ -76,4 +76,23 @@ class Projects {
 
         return $results;
     }
+
+    /**
+     * Fetches and returns info for a single project; by project url name
+     *
+     * @param $projectUrl
+     * @return array|bool
+     */
+    public static function getSingleProject($projectUrl) {
+        /** @var \Entities\Projects $projectData */
+        $projectData = App::$entityManager->getRepository('Entities\Projects')->findOneBy(['url'=>$projectUrl, 'status'=>'active']);
+        if ($projectData) {
+            $tags = App::$entityManager->getRepository('Entities\ProjectTags')->findBy(['id'=>$projectData->getId()]);
+            return [
+                'project' => $projectData,
+                'tags' => $tags
+            ];
+        }
+        return false;
+    }
 }
