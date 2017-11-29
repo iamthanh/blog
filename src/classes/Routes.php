@@ -70,11 +70,15 @@ class Routes {
         $app->get('/projects[/{tag}]', function (Request $request, Response $response, $args) {
             // @todo sanitize $args to make sure its safe
 
-            // Getting all recent projects
-            $projects = Projects::getAllRecentProjects($args['tag']);
+            $tag = '';
+            if (isset($args['tag'])) {
+                $tag=$args['tag'];
+            }
 
+            // Getting all recent projects
+            $projects = Projects::getRecentProjects($tag);
             return $response->getBody()->write(
-                View::generateProjectsView(['projects'=>$projects])
+                View::generateProjectsView($projects)
             );
         });
 

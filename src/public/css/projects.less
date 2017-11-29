@@ -5,37 +5,52 @@
   display: flex;
   flex-wrap: wrap;
   font-family: Raleway;
+  justify-content: space-around;
 
   .project-item {
-    max-width: 33%;
     text-align: center;
-    padding: 20px;
+    max-width: 300px;
+    margin-bottom: 35px;
+    box-shadow: 2px 2px 30px #d8d8d8;
 
     a {
       color: #444;
+
+      &:hover {
+        text-decoration: none;
+      }
     }
 
     .project-image {
-
-
+      img {
+        max-width: 100%;
+      }
     }
 
-    .project-name {
-      margin-top: 10px;
-      color: #444;
-      font-size: 18px;
-    }
+    .project-info {
+      padding: 20px;
 
-    .project-description {
-      margin-top: 15px;
-      font-size: 14px;
-      color: #777;
-    }
+      .project-name {
+        color: #444;
+        font-size: 17px;
+      }
 
-    .project-links {
-      .link {
-        a {
+      .project-description {
+        margin-top: 15px;
+        font-size: 14px;
+        color: #777;
+      }
 
+      .project-tags {
+        margin-top:15px;
+
+        a.tag-link {
+          font-size: 14px;
+          background-color: #7e8082;
+          padding: 2px 8px 3px;
+          border-radius: 5px;
+          margin: 0 5px;
+          color: #ffffff;
         }
       }
     }

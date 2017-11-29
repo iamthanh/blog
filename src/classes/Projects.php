@@ -10,12 +10,12 @@ class Projects {
      * @param string $tag optional if displaying the projects filtered by tag
      * @return array
      */
-    public static function getAllRecentProjects($tag='') {
+    public static function getRecentProjects($tag='') {
 
         /**
          * SELECT
          * p.*,
-         * GROUP_CONCAT(pt.tagName separator ';') as tags
+         * GROUP_CONCAT(DISTINCT pt.tagName) as tags
          *
          * FROM `Projects` as p
          *
@@ -26,14 +26,14 @@ class Projects {
          * GROUP BY p.id
          * ORDER BY p.updated DESC
          */
+
         $qb = App::$entityManager->createQueryBuilder();
-        $qb->select('p,GROUP_CONCAT(pt.tagName separator ";") as tags')
+        $qb->select('p,GROUP_CONCAT(DISTINCT pt.tagName) as tags')
             ->from('Entities\Projects', 'p')
             ->leftJoin('Entities\ProjectTags', 'pt', 'WITH', $qb->expr()->eq('pt.projectId', 'p.id'))
             ->where($qb->expr()->eq('p.status', ':status'))
             ->orderBy('p.updated','DESC')
             ->groupBy('p.id')
-//            ->addSelect('')
             ->setParameter('status', 'active');
 
         // Checking if we have any tags to filter
@@ -43,44 +43,37 @@ class Projects {
         }
 
         $query = $qb->getQuery();
-        return $query->getResult();
+        $results = $query->getResult();
+
+        /**
+         * Sample of what the $results could look like:
+         *
+         * Array [
+         *    [
+         *       [0]      => {Entities\Projects object},
+         *       ['tags'] => {string}
+         *    ],
+         *    [
+         *       [0]      => {Entities\Projects object},
+         *       ['tags'] => {string}
+         *    ]
+         * ]
+         *
+         * We are going to rename the index '0' to 'project'
+         *
+         */
+        if (!empty($results)) {
+            $results = array_map(function($project) {
+
+                // Explode the tags (string) as an array
+                $tags = explode(',', $project['tags']);
+                return array(
+                    'project' => $project[0],
+                    'tags'    => $tags
+                );
+            }, $results);
+        }
+
+        return $results;
     }
-
-    /**
-     * @param $projectData
-     * @return array
-     */
-//    public static function getCompleteProjectsData($projectData) {
-//        $completeProjectData = [];
-//
-//        /**
-//         * Fetching the blog entries
-//         * @var $project \Entities\Projects
-//         */
-//        foreach($projectData as $project) {
-//            $links = static::getProjectLinks($project->getId());
-//            $completeProjectData[] = static::getAssembleProjectData($project, $links);
-//        }
-//
-//        return $completeProjectData;
-//    }
-
-    /**
-     * @param \Entities\Projects $projectData
-     * @param array $projectLinks
-     * @return array
-     */
-//    public static function getAssembleProjectData(\Entities\Projects $projectData, array $projectLinks) {
-//        return [
-//            'id' => $projectData->getId(),
-//            'url' => $projectData->getUrl(),
-//            'title' => $projectData->getTitle(),
-//            'thumbnail' => $projectData->getThumbnail(),
-//            'description' => $projectData->getDescription(),
-//            'text' => $projectData->getText(),
-//            'dateCreated' => $projectData->getDateCreated(),
-//            'dateUpdated' => $projectData->getDateUpdated(),
-//            'links' => $projectLinks
-//        ];
-//    }
 }
