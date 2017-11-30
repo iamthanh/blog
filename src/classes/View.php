@@ -22,12 +22,15 @@ class View {
     const BLOG_TITLE_PATH = 'blog/title.php';
     const BLOG_BODY_PATH = 'blog/body.php';
 
-    // Defined projects template paths
+    // Defined projects listing template paths
     const PROJECTS_PATH_LISTING = 'projects/listing.php';
     const PROJECTS_PATH_SIDE = 'projects/side.php';
 
+    // Defined single project detail page paths
     const PROJECT_TITLE_PATH = 'project/title.php';
     const PROJECT_BODY_PATH = 'project/body.php';
+
+    const CONTENT_NOT_FOUND = 'contentNotFound.php';
 
     /**
      * This will put together the templates necessary for a blogs listing
@@ -88,6 +91,9 @@ class View {
      * @return string
      */
     public static function generateNotFoundView($model=[]) {
+        $page = Template::load(static::PATH_HEADER);
+        $page .= Template::load(static::CONTENT_NOT_FOUND, $model);
 
+        return $page;
     }
 }
