@@ -87,7 +87,16 @@ class Projects {
         /** @var \Entities\Projects $projectData */
         $projectData = App::$entityManager->getRepository('Entities\Projects')->findOneBy(['url'=>$projectUrl, 'status'=>'active']);
         if ($projectData) {
-            $tags = App::$entityManager->getRepository('Entities\ProjectTags')->findBy(['id'=>$projectData->getId()]);
+            $tags = App::$entityManager->getRepository('Entities\ProjectTags')->findBy(['projectId'=>$projectData->getId()]);
+            if (!is_array($tags)) {
+                $tags = [$tags];
+            }
+
+            // Use default thumbnail for project when it doesn't exist yet
+            if (!$projectData->getThumbnail()) {
+                $projectData->setThumbnail('//via.placeholder.com/300x225');
+            }
+
             return [
                 'project' => $projectData,
                 'tags' => $tags

@@ -25,9 +25,13 @@ class Routes {
 
             // Getting all recent blogs (all topics)
             $blogs = Blogs::getAllRecentBlogs();
+            $sideNav = SideNav::generateSideNavFromBlogs($blogs);
 
             $response->getBody()->write(
-                View::generateBlogView(['blogs' => $blogs])
+                View::generateBlogView([
+                    'blogs' => $blogs,
+                    'sideNav' => $sideNav
+                ])
             );
             return $response;
         });
@@ -40,6 +44,7 @@ class Routes {
 
             // Getting all blogs by topic
             $blogs = Blogs::getAllRecentBlogsByTopic($args['topic']);
+
             if (!empty($blogs)) {
                 return $response->getBody()->write(View::generateBlogView(['blogs'=>$blogs]));
             } else {
@@ -55,6 +60,7 @@ class Routes {
 
             // Getting details about this specific blog
             $blog = Blogs::getSingleBlogDetails($args['topic'], $args['blogUrl']);
+
             if ($blog) {
                 return $response->getBody()->write(
                     View::generateBlogDetailView($blog['data'], $blog['entry'])
@@ -88,6 +94,8 @@ class Routes {
         $app->get('/project/{projectUrl}', function (Request $request, Response $response, $args) {
 
             $project = Projects::getSingleProject($args['projectUrl']);
+//            return $response->withJson($project);
+
             return $response->getBody()->write(
                 View::generateSingleProjectView($project)
             );

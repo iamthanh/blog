@@ -1,5 +1,9 @@
 <?php // The template for the projects listing section ?>
 
+<div class="projects-intro">
+    <p class="intro-text">I enjoy building stuff, here's some of my work.</p>
+</div>
+
 <div class="projects-container">
     <?php if (!empty($m)) {
         foreach($m as $item) {

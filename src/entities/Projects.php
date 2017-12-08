@@ -22,7 +22,7 @@ class Projects {
     protected $description;
 
     /** @Column(type="text") **/
-    protected $text;
+    protected $body;
 
     /**
      * @Column(type="datetime")
@@ -55,12 +55,16 @@ class Projects {
         return $this->thumbnail;
     }
 
+    public function setThumbnail($thumbnail) {
+        $this->thumbnail = $thumbnail;
+    }
+
     public function getDescription() {
         return $this->description;
     }
 
-    public function getText() {
-        return $this->text;
+    public function getBody() {
+        return $this->body;
     }
 
     public function getDateCreated() {

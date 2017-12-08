@@ -9,14 +9,16 @@ class View {
     const BLOG_PREFIX = '/blog';
     const PROJECTS_PREFIX = '/projects';
     const PROJECT_PREFIX = '/project';
+    const CONTACT_ME_PATH = '/contact';
 
     // Defined universal template paths
     const PATH_HEADER = 'header.php';
+    const PATH_FOOTER = 'footer.php';
+    const CONTENT_NOT_FOUND = 'contentNotFound.php';
 
     // Defined blogs (recent/by topic) template paths
     const BLOGS_PATH_LISTING = 'blogs/listing.php';
     const BLOGS_PATH_SIDE = 'blogs/side.php';
-    const BLOGS_PATH_FOOTER = 'blogs/footer.php';
 
     // Defined paths for a single blog posting
     const BLOG_TITLE_PATH = 'blog/title.php';
@@ -27,10 +29,8 @@ class View {
     const PROJECTS_PATH_SIDE = 'projects/side.php';
 
     // Defined single project detail page paths
-    const PROJECT_TITLE_PATH = 'project/title.php';
-    const PROJECT_BODY_PATH = 'project/body.php';
+    const PROJECT_DETAIL_PATH = 'project/detail.php';
 
-    const CONTENT_NOT_FOUND = 'contentNotFound.php';
 
     /**
      * This will put together the templates necessary for a blogs listing
@@ -42,6 +42,7 @@ class View {
         $page = Template::load(static::PATH_HEADER);
         $page .= Template::load(static::BLOGS_PATH_LISTING, $model);
         $page .= Template::load(static::BLOGS_PATH_SIDE, []);
+        $page .= Template::load(static::PATH_FOOTER, []);
 
         return $page;
     }
@@ -58,6 +59,7 @@ class View {
         $page = Template::load(static::PATH_HEADER);
         $page .= Template::load(static::BLOG_TITLE_PATH, $data);
         $page .= Template::load(static::BLOG_BODY_PATH, $entry);
+        $page .= Template::load(static::PATH_FOOTER, []);
 
         return $page;
     }
@@ -72,14 +74,15 @@ class View {
         $page = Template::load(static::PATH_HEADER);
         $page .= Template::load(static::PROJECTS_PATH_LISTING, $model);
         $page .= Template::load(static::PROJECTS_PATH_SIDE, $model);
+        $page .= Template::load(static::PATH_FOOTER, []);
 
         return $page;
     }
 
     public static function generateSingleProjectView($model=[]) {
         $page = Template::load(static::PATH_HEADER);
-        $page .= Template::load(static::PROJECT_TITLE_PATH, $model);
-        $page .= Template::load(static::PROJECT_BODY_PATH, $model);
+        $page .= Template::load(static::PROJECT_DETAIL_PATH, $model);
+        $page .= Template::load(static::PATH_FOOTER, []);
 
         return $page;
     }
@@ -93,6 +96,7 @@ class View {
     public static function generateNotFoundView($model=[]) {
         $page = Template::load(static::PATH_HEADER);
         $page .= Template::load(static::CONTENT_NOT_FOUND, $model);
+        $page .= Template::load(static::PATH_FOOTER, []);
 
         return $page;
     }
