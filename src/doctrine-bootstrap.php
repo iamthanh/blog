@@ -36,7 +36,10 @@ $ORM_config->setMetadataDriverImpl($driverImpl);
 $ORM_config->setProxyDir($proxiesPath);
 $ORM_config->setProxyNamespace($proxiesNamespace);
 
+/** Defining additional mysql functions from DoctrineExtensions */
 $ORM_config->addCustomStringFunction('GROUP_CONCAT', 'DoctrineExtensions\Query\Mysql\GroupConcat');
+$ORM_config->addCustomStringFunction('YEAR', 'DoctrineExtensions\Query\Mysql\Year');
+$ORM_config->addCustomStringFunction('MONTH', 'DoctrineExtensions\Query\Mysql\Month');
 
 //$config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
 $entityManager = EntityManager::create($dbParams, $ORM_config);

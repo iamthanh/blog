@@ -7,10 +7,12 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Blog\\App' => $baseDir . '/src/classes/App.php',
+    'Blog\\Auth' => $baseDir . '/src/classes/Auth.php',
     'Blog\\Blogs' => $baseDir . '/src/classes/Blogs.php',
     'Blog\\Config' => $baseDir . '/src/classes/Config.php',
     'Blog\\Projects' => $baseDir . '/src/classes/Projects.php',
     'Blog\\Routes' => $baseDir . '/src/classes/Routes.php',
+    'Blog\\SideNav' => $baseDir . '/src/classes/SideNav.php',
     'Blog\\Template' => $baseDir . '/src/classes/Template.php',
     'Blog\\View' => $baseDir . '/src/classes/View.php',
     'DoctrineExtensions\\Query\\MysqlWalker' => $vendorDir . '/beberlei/DoctrineExtensions/src/Query/MysqlWalker.php',
@@ -872,6 +874,7 @@ return array(
     'Entities\\Blogs' => $baseDir . '/src/entities/Blogs.php',
     'Entities\\ProjectTags' => $baseDir . '/src/entities/ProjectTags.php',
     'Entities\\Projects' => $baseDir . '/src/entities/Projects.php',
+    'Entities\\Users' => $baseDir . '/src/entities/Users.php',
     'FastRoute\\BadRouteException' => $vendorDir . '/nikic/fast-route/src/BadRouteException.php',
     'FastRoute\\DataGenerator' => $vendorDir . '/nikic/fast-route/src/DataGenerator.php',
     'FastRoute\\DataGenerator\\CharCountBased' => $vendorDir . '/nikic/fast-route/src/DataGenerator/CharCountBased.php',

@@ -24,6 +24,41 @@ class Blogs {
     }
 
     /**
+     * Fetches all of the blogs by certain year/month
+     *
+     * @param $year
+     * @param $month
+     * @return array
+     */
+    public static function getAllBlogsByYearMonth($year='', $month='') {
+
+        /**
+         * SELECT * FROM Blogs
+         * WHERE YEAR(updated)={year} AND MONTH(updated)={month} AND status='active'
+         * ORDER BY `updated` DESC
+         */
+
+        $qb = App::$entityManager->createQueryBuilder();
+        $qb->select('b')
+            ->from('Entities\Blogs', 'b')
+            ->where($qb->expr()->eq('b.status', ':status'))
+            ->andWhere('Month(b.updated)=:month')
+            ->andWhere('Year(b.updated)=:year')
+            ->orderBy('b.updated','DESC')
+
+            ->setParameters([
+                'status'=>'active',
+                'month'=>$month,
+                'year'=>$year
+            ]);
+
+        $query = $qb->getQuery();
+        $results = $query->getResult();
+
+        return $results;
+    }
+
+    /**
      * Gets the data for a single blog posting
      *
      * @param $topic

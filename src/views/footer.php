@@ -2,7 +2,7 @@
 
 <div class="footer-container">
     <div class="footer-items">
-        <div class="footer-item"><a href="/me">me</a></div>
+        <a class="footer-item" href="/secure/me">me</a>
     </div>
 </div>
 

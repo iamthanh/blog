@@ -1,60 +1,87 @@
-.listing-container {
+.listing-page-container {
   max-width: 1000px;
   margin: 100px auto 100px;
   box-sizing: border-box;
   display: flex;
 }
-.listing-container .side-bar {
+.listing-page-container a {
+  text-decoration: none;
+}
+.listing-page-container .listing-container {
+  padding-right: 40px;
+}
+.listing-page-container .listing-container .side-bar {
   flex: 0 1 25%;
   order: 1;
 }
-.listing-container .blog-collection {
+.listing-page-container .listing-container .blog-collection {
   flex: 0 1 75%;
   order: 0;
 }
-.listing-container .blog-collection .single-blog {
+.listing-page-container .listing-container .blog-collection .single-blog {
   margin: 0 0 50px;
   border-bottom: 2px dashed #efefef;
   padding-bottom: 50px;
 }
-.listing-container .blog-collection .single-blog:last-child {
+.listing-page-container .listing-container .blog-collection .single-blog:last-child {
   margin-bottom: 0;
   border-bottom: none;
   padding-bottom: 0;
 }
-.listing-container .blog-collection .single-blog .blog-title {
+.listing-page-container .listing-container .blog-collection .single-blog .blog-title {
   font-family: Raleway;
 }
-.listing-container .blog-collection .single-blog .blog-title span {
+.listing-page-container .listing-container .blog-collection .single-blog .blog-title span {
   vertical-align: middle;
 }
-.listing-container .blog-collection .single-blog .blog-title .title-text {
+.listing-page-container .listing-container .blog-collection .single-blog .blog-title .title-text {
   text-transform: uppercase;
   font-size: 22px;
 }
-.listing-container .blog-collection .single-blog .blog-title .title-text a {
+.listing-page-container .listing-container .blog-collection .single-blog .blog-title .title-text a {
   color: #444;
 }
-.listing-container .blog-collection .single-blog .blog-title .title-topic {
+.listing-page-container .listing-container .blog-collection .single-blog .blog-title .title-topic {
   font-size: 15px;
   margin-left: 15px;
 }
-.listing-container .blog-collection .single-blog .blog-title .title-topic a {
+.listing-page-container .listing-container .blog-collection .single-blog .blog-title .title-topic a {
   color: #a3a3a3;
 }
-.listing-container .blog-collection .single-blog .blog-title .title-topic a:hover {
+.listing-page-container .listing-container .blog-collection .single-blog .blog-title .title-topic a:hover {
   color: #333;
 }
-.listing-container .blog-collection .single-blog .blog-date-created {
+.listing-page-container .listing-container .blog-collection .single-blog .blog-date-created {
   font-size: 12px;
   font-family: 'Raleway';
 }
-.listing-container .blog-collection .single-blog .blog-body {
+.listing-page-container .listing-container .blog-collection .single-blog .blog-body {
   text-align: justify;
   font-family: 'Quicksand';
   font-size: 16px;
   margin-top: 18px;
   color: #808080;
+}
+.listing-page-container .side-nav-container {
+  flex: 0 0 225px;
+  padding-left: 40px;
+}
+.listing-page-container .side-nav-container .side-nav ul.calender-container {
+  margin: 0;
+  padding: 0;
+  font-family: 'Quicksand';
+}
+.listing-page-container .side-nav-container .side-nav ul.calender-container li.year {
+  list-style-type: none;
+}
+.listing-page-container .side-nav-container .side-nav ul.calender-container li.year span.year-text {
+  font-weight: bold;
+}
+.listing-page-container .side-nav-container .side-nav ul.calender-container li.year a.month-link div.month {
+  margin-left: 20px;
+}
+.listing-page-container .side-nav-container .side-nav ul.calender-container li.year a.month-link div.month span.month-name {
+  font-size: 15px;
 }
 .main-blog-title {
   max-width: 1000px;
@@ -82,11 +109,12 @@
 .main-blog-title .blog-topic a {
   color: #444;
 }
-.blog-date-created {
+.main-blog-title .blog-date-created {
   font-size: 15px;
   font-family: 'Quicksand';
   max-width: 1000px;
-  margin: 40px auto 0;
+  margin-top: 40px;
+  text-align: left;
 }
 .main-body-container {
   max-width: 1000px;
@@ -100,11 +128,16 @@
 }
 .not-found-container {
   max-width: 1000px;
-  margin: 15px auto 100px;
-  box-sizing: border-box;
-}
-.not-found-container h3 {
+  margin: 130px auto;
   text-align: center;
+  box-sizing: border-box;
   font-family: 'Quicksand';
+}
+.not-found-container .message-icon {
+  font-size: 40px;
+  color: #ed7a7a;
+}
+.not-found-container .message-text {
+  margin-top: 35px;
   color: #444;
 }

@@ -28,10 +28,7 @@ class Routes {
             $sideNav = SideNav::generateSideNavFromBlogs($blogs);
 
             $response->getBody()->write(
-                View::generateBlogView([
-                    'blogs' => $blogs,
-                    'sideNav' => $sideNav
-                ])
+                View::generateBlogView($blogs,$sideNav)
             );
             return $response;
         });
@@ -44,9 +41,25 @@ class Routes {
 
             // Getting all blogs by topic
             $blogs = Blogs::getAllRecentBlogsByTopic($args['topic']);
+            $sideNav = SideNav::generateSideNavFromBlogs($blogs);
 
             if (!empty($blogs)) {
-                return $response->getBody()->write(View::generateBlogView(['blogs'=>$blogs]));
+                return $response->getBody()->write(View::generateBlogView($blogs,$sideNav));
+            } else {
+                return $response->getBody()->write(View::generateNotFoundView());
+            }
+        });
+
+        /**
+         * Route for displaying all blogs by month/year
+         */
+        $app->get('/blogs/date/{year}/{month}', function (Request $request, Response $response, $args) {
+            // @todo sanitize $args to make sure its safe
+
+            // Getting all blogs by topic
+            $blogs = Blogs::getAllBlogsByYearMonth($args['year'],$args['month']);
+            if (!empty($blogs)) {
+                return $response->getBody()->write(View::generateBlogView($blogs));
             } else {
                 return $response->getBody()->write(View::generateNotFoundView());
             }
@@ -94,11 +107,18 @@ class Routes {
         $app->get('/project/{projectUrl}', function (Request $request, Response $response, $args) {
 
             $project = Projects::getSingleProject($args['projectUrl']);
-//            return $response->withJson($project);
-
             return $response->getBody()->write(
                 View::generateSingleProjectView($project)
             );
+        });
+
+        /**
+         * Route secure admin page
+         */
+        $app->get('/secure/me', function (Request $request, Response $response, $args) {
+
+            // Check for any existing authentication
+
         });
 
         /**

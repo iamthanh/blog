@@ -15,7 +15,7 @@ class SideNav {
             return false;
         }
 
-        $results = [];
+        $calender = [];
 
         /** @var $blog \Entities\Blogs */
         foreach($blogs as $blog) {
@@ -25,16 +25,19 @@ class SideNav {
             $month = $dateUpdated->format('F');
             $year = $dateUpdated->format('Y');
 
-            if (isset($results[$year])) {
-                if (isset($results[$year][$month])) {
-                    $results[$year][$month]++;
+            if (isset($calender[$year])) {
+                if (isset($calender[$year][$month])) {
+                    $calender[$year][$month]++;
                 } else {
-                    $results[$year][$month] = 1;
+                    $calender[$year][$month] = 1;
                 }
             } else {
-                $results[$year] = [$month=>1];
+                $calender[$year] = [$month=>1];
             }
         }
-        return $results;
+
+        return [
+            'calender'=>$calender
+        ];
     }
 }

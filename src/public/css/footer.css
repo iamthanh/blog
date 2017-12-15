@@ -1,0 +1,17 @@
+.footer-container {
+  padding: 20px 15px;
+}
+.footer-container .footer-items {
+  display: flex;
+  justify-content: flex-end;
+}
+.footer-container .footer-items .footer-item {
+  padding: 0px 8px;
+  background: #74aeec;
+  border-radius: 8px;
+  color: white;
+  text-decoration: none;
+}
+.footer-container .footer-items .footer-item:hover {
+  background: #4489d3;
+}

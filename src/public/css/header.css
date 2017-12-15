@@ -1,6 +1,9 @@
 .nav-header {
   padding-top: 50px;
 }
+.nav-header a {
+  text-decoration: none;
+}
 .nav-header .top-image {
   text-align: center;
 }

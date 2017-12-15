@@ -11,6 +11,5 @@
         <div class="title-short-description"><?= $m->getShortDescription() ?></div>
     </div>
     <div class="blog-topic"><a href="<?= Blog\View::BLOGS_PREFIX ?>/<?= $m->getBlogTopic() ?>"><?= $m->getBlogTopic() ?></a></div>
+    <div class="blog-date-created"><?= $m->getDateCreated()->format('F jS, Y') ?></div>
 </div>
-
-<div class="blog-date-created"><?= $m->getDateCreated()->format('F jS, Y') ?></div>
