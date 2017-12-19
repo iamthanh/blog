@@ -117,8 +117,12 @@ class Routes {
          */
         $app->get('/secure/me', function (Request $request, Response $response, $args) {
 
-            // Check for any existing authentication
+            /** Check if any existing logged in sessions */
+            if (Auth::isLoggedIn()) {
+                return $response->withJson(['Logged in']);
+            }
 
+            return $response->getBody()->write(View::generateSecureLoginPageView());
         });
 
         /**

@@ -90,7 +90,16 @@ class Auth {
             if (!empty($_SESSION[static::SESSION_USER_DATA_KEY])) {
                 $userId = $_SESSION[static::SESSION_USER_DATA_KEY]['userId'];
 
-                // Verify the session/cookie in the
+                // Verify the session/cookie matches up with the session/cookie in db for this userId
+                /** @var \Entities\Users $user */
+                $user = App::$entityManager->getRepository('Entities\Users')->findOneBy(['id'=>$userId, 'status'=>'active']);
+                if ($user) {
+                    if ($user->getCookieId() === $_SESSION[static::COOKIE_AUTH_KEY] && $user->getSessionId() === $_SESSION[static::SESSION_AUTH_KEY]) {
+                        if (strtotime($user->getSessionExpires()) > time()) {
+                            return true;
+                        }
+                    }
+                }
             }
         }
 

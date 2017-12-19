@@ -31,6 +31,7 @@ class View {
     // Defined single project detail page paths
     const PROJECT_DETAIL_PATH = 'project/detail.php';
 
+    const SECURE_LOG_IN_PATH = 'secure/login.php';
 
     /**
      * This will put together the templates necessary for a blogs listing
@@ -98,5 +99,15 @@ class View {
         $page .= Template::load(static::PATH_FOOTER, []);
 
         return $page;
+    }
+
+    /**
+     * Page for the secure/me login page
+     *
+     * @param array $model
+     * @return string
+     */
+    public static function generateSecureLoginPageView($model=[]) {
+        return Template::load(static::SECURE_LOG_IN_PATH, []);
     }
 }

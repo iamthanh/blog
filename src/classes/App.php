@@ -24,6 +24,8 @@ class App {
         $app = new \Slim\App(['setting'=>Config::getConfig('slim')]);
         $this->loadRoutes($app);
 
+        session_start();
+
         static::$container = $app->getContainer();
         static::$entityManager = $entityManager;
 

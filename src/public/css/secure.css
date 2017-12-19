@@ -1,0 +1,26 @@
+body .login-container .form {
+  position: absolute;
+  max-width: 350px;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 25px;
+}
+body .login-container .form input.form-control {
+  padding: 5px 8px;
+}
+body .login-container .form .submit-button-container {
+  text-align: center;
+}
+body .login-container .form .submit-button-container .btn.btn-blue {
+  cursor: pointer;
+  color: white;
+  background: #5b9ade;
+  border-color: #5b9ade;
+  padding: 4px 10px;
+}
+body .login-container .form .submit-button-container .btn.btn-blue:hover {
+  background: #4180c4;
+  border-color: #4180c4;
+}
