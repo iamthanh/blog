@@ -11,17 +11,23 @@
     <div class="login-container">
         <form class="form">
             <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                <label for="username">Username</label>
+                <input type="username" class="form-control" id="username" name="username" placeholder="Enter username" required>
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
             </div>
             <div class="submit-button-container">
                 <button type="submit" class="btn btn-blue">Submit</button>
             </div>
+            <div class="form-message-container"></div>
         </form>
     </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/src/public/js/login.js"></script>
 </body>
+</html>
 

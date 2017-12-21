@@ -6,6 +6,7 @@ body .login-container .form {
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 25px;
+  margin-top: -35px;
 }
 body .login-container .form input.form-control {
   padding: 5px 8px;
