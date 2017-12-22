@@ -125,15 +125,28 @@ class Routes {
             return $response->getBody()->write(View::generateSecureLoginPageView());
         });
 
-        /**
-         * For api calls
-         */
-        $app->map($this->allowed_api_methods, '/api[/{params:.*}]', function (Request $request, Response $response, $args) {
-            // @todo sanitize params to make sure its safe
+        $app->get('/test', function (Request $request, Response $response, $args) {
+            return $response->withJson([$_SESSION, $_COOKIE]);
+        });
 
-            return $response->withJson([
-                'test'=>$request->getAttribute('params')
-            ]);
+        /**
+         * Api route for logging in for /secure/me
+         */
+        $app->post('/api/login', function (Request $request, Response $response, $args) {
+            $data = $request->getParsedBody();
+
+            // Checking that username and password was passed in
+            if (!empty($data) && !empty($data['username']) && $data['password']) {
+                /** @var \Entities\Users $user */
+                $user = Auth::verifyLogin($data['username'], $data['password']);
+
+                // Verify login
+                if ($user) {
+                    return $response->withJson(['status'=>Auth::storeUserDataInSession($user)]);
+                }
+            }
+
+            return $response->withJson(['status'=>false]);
         });
 
         return $app;

@@ -18,9 +18,6 @@ class Users {
     /** @Column(type="string") **/
     protected $sessionId;
 
-    /** @Column(type="string") **/
-    protected $cookieId;
-
     /** @Column(type="datetime") **/
     protected $sessionCreated;
 
@@ -48,14 +45,6 @@ class Users {
 
     public function setSessionId($sessionId) {
         $this->sessionId = $sessionId;
-    }
-
-    public function getCookieId() {
-        return $this->cookieId;
-    }
-
-    public function setCookieId($cookieId) {
-        $this->cookieId = $cookieId;
     }
 
     public function getSessionCreated() {
