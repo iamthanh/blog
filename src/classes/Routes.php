@@ -115,17 +115,20 @@ class Routes {
         /**
          * Route secure admin page
          */
-        $app->get('/secure/me', function (Request $request, Response $response, $args) {
+        $app->get('/secure/admin[/{params:.*}]', function (Request $request, Response $response, $args) {
 
             /** Check if any existing logged in sessions */
             if (Auth::isLoggedIn()) {
-                return $response->withJson(['Logged in']);
+
+                // Grab all the url params; if any
+                $params = explode('/', $request->getAttribute('params'));
+
+                // Load the content management system
+                return $response->getBody()->write(View::generateSecureCMS($params));
             }
 
             return $response->getBody()->write(View::generateSecureLoginPageView());
         });
-
-
 
         $app->get('/test', function (Request $request, Response $response, $args) {
             return $response->withJson([$_SESSION]);
@@ -138,7 +141,12 @@ class Routes {
             $data = $request->getParsedBody();
 
             // Checking that username and password was passed in
-            if (!empty($data['username']) && !empty($data['password']) && !empty($data['token'])) {
+            if (!empty($data['username']) && !empty($data['password'])) {
+
+                if (empty($data['token'])) {
+                    trigger_error('Missing csrf token in request when required.');
+                    return $response->withJson(['status'=>false]);
+                }
 
                 // Verify csrf token
                 if (Auth::verifyCsrfToken($data['token'])) {

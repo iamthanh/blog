@@ -17,7 +17,7 @@
                     obj[item.name] = item.value;
                     return obj;
                 }, {});
-                self.submitLogin(data.username, data.password, $(this).data('token'));
+                self.submitLogin(data.username, data.password, $('div[data-token]').data('token'));
             });
         },
         submitLogin: function(username, password, token) {
@@ -35,18 +35,17 @@
                 data: {username: username, password: password, token: token},
                 success: function(resp) {
                     if (resp && resp.status) {
-                        self.displayMessage('success', 'Log in successful, please wait.');
+                        self.displayMessage('success', 'Log in successful');
 
                         // Reload the page
                         location.reload();
                     } else {
                         self.displayMessage('error', 'Could not verify user, please try again.');
+                        self.submitButton.toggleClass('disabled', false).text('Submit');
                     }
                 },
                 error: function(resp) {
                     self.displayMessage('error', 'There was an error, please try again later.');
-                },
-                complete: function() {
                     self.submitButton.toggleClass('disabled', false).text('Submit');
                 }
             });

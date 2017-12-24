@@ -9,6 +9,17 @@ class Auth {
     const SESSION_CSRF_TOKEN_KEY = 'csrf_token';
 
     /**
+     * These session keys and their values will be removed when logging out
+     *
+     * @var array
+     */
+    public static $logoutSessionKeys = [
+        self::SESSION_AUTH_KEY,
+        self::SESSION_USER_DATA_KEY,
+        self::SESSION_CSRF_TOKEN_KEY
+    ];
+
+    /**
      * This is will create a new user and store it into DB
      *
      * @param $username
@@ -120,6 +131,7 @@ class Auth {
     }
 
     public static function verifyCsrfToken($token='') {
+
         if (!empty($_SESSION[static::SESSION_CSRF_TOKEN_KEY])) {
             return $token === $_SESSION[static::SESSION_CSRF_TOKEN_KEY]['value'];
         }
@@ -164,9 +176,9 @@ class Auth {
     }
 
     public static function logout() {
-        unset($_SESSION[static::SESSION_AUTH_KEY]);
-        unset($_SESSION[static::SESSION_USER_DATA_KEY]);
-        unset($_SESSION[static::SESSION_CSRF_TOKEN_KEY]);
+        foreach (static::$logoutSessionKeys as $key) {
+            unset($_SESSION[$key]);
+        }
     }
 
     /**

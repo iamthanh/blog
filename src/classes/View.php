@@ -15,6 +15,7 @@ class View {
     const PATH_HEADER = 'header.php';
     const PATH_FOOTER = 'footer.php';
     const CONTENT_NOT_FOUND = 'contentNotFound.php';
+    const PATH_TOP_NAV = 'topNav.php';
 
     // Defined blogs (recent/by topic) template paths
     const BLOGS_PATH_LISTING = 'blogs/listing.php';
@@ -31,7 +32,10 @@ class View {
     // Defined single project detail page paths
     const PROJECT_DETAIL_PATH = 'project/detail.php';
 
+    // Defined secure paths
+    const SECURE_ADMIN_PATH = 'secure/admin.php';
     const SECURE_LOG_IN_PATH = 'secure/login.php';
+    const SECURE_FOOTER_PATH = 'secure/footer.php';
 
     /**
      * This will put together the templates necessary for a blogs listing
@@ -41,6 +45,7 @@ class View {
      */
     public static function generateBlogView($blogsModel=[], $sideNavModel=[]) {
         $page = Template::load(static::PATH_HEADER);
+        $page .= Template::load(static::PATH_TOP_NAV);
         $page .= Template::load(static::BLOGS_PATH_LISTING, ['blogs'=>$blogsModel, 'sideNav'=>$sideNavModel]);
         $page .= Template::load(static::PATH_FOOTER, []);
 
@@ -57,6 +62,7 @@ class View {
     public static function generateBlogDetailView(\Entities\Blogs $data, \Entities\BlogEntry $entry) {
 
         $page = Template::load(static::PATH_HEADER);
+        $page .= Template::load(static::PATH_TOP_NAV);
         $page .= Template::load(static::BLOG_TITLE_PATH, $data);
         $page .= Template::load(static::BLOG_BODY_PATH, $entry);
         $page .= Template::load(static::PATH_FOOTER, []);
@@ -72,6 +78,7 @@ class View {
      */
     public static function generateProjectsView($model=[]) {
         $page = Template::load(static::PATH_HEADER);
+        $page .= Template::load(static::PATH_TOP_NAV);
         $page .= Template::load(static::PROJECTS_PATH_LISTING, $model);
         $page .= Template::load(static::PROJECTS_PATH_SIDE, $model);
         $page .= Template::load(static::PATH_FOOTER, []);
@@ -81,6 +88,7 @@ class View {
 
     public static function generateSingleProjectView($model=[]) {
         $page = Template::load(static::PATH_HEADER);
+        $page .= Template::load(static::PATH_TOP_NAV);
         $page .= Template::load(static::PROJECT_DETAIL_PATH, $model);
         $page .= Template::load(static::PATH_FOOTER, []);
 
@@ -95,6 +103,7 @@ class View {
      */
     public static function generateNotFoundView($model=[]) {
         $page = Template::load(static::PATH_HEADER);
+        $page .= Template::load(static::PATH_TOP_NAV);
         $page .= Template::load(static::CONTENT_NOT_FOUND, $model);
         $page .= Template::load(static::PATH_FOOTER, []);
 
@@ -108,6 +117,24 @@ class View {
      * @return string
      */
     public static function generateSecureLoginPageView($model=[]) {
-        return Template::load(static::SECURE_LOG_IN_PATH, []);
+        $page = Template::load(static::PATH_HEADER);
+        $page .= Template::load(static::SECURE_LOG_IN_PATH, []);
+        $page .= Template::load(static::SECURE_FOOTER_PATH, []);
+
+        return $page;
+    }
+
+    /**
+     * Secure page for adding/editing content
+     *
+     * @param array $model
+     * @return string
+     */
+    public static function generateSecureCMS($model=[]) {
+        $page = Template::load(static::PATH_HEADER);
+        $page .= Template::load(static::SECURE_ADMIN_PATH, []);
+        $page .= Template::load(static::SECURE_FOOTER_PATH, []);
+
+        return $page;
     }
 }
