@@ -1,4 +1,7 @@
 <?php // Template for the header ?>
+
+<?php $csrfToken = \Blog\Auth::getCSRFToken(); ?>
+
 <html>
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
@@ -9,7 +12,7 @@
 </head>
 <body>
     <div class="login-container">
-        <form class="form">
+        <form class="form" data-token="<?= $csrfToken ?>">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="username" class="form-control" id="username" name="username" placeholder="Enter username" required>
@@ -21,11 +24,9 @@
             <div class="submit-button-container">
                 <button type="submit" class="btn btn-blue">Submit</button>
             </div>
-            <div class="form-message-container"></div>
+            <div class="message-container"></div>
         </form>
     </div>
-
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="/src/public/js/login.js"></script>
 </body>

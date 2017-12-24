@@ -6,6 +6,7 @@ class Auth {
 
     const SESSION_AUTH_KEY = 'auth_session';
     const SESSION_USER_DATA_KEY = 'user_data';
+    const SESSION_CSRF_TOKEN_KEY = 'csrf_token';
 
     /**
      * This is will create a new user and store it into DB
@@ -89,6 +90,44 @@ class Auth {
     }
 
     /**
+     * Generates a new csrf token
+     * @return string
+     */
+    private static function generateCSRFToken() {
+        return hash('sha256', time());
+    }
+
+    private static function storeCSRFToken($token) {
+        if (!$token) {
+            trigger_error('cannot store csrf token; $token is null/invalid');
+            return false;
+        }
+
+        $_SESSION[static::SESSION_CSRF_TOKEN_KEY] = [
+            'value' => $token,
+            'created' => time()
+        ];
+        return $token;
+    }
+
+    public static function getCSRFToken() {
+        // If already exist in session, retrieve it
+        if (!empty($_SESSION[static::SESSION_CSRF_TOKEN_KEY])) {
+            return $_SESSION[static::SESSION_CSRF_TOKEN_KEY]['value'];
+        }
+
+        return static::storeCSRFToken(static::generateCSRFToken());
+    }
+
+    public static function verifyCsrfToken($token='') {
+        if (!empty($_SESSION[static::SESSION_CSRF_TOKEN_KEY])) {
+            return $token === $_SESSION[static::SESSION_CSRF_TOKEN_KEY]['value'];
+        }
+
+        return false;
+    }
+
+    /**
      * Checks if there is a user logged in saved in session
      *
      * @return bool
@@ -122,6 +161,12 @@ class Auth {
         }
 
         return false;
+    }
+
+    public static function logout() {
+        unset($_SESSION[static::SESSION_AUTH_KEY]);
+        unset($_SESSION[static::SESSION_USER_DATA_KEY]);
+        unset($_SESSION[static::SESSION_CSRF_TOKEN_KEY]);
     }
 
     /**

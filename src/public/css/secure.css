@@ -1,3 +1,6 @@
+body .login-container {
+  font-family: 'Quicksand';
+}
 body .login-container .form {
   position: absolute;
   max-width: 350px;
@@ -24,4 +27,19 @@ body .login-container .form .submit-button-container .btn.btn-blue {
 body .login-container .form .submit-button-container .btn.btn-blue:hover {
   background: #4180c4;
   border-color: #4180c4;
+}
+body .login-container .form .submit-button-container .btn.btn-blue.disabled {
+  cursor: not-allowed;
+}
+body .login-container .form .message-container {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  height: 42px;
+}
+body .login-container .form .message-container.success {
+  color: #3f6d3f;
+}
+body .login-container .form .message-container.error {
+  color: #f05a5a;
 }

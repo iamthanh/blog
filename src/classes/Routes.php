@@ -125,8 +125,10 @@ class Routes {
             return $response->getBody()->write(View::generateSecureLoginPageView());
         });
 
+
+
         $app->get('/test', function (Request $request, Response $response, $args) {
-            return $response->withJson([$_SESSION, $_COOKIE]);
+            return $response->withJson([$_SESSION]);
         });
 
         /**
@@ -136,17 +138,32 @@ class Routes {
             $data = $request->getParsedBody();
 
             // Checking that username and password was passed in
-            if (!empty($data) && !empty($data['username']) && $data['password']) {
-                /** @var \Entities\Users $user */
-                $user = Auth::verifyLogin($data['username'], $data['password']);
+            if (!empty($data['username']) && !empty($data['password']) && !empty($data['token'])) {
 
-                // Verify login
-                if ($user) {
-                    return $response->withJson(['status'=>Auth::storeUserDataInSession($user)]);
+                // Verify csrf token
+                if (Auth::verifyCsrfToken($data['token'])) {
+                    /** @var \Entities\Users $user */
+                    $user = Auth::verifyLogin($data['username'], $data['password']);
+
+                    // Verify login
+                    if ($user) {
+                        return $response->withJson(['status'=>Auth::storeUserDataInSession($user)]);
+                    }
+                } else {
+                    trigger_error('secure/me login failed: mismatch csrf token');
                 }
             }
 
             return $response->withJson(['status'=>false]);
+        });
+
+        /**
+         * This Api call will logout any user logged in
+         */
+        $app->get('/api/logout', function(Request $request, Response $response, $args) {
+            Auth::logout();
+
+            return $response->withJson([$_SESSION]);
         });
 
         return $app;

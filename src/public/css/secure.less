@@ -1,5 +1,7 @@
 body {
   .login-container {
+    font-family: 'Quicksand';
+
     .form {
       position: absolute;
       max-width: 350px;
@@ -28,7 +30,21 @@ body {
             background: #4180c4;
             border-color: #4180c4;
           }
+
+          &.disabled {
+            cursor: not-allowed;
+          }
         }
+      }
+
+      .message-container {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 14px;
+        height: 42px;
+
+        &.success {color: #3f6d3f;}
+        &.error {color: #f05a5a;}
       }
     }
   }
