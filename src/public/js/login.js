@@ -40,8 +40,13 @@
                         // Reload the page
                         location.reload();
                     } else {
-                        self.displayMessage('error', 'Could not verify user, please try again.');
-                        self.submitButton.toggleClass('disabled', false).text('Submit');
+                        // Check if reload is required
+                        if (resp.reload) {
+                            location.reload();
+                        } else {
+                            self.displayMessage('error', 'Could not verify user, please try again.');
+                            self.submitButton.toggleClass('disabled', false).text('Submit');
+                        }
                     }
                 },
                 error: function(resp) {

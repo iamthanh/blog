@@ -4,6 +4,10 @@ namespace Blog;
 
 class Blogs {
 
+    public static function getAll($criteria = [], $orderBy = []) {
+        return App::$entityManager->getRepository('Entities\Blogs')->findBy($criteria, $orderBy);
+    }
+
     /**
      * This will return all of the recent blogs of any topic
      *

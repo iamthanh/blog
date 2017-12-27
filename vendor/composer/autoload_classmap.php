@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Blog\\Admin' => $baseDir . '/src/classes/Admin.php',
     'Blog\\App' => $baseDir . '/src/classes/App.php',
     'Blog\\Auth' => $baseDir . '/src/classes/Auth.php',
     'Blog\\Blogs' => $baseDir . '/src/classes/Blogs.php',

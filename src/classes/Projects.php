@@ -8,9 +8,11 @@ class Projects {
      * This will get all of the recent projects
      *
      * @param string $tag optional if displaying the projects filtered by tag
+     * @param string $status
+     * @param string $orderBy
      * @return array
      */
-    public static function getRecentProjects($tag='') {
+    public static function getProjects($tag='', $status='active', $orderBy='DESC') {
 
         /**
          * SELECT
@@ -31,15 +33,19 @@ class Projects {
         $qb->select('p,GROUP_CONCAT(DISTINCT pt.tagName) as tags')
             ->from('Entities\Projects', 'p')
             ->leftJoin('Entities\ProjectTags', 'pt', 'WITH', $qb->expr()->eq('pt.projectId', 'p.id'))
-            ->where($qb->expr()->eq('p.status', ':status'))
-            ->orderBy('p.updated','DESC')
-            ->groupBy('p.id')
-            ->setParameter('status', 'active');
+            ->orderBy('p.updated',$orderBy)
+            ->groupBy('p.id');
 
         // Checking if we have any tags to filter
         if ($tag) {
             $qb->andWhere($qb->expr()->eq('pt.tagName', ':tag'))
                 ->setParameter('tag', $tag);
+        }
+
+        // Checking if we have any tags to filter
+        if ($status) {
+            $qb->andWhere($qb->expr()->eq('p.status', ':status'))
+                ->setParameter('status', $status);
         }
 
         $query = $qb->getQuery();

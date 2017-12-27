@@ -132,7 +132,7 @@ class View {
      */
     public static function generateSecureCMS($model=[]) {
         $page = Template::load(static::PATH_HEADER);
-        $page .= Template::load(static::SECURE_ADMIN_PATH, []);
+        $page .= Template::load(static::SECURE_ADMIN_PATH, $model);
         $page .= Template::load(static::SECURE_FOOTER_PATH, []);
 
         return $page;

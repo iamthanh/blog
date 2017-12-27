@@ -95,7 +95,7 @@ class Routes {
             }
 
             // Getting all recent projects
-            $projects = Projects::getRecentProjects($tag);
+            $projects = Projects::getProjects($tag);
             return $response->getBody()->write(
                 View::generateProjectsView($projects)
             );
@@ -123,8 +123,11 @@ class Routes {
                 // Grab all the url params; if any
                 $params = explode('/', $request->getAttribute('params'));
 
+                // Get all of the data needed for the admin page using the params
+                $adminData = Admin::getAdminData($params);
+
                 // Load the content management system
-                return $response->getBody()->write(View::generateSecureCMS($params));
+                return $response->getBody()->write(View::generateSecureCMS($adminData));
             }
 
             return $response->getBody()->write(View::generateSecureLoginPageView());
@@ -146,6 +149,11 @@ class Routes {
                 if (empty($data['token'])) {
                     trigger_error('Missing csrf token in request when required.');
                     return $response->withJson(['status'=>false]);
+                }
+
+                // If the csrf token is missing in the session, then reloading the page is required
+                if (empty($_SESSION[Auth::SESSION_CSRF_TOKEN_KEY])) {
+                    return $response->withJson(['status'=>false,'reload'=>false]);
                 }
 
                 // Verify csrf token
