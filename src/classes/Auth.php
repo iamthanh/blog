@@ -131,7 +131,6 @@ class Auth {
     }
 
     public static function verifyCsrfToken($token='') {
-
         if (!empty($_SESSION[static::SESSION_CSRF_TOKEN_KEY])) {
             return $token === $_SESSION[static::SESSION_CSRF_TOKEN_KEY]['value'];
         }

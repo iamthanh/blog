@@ -182,6 +182,23 @@ class Routes {
             return $response->withJson([$_SESSION]);
         });
 
+        $app->get('/api/admin/{dataType}', function(Request $request, Response $response, $args) {
+            $data = $request->getQueryParams();
+            if (!empty($data) && !empty($data[Auth::SESSION_CSRF_TOKEN_KEY])) {
+                if (Auth::verifyCsrfToken($data[Auth::SESSION_CSRF_TOKEN_KEY])) {
+                    if (Auth::isLoggedIn()) {
+                        return $response->withJson(Admin::getAdminData(Admin::DEFAULT_ACTION, $request->getAttribute('dataType')));
+                    }
+                } else {
+                    trigger_error('admin failed: mismatch csrf token');
+                }
+            } else {
+                trigger_error('Missing csrf token in request when required.');
+            }
+
+            return $response->withJson(['status'=>false]);
+        });
+
         return $app;
     }
 }

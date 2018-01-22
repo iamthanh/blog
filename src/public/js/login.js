@@ -1,4 +1,4 @@
-(function() {
+$(document).ready(function() {
     var login = {
         loginAjaxPath: '/api/login',
         messageContainer: $('.login-container form .message-container'),
@@ -65,4 +65,4 @@
     };
 
     login.init();
-})();
+});
