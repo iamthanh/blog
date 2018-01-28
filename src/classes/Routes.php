@@ -187,7 +187,10 @@ class Routes {
             if (!empty($data) && !empty($data[Auth::SESSION_CSRF_TOKEN_KEY])) {
                 if (Auth::verifyCsrfToken($data[Auth::SESSION_CSRF_TOKEN_KEY])) {
                     if (Auth::isLoggedIn()) {
-                        return $response->withJson(Admin::getAdminData(Admin::DEFAULT_ACTION, $request->getAttribute('dataType')));
+                        return $response->withJson([
+                            'status' => true,
+                            'data' => Admin::getAdminData(Admin::DEFAULT_ACTION, $request->getAttribute('dataType'))
+                        ]);
                     }
                 } else {
                     trigger_error('admin failed: mismatch csrf token');

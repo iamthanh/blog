@@ -31,7 +31,7 @@ $(document).ready(function() {
 
             $.ajax({
                 url: self.loginAjaxPath,
-                type: 'post',
+                method: 'post',
                 data: {username: username, password: password, token: token},
                 success: function(resp) {
                     if (resp && resp.status) {

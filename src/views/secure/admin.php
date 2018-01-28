@@ -17,65 +17,14 @@
         </ul>
     </div>
     <div class="content-container">
-        <?php if ($m) { ?>
+        <div class="content-title">
+            <div class="text"></div>
+        </div>
 
-            <div class="content-title">
-                <div class="text"><?= $m['type'] ?></div>
-            </div>
-
-            <div class="add-new-content-container">
-                <button type="button" class="btn btn-sm btn-success"><i class="fa fa-plus" aria-hidden="true"></i> Create new</button>
-            </div>
-
-            <div class="content-list-container">
-
-                <?php foreach($m['contentData'] as $data) {
-                    continue;
-
-
-                    if ($m['type'] === \Blog\Admin::EDIT_TYPE_BLOGS) {
-                        /** @var $data \Entities\Blogs */
-                        ?>
-                        <div class="content" data-id="<?= $data->getId() ?>">
-
-                            <div class="left">
-                                <div class="thumbnail">
-                                    <img src="<?= empty($data->getThumbnail())?'//via.placeholder.com/300x225' : $data->getThumbnail() ?>">
-                                </div>
-                            </div>
-                            <div class="right">
-                                <div class="title-text"><?= $data->getTitle() ?></div>
-                                <div class="topic"><?= $data->getBlogTopic() ?></div>
-                                <div class="short-description"><?= $data->getShortDescription() ?></div>
-                                <div class="description"><?= $data->getDescription() ?></div>
-                                <div class="date-created">Created: <span class="text"><?= $data->getDateCreated()->format('F jS, Y') ?></span></div>
-                                <div class="content-action">
-                                    <button type="button" class="action btn btn-sm btn-outline-secondary" id="edit" data-id="<?= $data->getId() ?>">
-                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
-                                    </button>
-                                    <button type="button" class="action btn btn-sm btn-outline-danger" id="delete" data-id="<?= $data->getId() ?>">
-                                        <i class="fa fa-trash-o" aria-hidden="true"></i>Delete
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    <?php } else if ($m['type'] === \Blog\Admin::EDIT_TYPE_PROJECTS) { ?>
-
-                    <?php } else { ?>
-
-                    <?php }
-
-                } ?>
-            </div>
-
-        <?php } else { ?>
-            <div class="invalid-content">
-                <div class="message">
-                    <h4>Error, content not found.</h4>
-                    <h5>Check the url and try again.</h5>
-                </div>
-            </div>
-        <?php } ?>
+        <div class="add-new-content-container">
+            <button type="button" class="btn btn-sm btn-success"><i class="fa fa-plus" aria-hidden="true"></i> Create new</button>
+        </div>
+        <div class="content-list-container"></div>
     </div>
 </div>
 
@@ -83,13 +32,27 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Create post</h5>
+                <h5 class="modal-title"></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>Modal body text goes here.</p>
+                <form>
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" id="title" placeholder="Title of blog/project">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Short Description</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-sm btn-success">Submit</button>

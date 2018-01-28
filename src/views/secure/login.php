@@ -16,3 +16,5 @@
         <div class="message-container"></div>
     </form>
 </div>
+
+<script type="text/javascript" src="/src/public/js/login.js"></script>
