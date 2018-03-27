@@ -112,27 +112,6 @@ class Routes {
             );
         });
 
-        /**
-         * Route secure admin page
-         */
-        $app->get('/secure/admin[/{params:.*}]', function (Request $request, Response $response, $args) {
-
-            /** Check if any existing logged in sessions */
-            if (Auth::isLoggedIn()) {
-
-                // Grab all the url params; if any
-                $params = explode('/', $request->getAttribute('params'));
-
-                // Get all of the data needed for the admin page using the params
-                $adminData = Admin::getAdminData($params);
-
-                // Load the content management system
-                return $response->getBody()->write(View::generateSecureCMS($adminData));
-            }
-
-            return $response->getBody()->write(View::generateSecureLoginPageView());
-        });
-
         $app->get('/test', function (Request $request, Response $response, $args) {
             return $response->withJson([$_SESSION]);
         });
@@ -180,6 +159,51 @@ class Routes {
             Auth::logout();
 
             return $response->withJson([$_SESSION]);
+        });
+
+        /**
+         * Route secure admin page
+         */
+        $app->get('/secure/admin[/{params:.*}]', function (Request $request, Response $response, $args) {
+
+            /** Check if any existing logged in sessions */
+            if (Auth::isLoggedIn()) {
+
+                // Grab all the url params; if any
+                $params = explode('/', $request->getAttribute('params'));
+
+                // Get all of the data needed for the admin page using the params
+                $adminData = Admin::getAdminData($params);
+
+                // Load the content management system
+                return $response->getBody()->write(View::generateSecureCMS($adminData));
+            }
+
+            return $response->getBody()->write(View::generateSecureLoginPageView());
+        });
+
+        /**
+         * Post request for updating a blog post from edit modal
+         */
+        $app->post('/api/admin/update', function(Request $request, Response $response, $args) {
+
+            // Check that the data exist, and verify/sanitize it
+            $postData = $request->getParsedBody();
+            if (!empty($postData)) {
+
+                // Check csrf
+
+                $cleanData = Admin::sanitizeAndVerifyEditModalData($postData['data']);
+                if($cleanData) {
+
+                    // Data is now safe to save
+                    $update = Admin::updateBlogDataByBlogId($cleanData['id'], $cleanData);
+                    return $response->withJson(['status'=>$update['status'], 'message'=>$update['message'] ]);
+                } else {
+                    // Verification failed
+                    return $response->withJson(['status'=>false,'message'=>'Error: failed to verify the post data.']);
+                }
+            }
         });
 
         $app->get('/api/admin/{dataType}', function(Request $request, Response $response, $args) {

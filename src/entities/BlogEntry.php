@@ -24,7 +24,15 @@ class BlogEntry {
         return $this->body;
     }
 
+    public function setBody($body) {
+        $this->body = $body;
+    }
+
     public function getHeaderImage() {
         return $this->headerImage;
+    }
+
+    public function setHeaderImage($headerImage) {
+        $this->headerImage = $headerImage;
     }
 }

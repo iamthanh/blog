@@ -53,8 +53,16 @@ class Blogs {
         return $this->url;
     }
 
+    public function setUrl($url) {
+        $this->url = $url;
+    }
+
     public function getTitle() {
         return $this->title;
+    }
+
+    public function setTitle($title) {
+        $this->title = $title;
     }
 
     public function getBlogEntryId() {
@@ -65,16 +73,32 @@ class Blogs {
         return $this->blogTopic;
     }
 
+    public function setBlogTopic($topic) {
+        $this->blogTopic = $topic;
+    }
+
     public function getShortDescription() {
         return $this->shortDescription;
+    }
+
+    public function setShortDescription($shortDescription) {
+        $this->shortDescription = $shortDescription;
     }
 
     public function getDescription() {
         return $this->description;
     }
 
+    public function setDescription($description) {
+        $this->description = $description;
+    }
+
     public function getThumbnail() {
         return $this->thumbnail;
+    }
+
+    public function setThumbnail($thumbnail) {
+        $this->thumbnail = $thumbnail;
     }
 
     public function getDateCreated() {
@@ -87,5 +111,9 @@ class Blogs {
 
     public function getStatus() {
         return $this->status;
+    }
+
+    public function setStatus($status) {
+        $this->status = $status;
     }
 }

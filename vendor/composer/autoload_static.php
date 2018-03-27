@@ -16,13 +16,11 @@ class ComposerStaticInitcb18df7809ae61d5ad07a8082f0b6e6a
         array (
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\Yaml\\' => 23,
-            'Symfony\\Component\\Debug\\' => 24,
             'Symfony\\Component\\Console\\' => 26,
             'Slim\\' => 5,
         ),
         'P' => 
         array (
-            'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
         ),
@@ -40,6 +38,7 @@ class ComposerStaticInitcb18df7809ae61d5ad07a8082f0b6e6a
         ),
         'D' => 
         array (
+            'Doctrine\\ORM\\' => 13,
             'Doctrine\\Instantiator\\' => 22,
             'Doctrine\\Common\\Inflector\\' => 26,
             'Doctrine\\Common\\Cache\\' => 22,
@@ -62,10 +61,6 @@ class ComposerStaticInitcb18df7809ae61d5ad07a8082f0b6e6a
         array (
             0 => __DIR__ . '/..' . '/symfony/yaml',
         ),
-        'Symfony\\Component\\Debug\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/debug',
-        ),
         'Symfony\\Component\\Console\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
@@ -73,10 +68,6 @@ class ComposerStaticInitcb18df7809ae61d5ad07a8082f0b6e6a
         'Slim\\' => 
         array (
             0 => __DIR__ . '/..' . '/slim/slim/Slim',
-        ),
-        'Psr\\Log\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
         'Psr\\Http\\Message\\' => 
         array (
@@ -97,6 +88,10 @@ class ComposerStaticInitcb18df7809ae61d5ad07a8082f0b6e6a
         'Entities\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src/entities',
+        ),
+        'Doctrine\\ORM\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM',
         ),
         'Doctrine\\Instantiator\\' => 
         array (
@@ -138,10 +133,6 @@ class ComposerStaticInitcb18df7809ae61d5ad07a8082f0b6e6a
         ),
         'D' => 
         array (
-            'Doctrine\\ORM\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/doctrine/orm/lib',
-            ),
             'Doctrine\\DBAL\\' => 
             array (
                 0 => __DIR__ . '/..' . '/doctrine/dbal/lib',
@@ -212,6 +203,7 @@ class ComposerStaticInitcb18df7809ae61d5ad07a8082f0b6e6a
         'DoctrineExtensions\\Query\\Mysql\\Hour' => __DIR__ . '/..' . '/beberlei/DoctrineExtensions/src/Query/Mysql/Hour.php',
         'DoctrineExtensions\\Query\\Mysql\\IfElse' => __DIR__ . '/..' . '/beberlei/DoctrineExtensions/src/Query/Mysql/IfElse.php',
         'DoctrineExtensions\\Query\\Mysql\\IfNull' => __DIR__ . '/..' . '/beberlei/DoctrineExtensions/src/Query/Mysql/IfNull.php',
+        'DoctrineExtensions\\Query\\Mysql\\Instr' => __DIR__ . '/..' . '/beberlei/DoctrineExtensions/src/Query/Mysql/Instr.php',
         'DoctrineExtensions\\Query\\Mysql\\LastDay' => __DIR__ . '/..' . '/beberlei/DoctrineExtensions/src/Query/Mysql/LastDay.php',
         'DoctrineExtensions\\Query\\Mysql\\Least' => __DIR__ . '/..' . '/beberlei/DoctrineExtensions/src/Query/Mysql/Least.php',
         'DoctrineExtensions\\Query\\Mysql\\Log' => __DIR__ . '/..' . '/beberlei/DoctrineExtensions/src/Query/Mysql/Log.php',
@@ -258,6 +250,7 @@ class ComposerStaticInitcb18df7809ae61d5ad07a8082f0b6e6a
         'DoctrineExtensions\\Query\\Mysql\\Week' => __DIR__ . '/..' . '/beberlei/DoctrineExtensions/src/Query/Mysql/Week.php',
         'DoctrineExtensions\\Query\\Mysql\\WeekDay' => __DIR__ . '/..' . '/beberlei/DoctrineExtensions/src/Query/Mysql/WeekDay.php',
         'DoctrineExtensions\\Query\\Mysql\\Year' => __DIR__ . '/..' . '/beberlei/DoctrineExtensions/src/Query/Mysql/Year.php',
+        'DoctrineExtensions\\Query\\Mysql\\YearMonth' => __DIR__ . '/..' . '/beberlei/DoctrineExtensions/src/Query/Mysql/YearMonth.php',
         'DoctrineExtensions\\Query\\Mysql\\YearWeek' => __DIR__ . '/..' . '/beberlei/DoctrineExtensions/src/Query/Mysql/YearWeek.php',
         'DoctrineExtensions\\Query\\Oracle\\Day' => __DIR__ . '/..' . '/beberlei/DoctrineExtensions/src/Query/Oracle/Day.php',
         'DoctrineExtensions\\Query\\Oracle\\Listagg' => __DIR__ . '/..' . '/beberlei/DoctrineExtensions/src/Query/Oracle/Listagg.php',
@@ -866,9 +859,11 @@ class ComposerStaticInitcb18df7809ae61d5ad07a8082f0b6e6a
         'Doctrine\\ORM\\Query\\AST\\ExistsExpression' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Query/AST/ExistsExpression.php',
         'Doctrine\\ORM\\Query\\AST\\FromClause' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Query/AST/FromClause.php',
         'Doctrine\\ORM\\Query\\AST\\Functions\\AbsFunction' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Query/AST/Functions/AbsFunction.php',
+        'Doctrine\\ORM\\Query\\AST\\Functions\\AvgFunction' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Query/AST/Functions/AvgFunction.php',
         'Doctrine\\ORM\\Query\\AST\\Functions\\BitAndFunction' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Query/AST/Functions/BitAndFunction.php',
         'Doctrine\\ORM\\Query\\AST\\Functions\\BitOrFunction' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Query/AST/Functions/BitOrFunction.php',
         'Doctrine\\ORM\\Query\\AST\\Functions\\ConcatFunction' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Query/AST/Functions/ConcatFunction.php',
+        'Doctrine\\ORM\\Query\\AST\\Functions\\CountFunction' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Query/AST/Functions/CountFunction.php',
         'Doctrine\\ORM\\Query\\AST\\Functions\\CurrentDateFunction' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Query/AST/Functions/CurrentDateFunction.php',
         'Doctrine\\ORM\\Query\\AST\\Functions\\CurrentTimeFunction' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Query/AST/Functions/CurrentTimeFunction.php',
         'Doctrine\\ORM\\Query\\AST\\Functions\\CurrentTimestampFunction' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Query/AST/Functions/CurrentTimestampFunction.php',
@@ -880,10 +875,13 @@ class ComposerStaticInitcb18df7809ae61d5ad07a8082f0b6e6a
         'Doctrine\\ORM\\Query\\AST\\Functions\\LengthFunction' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Query/AST/Functions/LengthFunction.php',
         'Doctrine\\ORM\\Query\\AST\\Functions\\LocateFunction' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Query/AST/Functions/LocateFunction.php',
         'Doctrine\\ORM\\Query\\AST\\Functions\\LowerFunction' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Query/AST/Functions/LowerFunction.php',
+        'Doctrine\\ORM\\Query\\AST\\Functions\\MaxFunction' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Query/AST/Functions/MaxFunction.php',
+        'Doctrine\\ORM\\Query\\AST\\Functions\\MinFunction' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Query/AST/Functions/MinFunction.php',
         'Doctrine\\ORM\\Query\\AST\\Functions\\ModFunction' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Query/AST/Functions/ModFunction.php',
         'Doctrine\\ORM\\Query\\AST\\Functions\\SizeFunction' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Query/AST/Functions/SizeFunction.php',
         'Doctrine\\ORM\\Query\\AST\\Functions\\SqrtFunction' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Query/AST/Functions/SqrtFunction.php',
         'Doctrine\\ORM\\Query\\AST\\Functions\\SubstringFunction' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Query/AST/Functions/SubstringFunction.php',
+        'Doctrine\\ORM\\Query\\AST\\Functions\\SumFunction' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Query/AST/Functions/SumFunction.php',
         'Doctrine\\ORM\\Query\\AST\\Functions\\TrimFunction' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Query/AST/Functions/TrimFunction.php',
         'Doctrine\\ORM\\Query\\AST\\Functions\\UpperFunction' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Query/AST/Functions/UpperFunction.php',
         'Doctrine\\ORM\\Query\\AST\\GeneralCaseExpression' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Query/AST/GeneralCaseExpression.php',
@@ -1020,6 +1018,7 @@ class ComposerStaticInitcb18df7809ae61d5ad07a8082f0b6e6a
         'Doctrine\\ORM\\TransactionRequiredException' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/TransactionRequiredException.php',
         'Doctrine\\ORM\\UnexpectedResultException' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/UnexpectedResultException.php',
         'Doctrine\\ORM\\UnitOfWork' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php',
+        'Doctrine\\ORM\\Utility\\HierarchyDiscriminatorResolver' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Utility/HierarchyDiscriminatorResolver.php',
         'Doctrine\\ORM\\Utility\\IdentifierFlattener' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Utility/IdentifierFlattener.php',
         'Doctrine\\ORM\\Utility\\PersisterHelper' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Utility/PersisterHelper.php',
         'Doctrine\\ORM\\Version' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Version.php',
@@ -1076,16 +1075,6 @@ class ComposerStaticInitcb18df7809ae61d5ad07a8082f0b6e6a
         'Psr\\Http\\Message\\StreamInterface' => __DIR__ . '/..' . '/psr/http-message/src/StreamInterface.php',
         'Psr\\Http\\Message\\UploadedFileInterface' => __DIR__ . '/..' . '/psr/http-message/src/UploadedFileInterface.php',
         'Psr\\Http\\Message\\UriInterface' => __DIR__ . '/..' . '/psr/http-message/src/UriInterface.php',
-        'Psr\\Log\\AbstractLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/AbstractLogger.php',
-        'Psr\\Log\\InvalidArgumentException' => __DIR__ . '/..' . '/psr/log/Psr/Log/InvalidArgumentException.php',
-        'Psr\\Log\\LogLevel' => __DIR__ . '/..' . '/psr/log/Psr/Log/LogLevel.php',
-        'Psr\\Log\\LoggerAwareInterface' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerAwareInterface.php',
-        'Psr\\Log\\LoggerAwareTrait' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerAwareTrait.php',
-        'Psr\\Log\\LoggerInterface' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerInterface.php',
-        'Psr\\Log\\LoggerTrait' => __DIR__ . '/..' . '/psr/log/Psr/Log/LoggerTrait.php',
-        'Psr\\Log\\NullLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/NullLogger.php',
-        'Psr\\Log\\Test\\DummyTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
-        'Psr\\Log\\Test\\LoggerInterfaceTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
         'Slim\\App' => __DIR__ . '/..' . '/slim/slim/Slim/App.php',
         'Slim\\CallableResolver' => __DIR__ . '/..' . '/slim/slim/Slim/CallableResolver.php',
         'Slim\\CallableResolverAwareTrait' => __DIR__ . '/..' . '/slim/slim/Slim/CallableResolverAwareTrait.php',
@@ -1133,6 +1122,9 @@ class ComposerStaticInitcb18df7809ae61d5ad07a8082f0b6e6a
         'Slim\\RouteGroup' => __DIR__ . '/..' . '/slim/slim/Slim/RouteGroup.php',
         'Slim\\Router' => __DIR__ . '/..' . '/slim/slim/Slim/Router.php',
         'Symfony\\Component\\Console\\Application' => __DIR__ . '/..' . '/symfony/console/Application.php',
+        'Symfony\\Component\\Console\\CommandLoader\\CommandLoaderInterface' => __DIR__ . '/..' . '/symfony/console/CommandLoader/CommandLoaderInterface.php',
+        'Symfony\\Component\\Console\\CommandLoader\\ContainerCommandLoader' => __DIR__ . '/..' . '/symfony/console/CommandLoader/ContainerCommandLoader.php',
+        'Symfony\\Component\\Console\\CommandLoader\\FactoryCommandLoader' => __DIR__ . '/..' . '/symfony/console/CommandLoader/FactoryCommandLoader.php',
         'Symfony\\Component\\Console\\Command\\Command' => __DIR__ . '/..' . '/symfony/console/Command/Command.php',
         'Symfony\\Component\\Console\\Command\\HelpCommand' => __DIR__ . '/..' . '/symfony/console/Command/HelpCommand.php',
         'Symfony\\Component\\Console\\Command\\ListCommand' => __DIR__ . '/..' . '/symfony/console/Command/ListCommand.php',
@@ -1150,7 +1142,6 @@ class ComposerStaticInitcb18df7809ae61d5ad07a8082f0b6e6a
         'Symfony\\Component\\Console\\Event\\ConsoleCommandEvent' => __DIR__ . '/..' . '/symfony/console/Event/ConsoleCommandEvent.php',
         'Symfony\\Component\\Console\\Event\\ConsoleErrorEvent' => __DIR__ . '/..' . '/symfony/console/Event/ConsoleErrorEvent.php',
         'Symfony\\Component\\Console\\Event\\ConsoleEvent' => __DIR__ . '/..' . '/symfony/console/Event/ConsoleEvent.php',
-        'Symfony\\Component\\Console\\Event\\ConsoleExceptionEvent' => __DIR__ . '/..' . '/symfony/console/Event/ConsoleExceptionEvent.php',
         'Symfony\\Component\\Console\\Event\\ConsoleTerminateEvent' => __DIR__ . '/..' . '/symfony/console/Event/ConsoleTerminateEvent.php',
         'Symfony\\Component\\Console\\Exception\\CommandNotFoundException' => __DIR__ . '/..' . '/symfony/console/Exception/CommandNotFoundException.php',
         'Symfony\\Component\\Console\\Exception\\ExceptionInterface' => __DIR__ . '/..' . '/symfony/console/Exception/ExceptionInterface.php',
@@ -1206,24 +1197,6 @@ class ComposerStaticInitcb18df7809ae61d5ad07a8082f0b6e6a
         'Symfony\\Component\\Console\\Terminal' => __DIR__ . '/..' . '/symfony/console/Terminal.php',
         'Symfony\\Component\\Console\\Tester\\ApplicationTester' => __DIR__ . '/..' . '/symfony/console/Tester/ApplicationTester.php',
         'Symfony\\Component\\Console\\Tester\\CommandTester' => __DIR__ . '/..' . '/symfony/console/Tester/CommandTester.php',
-        'Symfony\\Component\\Debug\\BufferingLogger' => __DIR__ . '/..' . '/symfony/debug/BufferingLogger.php',
-        'Symfony\\Component\\Debug\\Debug' => __DIR__ . '/..' . '/symfony/debug/Debug.php',
-        'Symfony\\Component\\Debug\\DebugClassLoader' => __DIR__ . '/..' . '/symfony/debug/DebugClassLoader.php',
-        'Symfony\\Component\\Debug\\ErrorHandler' => __DIR__ . '/..' . '/symfony/debug/ErrorHandler.php',
-        'Symfony\\Component\\Debug\\ExceptionHandler' => __DIR__ . '/..' . '/symfony/debug/ExceptionHandler.php',
-        'Symfony\\Component\\Debug\\Exception\\ClassNotFoundException' => __DIR__ . '/..' . '/symfony/debug/Exception/ClassNotFoundException.php',
-        'Symfony\\Component\\Debug\\Exception\\ContextErrorException' => __DIR__ . '/..' . '/symfony/debug/Exception/ContextErrorException.php',
-        'Symfony\\Component\\Debug\\Exception\\FatalErrorException' => __DIR__ . '/..' . '/symfony/debug/Exception/FatalErrorException.php',
-        'Symfony\\Component\\Debug\\Exception\\FatalThrowableError' => __DIR__ . '/..' . '/symfony/debug/Exception/FatalThrowableError.php',
-        'Symfony\\Component\\Debug\\Exception\\FlattenException' => __DIR__ . '/..' . '/symfony/debug/Exception/FlattenException.php',
-        'Symfony\\Component\\Debug\\Exception\\OutOfMemoryException' => __DIR__ . '/..' . '/symfony/debug/Exception/OutOfMemoryException.php',
-        'Symfony\\Component\\Debug\\Exception\\SilencedErrorContext' => __DIR__ . '/..' . '/symfony/debug/Exception/SilencedErrorContext.php',
-        'Symfony\\Component\\Debug\\Exception\\UndefinedFunctionException' => __DIR__ . '/..' . '/symfony/debug/Exception/UndefinedFunctionException.php',
-        'Symfony\\Component\\Debug\\Exception\\UndefinedMethodException' => __DIR__ . '/..' . '/symfony/debug/Exception/UndefinedMethodException.php',
-        'Symfony\\Component\\Debug\\FatalErrorHandler\\ClassNotFoundFatalErrorHandler' => __DIR__ . '/..' . '/symfony/debug/FatalErrorHandler/ClassNotFoundFatalErrorHandler.php',
-        'Symfony\\Component\\Debug\\FatalErrorHandler\\FatalErrorHandlerInterface' => __DIR__ . '/..' . '/symfony/debug/FatalErrorHandler/FatalErrorHandlerInterface.php',
-        'Symfony\\Component\\Debug\\FatalErrorHandler\\UndefinedFunctionFatalErrorHandler' => __DIR__ . '/..' . '/symfony/debug/FatalErrorHandler/UndefinedFunctionFatalErrorHandler.php',
-        'Symfony\\Component\\Debug\\FatalErrorHandler\\UndefinedMethodFatalErrorHandler' => __DIR__ . '/..' . '/symfony/debug/FatalErrorHandler/UndefinedMethodFatalErrorHandler.php',
         'Symfony\\Component\\Yaml\\Dumper' => __DIR__ . '/..' . '/symfony/yaml/Dumper.php',
         'Symfony\\Component\\Yaml\\Escaper' => __DIR__ . '/..' . '/symfony/yaml/Escaper.php',
         'Symfony\\Component\\Yaml\\Exception\\DumpException' => __DIR__ . '/..' . '/symfony/yaml/Exception/DumpException.php',

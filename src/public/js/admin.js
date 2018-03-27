@@ -1,9 +1,12 @@
 $(document).ready(function() {
     var admin = {
-        contentContainer: $('.content-container'),
+        ajaxProcessing: false,
         modal: $('.modal#admin-editor-modal'),
         token: $('div[data-token]').data('token'),
-        contentData: null,
+        data: null,
+        dataType: null,
+        dataTypeDisplayName: null,
+        objToBeEditOriginal: null,
         init: function() {
             var self = this;
 
@@ -14,6 +17,9 @@ $(document).ready(function() {
                 });
             });
         },
+        getContainer: function() {
+            return $('.content-container');
+        },
         getData: function(callback) {
             var self = this;
 
@@ -23,8 +29,16 @@ $(document).ready(function() {
                 method: 'get',
                 data: {csrf_token: self.token},
                 success: function(response) {
+
                     if (response && response.status) {
-                        if (response.data.contentData) self.contentData = response.data;
+                        if (response.data.type) self.dataType = response.data.type;
+                        if (response.data.type === 'blogs') {
+                            self.dataTypeDisplayName = 'Blog';
+                        } else if (response.type === 'projects') {
+                            self.dataTypeDisplayName = 'Project';
+                        }
+
+                        if (response.data.contentData) self.data = response.data;
                         if (callback) callback(response.data);
                     } else {
                         // Request failed
@@ -73,8 +87,11 @@ $(document).ready(function() {
         },
         renderPage: function(callback) {
             var self = this;
-            var data = self.contentData;
+            var data = self.data;
             var container = $('.content-list-container', '.admin-container');
+
+            // Empty out the container
+            container.html('');
 
             if (data.contentData && data.contentData.length) {
                 if (data.type) {
@@ -97,19 +114,114 @@ $(document).ready(function() {
         setListeners: function() {
             var self = this;
 
-            $('button.action#edit', this.contentContainer).on('click', function() {
+            // Click event for the edit button; before launching the edit modal
+            $(this.getContainer()).on('click', 'button.action#edit', function() {
                 var dataId = $(this).data('id');
-                self.renderModal(dataId, function() {
-                    self.modal.modal('show');
-                });
-            })
-        },
-        renderModal: function (id, callback) {
 
+                // Getting the data for this id
+                $.each(self.data.contentData, function(i, obj) {
+                    if (obj.id === dataId) {
+
+                        // Original data saved and set aside for change detection
+                        self.objToBeEditOriginal = obj;
+
+                        self.renderModal('edit', obj, function() {
+                            self.modal.modal('show');
+                        });
+                    }
+                });
+            });
+
+            // Click event for saving changes on the edit modal
+            $(self.modal).on('click', 'button[type=submit]', function() {
+                if (self.ajaxProcessing) return;
+
+                // Getting the data from the edit modal
+                var editModalData = self.getEditModalData();
+
+                if (editModalData) {
+                    $.ajax({
+                        url: '/api/admin/update',
+                        method: 'post',
+                        data: {data: editModalData, csrf_token: self.token},
+                        beforeSend: function() {
+                            $('button[type=submit]', self.modal).text('Saving').attr('disabled','disabled');
+                        },
+                        success: function(response) {
+                            if (response && response.status) {
+                                $('.status-container .success', self.modal).text(response.message);
+
+                                // Update the data on the page
+                                self.getData(function() {
+                                    self.renderPage();
+                                });
+                            } else {
+                                // Request failed
+                                $('.status-container .error', self.modal).text(response.message);
+                            }
+                        },
+                        error: function(response) {
+                            // Request failed
+                            $('.status-container .error', self.modal).text('Failed to update, there was an error.');
+                        },
+                        complete: function() {
+                            self.ajaxProcessing = false;
+                            $('button[type=submit]', self.modal).text('Save').removeAttr('disabled');
+                        }
+                    });
+                }
+            });
+
+            $(this.getContainer()).on('click', 'button.action#delete', function() {
+
+            });
+        },
+        renderModal: function (actionType, obj, callback) {
+            var self = this;
+
+            // Reset the modal
+            self.resetModal();
+
+            // Update the modal title
+            if (actionType === 'edit') { $('.modal-title', self.modal).text('Edit ' + self.dataTypeDisplayName); }
+
+            if (obj) {
+                // Update the modal with this data
+                $('input#title', self.modal).val(obj.title ? obj.title : '');
+                $('input#url', self.modal).val(obj.url ? obj.url : '');
+                $('input#topic', self.modal).val(obj.blogTopic ? obj.blogTopic : '');
+                $('textarea#short-description', self.modal).val(obj.shortDescription ? obj.shortDescription : '');
+
+                // Images and thumbnails
+                $('input#thumbnail', self.modal).val(obj.thumbnail ? obj.thumbnail : '');
+                $('input#header-image', self.modal).val(obj.bodyHeaderImage ? obj.bodyHeaderImage : '');
+
+                // Setting the post body
+                $('textarea#full-body', self.modal).html(String(obj.fullBody));
+
+                // Attach the id of the blog
+                $('form', self.modal).attr('data-id', obj.id);
+            }
 
             if (callback) callback();
-        }
+        },
+        resetModal: function() {
+            // Reset the status messages
+            $('.status-container .status-text', this.modal).text('');
+        },
+        // Returns the data for the edit modal as an object
+        getEditModalData: function() {
+            var self = this;
+            var obj = {};
+            $('input,textarea', self.modal).each(function(i, el) {
+                var fieldName = $(el).attr('data-id');
+                obj[fieldName] = $(el).val();
+            });
 
+            // Attach additional data
+            obj['id'] = parseInt($('form', self.modal).attr('data-id'));
+            return obj;
+        }
     };
 
     // Start the admin

@@ -98,3 +98,6 @@
 .admin-container .content-container .content-list-container .content .content-action .action i {
   margin-right: 5px;
 }
+.modal#admin-editor-modal .modal-dialog {
+  max-width: 800px;
+}

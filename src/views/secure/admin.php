@@ -39,23 +39,56 @@
             </div>
             <div class="modal-body">
                 <form>
-                    <div class="form-group">
-                        <label for="title">Title</label>
-                        <input type="text" class="form-control" id="title" placeholder="Title of blog/project">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="title">Title</label>
+                                <input type="text" data-id='title' class="form-control form-control-sm" id="title" placeholder="Title of blog/project">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="url">Url</label>
+                                <input type="text" data-id='url' class="form-control form-control-sm" id="url" placeholder="Url for this blog">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="topic">Topic</label>
+                                <input type="text" data-id='blogTopic' class="form-control form-control-sm" id="topic" placeholder="Topic">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="thumbnail">Thumbnail</label>
+                                <input type="text" data-id='thumbnail' class="form-control form-control-sm" id="thumbnail" placeholder="Path to thumbnail">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="header-image">Header image</label>
+                                <input type="text" data-id='bodyHeaderImage' class="form-control form-control-sm" id="header-image" placeholder="Path to header image">
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Short Description</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <label for="short-description">Short Description</label>
+                        <textarea class="form-control form-control-sm" data-id='shortDescription' id="short-description" placeholder="Enter a short description"></textarea>
                     </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    <div class="form-group">
+                        <label for="full-body">Full body</label>
+                        <textarea rows="8" class="form-control form-control-sm" data-id='fullBody' id="full-body" placeholder="This is the body of the post"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-sm btn-success">Submit</button>
+                <div class="status-container">
+                    <span class="status-text error text-danger"></span>
+                    <span class="status-text success text-success"></span>
+                </div>
+                <button type="submit" class="btn btn-sm btn-success">Save</button>
                 <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
