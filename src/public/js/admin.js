@@ -167,19 +167,21 @@ $(document).ready(function() {
                                 // Update the data on the page
                                 self.getData(function() {
                                     self.renderPage();
+                                    self.modal.modal('hide');
                                 });
                             } else {
                                 // Request failed
+                                $('button[type=submit]', self.modal).text('Save').removeAttr('disabled');
                                 $('.status-container .error', self.modal).text(response.message);
                             }
                         },
                         error: function(response) {
                             // Request failed
+                            $('button[type=submit]', self.modal).text('Save').removeAttr('disabled');
                             $('.status-container .error', self.modal).text('Failed to update, there was an error.');
                         },
                         complete: function() {
                             self.ajaxProcessing = false;
-                            $('button[type=submit]', self.modal).text('Save').removeAttr('disabled');
                         }
                     });
                 }
@@ -253,7 +255,9 @@ $(document).ready(function() {
         },
         resetModal: function() {
             // Reset the status messages
-            $('.status-container .status-text', this.modal).text('');
+            $('.status-container .error', self.modal).text('');
+            $('.status-container .success', self.modal).text('');
+            $('button[type=submit]', self.modal).text('Save');
         },
         // Returns the data for the edit modal as an object
         getEditModalData: function() {
