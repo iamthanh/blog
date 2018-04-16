@@ -4,15 +4,19 @@ namespace Blog;
 
 class Admin {
 
-    const ACTION_EDIT = 'edit';
+    const ACTION_TYPE_EDIT = 'edit';
+    const ACTION_TYPE_CREATE = 'create';
+
+
     const EDIT_TYPE_BLOGS = 'blogs';
     const EDIT_TYPE_PROJECTS = 'projects';
 
-    const DEFAULT_ACTION = self::ACTION_EDIT;
+    const DEFAULT_ACTION = self::ACTION_TYPE_EDIT;
     const DEFAULT_EDIT_TYPE = self::EDIT_TYPE_BLOGS;
 
     public static $allowedActions = [
-        self::ACTION_EDIT
+        self::ACTION_TYPE_EDIT,
+
     ];
 
     public static $allowedTypes = [
@@ -21,41 +25,11 @@ class Admin {
     ];
 
     /**
-     * @param string $action
-     * @param string $type
-     * @return array|bool
+     * Gets all the data required for the admin page
+     *
+     * @return array
      */
-    public static function getAdminData($action='', $type='') {
-
-        // Use the default values if the parameters are not set
-        if (empty($action) || empty($type)) {
-            $action  = self::DEFAULT_ACTION;
-            $type = self::DEFAULT_EDIT_TYPE;
-        }
-
-        if (in_array($action, static::$allowedActions)) {
-
-            // Checking if the admin is editing
-            if ($action === 'edit' && in_array($type, static::$allowedTypes)) {
-
-                $contentData = [];
-                if ($type === static::EDIT_TYPE_BLOGS) {
-                    $contentData = self::getBlogsForEditing();
-                } else if ($type === static::EDIT_TYPE_PROJECTS) {
-                    $contentData = self::getProjectsForEditing();
-                }
-
-                return [
-                    'type' => $type,
-                    'contentData' => $contentData
-                ];
-            }
-        }
-
-        return false;
-    }
-
-    protected static function getBlogsForEditing() {
+    public static function getBlogsForAdmin() {
         // Get all blogs
         $blogs = Blogs::getAll([], ['created'=>'DESC']);
         if ($blogs) {
@@ -84,10 +58,10 @@ class Admin {
                 ];
             }
 
-            return $results;
+            return ['contentData' => $results];
         }
 
-        return [];
+        return ['contentData' => []];
     }
 
     /**
@@ -102,7 +76,7 @@ class Admin {
 
             // The thumbnail and body header images are not required
             $data['thumbnail'] = filter_var(trim($data['thumbnail']), FILTER_SANITIZE_STRING);
-            $data['bodyHeaderImage'] = filter_var(trim($data['bodyHeaderImage']), FILTER_SANITIZE_STRING);
+            $data['headerImage'] = filter_var(trim($data['headerImage']), FILTER_SANITIZE_STRING);
 
             $data['title'] = filter_var(trim($data['title']), FILTER_SANITIZE_STRING);
             if (!$data['title']) {
@@ -122,10 +96,9 @@ class Admin {
                 return false;
             }
 
-            $data['id'] = filter_var(trim($data['id']), FILTER_SANITIZE_NUMBER_INT);
-            if (!$data['id']) {
-                trigger_error('Error: cannot update blog data, id is invalid');
-                return false;
+            // Sanitize if its not null
+            if (!empty($data['id'])) {
+                $data['id'] = filter_var(trim($data['id']), FILTER_SANITIZE_NUMBER_INT);
             }
         } else {
             // Data is empty
@@ -139,19 +112,18 @@ class Admin {
      * This will update a blog posting by the blog's id
      * returns true when successful, otherwise false
      *
-     * @param $blogId
      * @param $data
      * @return array|bool
      */
-    public static function updateBlogDataByBlogId($blogId, $data) {
+    public static function updateBlogDataByBlogId($data) {
 
-        if ($blogId) {
+        if ($data['id']) {
 
             /** @var $blog \Entities\Blogs */
-            $blog = App::$entityManager->getRepository('Entities\Blogs')->findOneBy(['id'=>$blogId]);
+            $blog = App::$entityManager->getRepository('Entities\Blogs')->findOneBy(['id'=>$data['id']]);
 
             /** @var $blogEntry \Entities\BlogEntry */
-            $blogEntry = App::$entityManager->getRepository('Entities\BlogEntry')->findOneBy(['id'=>$blogId]);
+            $blogEntry = App::$entityManager->getRepository('Entities\BlogEntry')->findOneBy(['id'=>$data['id']]);
 
             // Setting the new values
             $blog->setTitle($data['title']);
@@ -185,6 +157,52 @@ class Admin {
         }
 
         return false;
+    }
+
+    /**
+     * This will create a new blog post in the database
+     *
+     * @param $data
+     * @return array
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public static function createNewBlogPost($data) {
+
+        if (!empty($data)) {
+
+            try {
+                /** @var $blogEntry \Entities\EntityBase */
+                $blogEntry = new \Entities\BlogEntry($data);
+                App::$entityManager->persist($blogEntry);
+                App::$entityManager->flush();
+
+                $blogEntryId = $blogEntry->getId();
+
+                /** @var $blog \Entities\Blogs */
+                $blog = new \Entities\Blogs($data);
+                $blog->setBlogEntryId($blogEntryId);
+                $blog->setStatus(\Entities\Blogs::STATUS_ACTIVE);
+                App::$entityManager->persist($blog);
+                App::$entityManager->flush();
+
+                return [
+                    'status' => true,
+                    'message'=> 'Update successful'
+                ];
+            } catch (\Exception $exception) {
+                return [
+                    'status' => false,
+                    'message'=> 'There was an error, could not create new blog. Message: ' . $exception->getMessage()
+                ];
+            }
+        }
+
+        // There was a problem
+        return [
+            'status' => true,
+            'message'=> 'There was an error, could not create new blog.'
+        ];
     }
 
     protected static function getProjectsForEditing() {

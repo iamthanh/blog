@@ -5,7 +5,7 @@ namespace Entities;
 /**
  * @Entity @Table(name="Users")
  **/
-class Users {
+class Users extends EntityBase {
     /** @Id @Column(type="integer") @GeneratedValue **/
     protected $id;
 
@@ -27,35 +27,22 @@ class Users {
     /** @Column(type="string", columnDefinition="ENUM('active','inactive')") **/
     protected $status;
 
-    public function getId() {
-        return $this->id;
+    public function __construct($data) {
+        parent::convertArrayToObject($data);
     }
 
-    public function getUserName() {
-        return $this->username;
-    }
+    public function getId() { return $this->id; }
 
-    public function getPassword() {
-        return $this->password;
-    }
+    public function getUserName() { return $this->username; }
 
-    public function getSessionId() {
-        return $this->sessionId;
-    }
+    public function getPassword() { return $this->password; }
 
-    public function setSessionId($sessionId) {
-        $this->sessionId = $sessionId;
-    }
+    public function getSessionId() { return $this->sessionId; }
+    public function setSessionId($sessionId) { $this->sessionId = $sessionId; }
 
-    public function getSessionCreated() {
-        return $this->sessionCreated;
-    }
+    public function getSessionCreated() { return $this->sessionCreated; }
 
-    public function getSessionExpires() {
-        return $this->sessionExpires;
-    }
+    public function getSessionExpires() { return $this->sessionExpires; }
 
-    public function getStatus() {
-        return $this->status;
-    }
+    public function getStatus() { return $this->status; }
 }

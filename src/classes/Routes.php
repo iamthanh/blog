@@ -164,16 +164,13 @@ class Routes {
         /**
          * Route secure admin page
          */
-        $app->get('/secure/admin[/{params:.*}]', function (Request $request, Response $response, $args) {
+        $app->get('/secure/admin', function (Request $request, Response $response, $args) {
 
             /** Check if any existing logged in sessions */
             if (Auth::isLoggedIn()) {
 
-                // Grab all the url params; if any
-                $params = explode('/', $request->getAttribute('params'));
-
                 // Get all of the data needed for the admin page using the params
-                $adminData = Admin::getAdminData($params);
+                $adminData = Admin::getBlogsForAdmin();
 
                 // Load the content management system
                 return $response->getBody()->write(View::generateSecureCMS($adminData));
@@ -183,22 +180,26 @@ class Routes {
         });
 
         /**
-         * Post request for updating a blog post from edit modal
+         * post request for creating / updating a blog post from edit modal
          */
-        $app->post('/api/admin/update', function(Request $request, Response $response, $args) {
+        $app->post('/api/admin/blog', function(Request $request, Response $response, $args) {
 
             // Check that the data exist, and verify/sanitize it
             $postData = $request->getParsedBody();
-            if (!empty($postData)) {
+            if (!empty($postData) && !empty($postData['actionType'])) {
 
-                // Check csrf
+                // @todo check for the csrf token
 
                 $cleanData = Admin::sanitizeAndVerifyEditModalData($postData['data']);
                 if($cleanData) {
+                    // Checking if we are creating or editing a blog post
+                    if ($postData['actionType'] === 'create') {
+                        $results = Admin::createNewBlogPost($cleanData);
+                    } else if ($postData['actionType'] === 'edit') {
+                        $results = Admin::updateBlogDataByBlogId($cleanData);
+                    }
 
-                    // Data is now safe to save
-                    $update = Admin::updateBlogDataByBlogId($cleanData['id'], $cleanData);
-                    return $response->withJson(['status'=>$update['status'], 'message'=>$update['message'] ]);
+                    return $response->withJson(['status'=>$results['status'], 'message'=>$results['message'] ]);
                 } else {
                     // Verification failed
                     return $response->withJson(['status'=>false,'message'=>'Error: failed to verify the post data.']);
@@ -213,7 +214,7 @@ class Routes {
                     if (Auth::isLoggedIn()) {
                         return $response->withJson([
                             'status' => true,
-                            'data' => Admin::getAdminData(Admin::DEFAULT_ACTION, $request->getAttribute('dataType'))
+                            'data' => Admin::getBlogsForAdmin()
                         ]);
                     }
                 } else {

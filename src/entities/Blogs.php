@@ -5,7 +5,11 @@ namespace Entities;
 /**
  * @Entity @Table(name="Blogs")
  **/
-class Blogs {
+class Blogs extends EntityBase {
+
+    const STATUS_ACTIVE = 'active';
+    const STATUS_INACTIVE = 'inactive';
+
     /** @Id @Column(type="integer") @GeneratedValue **/
     protected $id;
 
@@ -45,75 +49,36 @@ class Blogs {
     /** @Column(type="string", columnDefinition="ENUM('active','inactive')") **/
     protected $status;
 
-    public function getId() {
-        return $this->id;
+    public function __construct($data) {
+        parent::convertArrayToObject($data);
     }
 
-    public function getUrl() {
-        return $this->url;
-    }
+    public function getId() { return $this->id; }
 
-    public function setUrl($url) {
-        $this->url = $url;
-    }
+    public function getUrl() { return $this->url; }
+    public function setUrl($url) { $this->url = $url; }
 
-    public function getTitle() {
-        return $this->title;
-    }
+    public function getTitle() { return $this->title; }
+    public function setTitle($title) { $this->title = $title; }
 
-    public function setTitle($title) {
-        $this->title = $title;
-    }
+    public function getBlogEntryId() { return $this->blogEntryId; }
+    public function setBlogEntryId($blogEntryId) { $this->blogEntryId = $blogEntryId; }
 
-    public function getBlogEntryId() {
-        return $this->blogEntryId;
-    }
+    public function getBlogTopic() { return $this->blogTopic; }
+    public function setBlogTopic($topic) { $this->blogTopic = $topic; }
 
-    public function getBlogTopic() {
-        return $this->blogTopic;
-    }
+    public function getShortDescription() { return $this->shortDescription; }
+    public function setShortDescription($shortDescription) { $this->shortDescription = $shortDescription; }
 
-    public function setBlogTopic($topic) {
-        $this->blogTopic = $topic;
-    }
+    public function getDescription() { return $this->description; }
+    public function setDescription($description) { $this->description = $description; }
 
-    public function getShortDescription() {
-        return $this->shortDescription;
-    }
+    public function getThumbnail() { return $this->thumbnail; }
+    public function setThumbnail($thumbnail) { $this->thumbnail = $thumbnail; }
 
-    public function setShortDescription($shortDescription) {
-        $this->shortDescription = $shortDescription;
-    }
+    public function getDateCreated() { return $this->created; }
+    public function getDateUpdated() { return $this->updated; }
 
-    public function getDescription() {
-        return $this->description;
-    }
-
-    public function setDescription($description) {
-        $this->description = $description;
-    }
-
-    public function getThumbnail() {
-        return $this->thumbnail;
-    }
-
-    public function setThumbnail($thumbnail) {
-        $this->thumbnail = $thumbnail;
-    }
-
-    public function getDateCreated() {
-        return $this->created;
-    }
-
-    public function getDateUpdated() {
-        return $this->updated;
-    }
-
-    public function getStatus() {
-        return $this->status;
-    }
-
-    public function setStatus($status) {
-        $this->status = $status;
-    }
+    public function getStatus() { return $this->status; }
+    public function setStatus($status) { $this->status = $status; }
 }

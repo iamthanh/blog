@@ -126,7 +126,26 @@
 }
 
 .modal#admin-editor-modal {
+
+  form {
+    margin: 0;
+  }
+
   .modal-dialog {
     max-width: 800px;
+  }
+
+  .button-container {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    padding: 15px;
+
+    .status-container, button {
+      margin: 0 10px;
+    }
   }
 }

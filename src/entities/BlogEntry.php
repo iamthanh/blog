@@ -5,7 +5,7 @@ namespace Entities;
 /**
  * @Entity @Table(name="BlogEntry")
  **/
-class BlogEntry {
+class BlogEntry extends EntityBase {
 
     /** @Id @Column(type="integer") @GeneratedValue **/
     protected $id;
@@ -16,23 +16,15 @@ class BlogEntry {
     /** @Column(type="string") **/
     protected $headerImage;
 
-    public function getId() {
-        return $this->id;
+    public function __construct($data) {
+        parent::convertArrayToObject($data);
     }
 
-    public function getBody() {
-        return $this->body;
-    }
+    public function getId() { return $this->id; }
 
-    public function setBody($body) {
-        $this->body = $body;
-    }
+    public function getBody() { return $this->body; }
+    public function setBody($body) { $this->body = $body; }
 
-    public function getHeaderImage() {
-        return $this->headerImage;
-    }
-
-    public function setHeaderImage($headerImage) {
-        $this->headerImage = $headerImage;
-    }
+    public function getHeaderImage() { return $this->headerImage; }
+    public function setHeaderImage($headerImage) { $this->headerImage = $headerImage; }
 }

@@ -14,7 +14,7 @@ class Blogs {
      * @return array
      */
     public static function getAllRecentBlogs() {
-        return App::$entityManager->getRepository('Entities\Blogs')->findBy(['status'=>['active']], ['created'=>'DESC'], 10);
+        return App::$entityManager->getRepository('Entities\Blogs')->findBy(['status'=>[\Entities\Blogs::STATUS_ACTIVE]], ['created'=>'DESC'], 10);
     }
 
     /**
@@ -24,7 +24,7 @@ class Blogs {
      * @return array
      */
     public static function getAllRecentBlogsByTopic($topic='') {
-        return App::$entityManager->getRepository('Entities\Blogs')->findBy(['blogTopic'=>$topic,'status'=>'active']);
+        return App::$entityManager->getRepository('Entities\Blogs')->findBy(['blogTopic'=>$topic,'status'=>\Entities\Blogs::STATUS_ACTIVE]);
     }
 
     /**
@@ -51,7 +51,7 @@ class Blogs {
             ->orderBy('b.updated','DESC')
 
             ->setParameters([
-                'status'=>'active',
+                'status'=>\Entities\Blogs::STATUS_ACTIVE,
                 'month'=>$month,
                 'year'=>$year
             ]);
@@ -73,7 +73,7 @@ class Blogs {
         /**
          * @var $blog \Entities\Blogs
          */
-        $blogData = App::$entityManager->getRepository('Entities\Blogs')->findOneBy(['url'=>$blogUrl, 'blogTopic'=>$topic, 'status'=>'active']);
+        $blogData = App::$entityManager->getRepository('Entities\Blogs')->findOneBy(['url'=>$blogUrl, 'blogTopic'=>$topic, 'status'=>\Entities\Blogs::STATUS_ACTIVE]);
         if ($blogData) {
             $blogEntryData = App::$entityManager->getRepository('Entities\BlogEntry')->findBy(['id'=>$blogData->getId()]);
             return [

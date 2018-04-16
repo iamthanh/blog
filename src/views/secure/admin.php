@@ -22,7 +22,7 @@
         </div>
 
         <div class="add-new-content-container">
-            <button type="button" class="btn btn-sm btn-success"><i class="fa fa-plus" aria-hidden="true"></i> Create new</button>
+            <button type="button" class="btn btn-sm btn-success create-new"><i class="fa fa-plus" aria-hidden="true"></i> Create new</button>
         </div>
         <div class="content-list-container"></div>
     </div>
@@ -43,19 +43,19 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="title">Title</label>
-                                <input type="text" data-id='title' class="form-control form-control-sm" id="title" placeholder="Title of blog/project">
+                                <input type="text" data-id='title' class="form-control form-control-sm" id="title" placeholder="Title of blog/project" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="url">Url</label>
-                                <input type="text" data-id='url' class="form-control form-control-sm" id="url" placeholder="Url for this blog">
+                                <input type="text" data-id='url' class="form-control form-control-sm" id="url" placeholder="Url for this blog" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="topic">Topic</label>
-                                <input type="text" data-id='blogTopic' class="form-control form-control-sm" id="topic" placeholder="Topic">
+                                <input type="text" data-id='blogTopic' class="form-control form-control-sm" id="topic" placeholder="Topic" required>
                             </div>
                         </div>
                     </div>
@@ -69,27 +69,28 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="header-image">Header image</label>
-                                <input type="text" data-id='bodyHeaderImage' class="form-control form-control-sm" id="header-image" placeholder="Path to header image">
+                                <input type="text" data-id='headerImage' class="form-control form-control-sm" id="header-image" placeholder="Path to header image">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="short-description">Short Description</label>
-                        <textarea class="form-control form-control-sm" data-id='shortDescription' id="short-description" placeholder="Enter a short description"></textarea>
+                        <textarea class="form-control form-control-sm" data-id='shortDescription' id="short-description" placeholder="Enter a short description" required></textarea>
                     </div>
                     <div class="form-group">
                         <label for="full-body">Full body</label>
-                        <textarea rows="8" class="form-control form-control-sm" data-id='fullBody' id="full-body" placeholder="This is the body of the post"></textarea>
+                        <textarea rows="8" class="form-control form-control-sm" data-id='body' id="full-body" placeholder="This is the body of the post" required></textarea>
+                    </div>
+
+                    <div class="button-container">
+                        <div class="status-container">
+                            <span class="status-text error text-danger"></span>
+                            <span class="status-text success text-success"></span>
+                        </div>
+                        <button type="submit" class="btn btn-sm btn-success save-data-button">Save</button>
+                        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <div class="status-container">
-                    <span class="status-text error text-danger"></span>
-                    <span class="status-text success text-success"></span>
-                </div>
-                <button type="submit" class="btn btn-sm btn-success">Save</button>
-                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

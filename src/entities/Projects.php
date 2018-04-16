@@ -5,7 +5,7 @@ namespace Entities;
 /**
  * @Entity @Table(name="Projects")
  **/
-class Projects {
+class Projects extends EntityBase {
     /** @Id @Column(type="integer") @GeneratedValue **/
     protected $id;
 
@@ -39,43 +39,26 @@ class Projects {
     /** @Column(type="string", columnDefinition="ENUM('active','inactive')") **/
     protected $status;
 
-    public function getId() {
-        return $this->id;
+    public function __construct($data) {
+        parent::convertArrayToObject($data);
     }
 
-    public function getUrl() {
-        return $this->url;
-    }
+    public function getId() { return $this->id; }
 
-    public function getTitle() {
-        return $this->title;
-    }
+    public function getUrl() { return $this->url; }
 
-    public function getThumbnail() {
-        return $this->thumbnail;
-    }
+    public function getTitle() { return $this->title; }
 
-    public function setThumbnail($thumbnail) {
-        $this->thumbnail = $thumbnail;
-    }
+    public function getThumbnail() { return $this->thumbnail; }
+    public function setThumbnail($thumbnail) { $this->thumbnail = $thumbnail; }
 
-    public function getDescription() {
-        return $this->description;
-    }
+    public function getDescription() { return $this->description; }
 
-    public function getBody() {
-        return $this->body;
-    }
+    public function getBody() { return $this->body; }
 
-    public function getDateCreated() {
-        return $this->created;
-    }
+    public function getDateCreated() { return $this->created; }
 
-    public function getDateUpdated() {
-        return $this->updated;
-    }
+    public function getDateUpdated() { return $this->updated; }
 
-    public function getStatus() {
-        return $this->status;
-    }
+    public function getStatus() { return $this->status; }
 }

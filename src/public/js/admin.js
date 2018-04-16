@@ -1,12 +1,25 @@
 $(document).ready(function() {
+    // Declaring constants
+    var ACTION_TYPE_CREATE = 'create';
+    var ACTION_TYPE_EDIT = 'edit';
+
     var admin = {
         ajaxProcessing: false,
         modal: $('.modal#admin-editor-modal'),
         token: $('div[data-token]').data('token'),
         data: null,
-        dataType: null,
-        dataTypeDisplayName: null,
         objToBeEditOriginal: null,
+        blankBlogPostData: {
+            blogTopic: null,
+            bodyHeader: null,
+            description: null,
+            fullBody: null,
+            shortDescription: null,
+            thumbnail: null,
+            title: null,
+            url: null
+        },
+        modalActionType: null,
         init: function() {
             var self = this;
 
@@ -14,6 +27,9 @@ $(document).ready(function() {
             this.getData(function() {
                 self.renderPage(function() {
                     self.setListeners();
+
+                    var formValid = self.validateModalForm();
+                    $('button[type=submit].save-data-button', self.modal).prop('disabled', !formValid);
                 });
             });
         },
@@ -30,14 +46,9 @@ $(document).ready(function() {
                 data: {csrf_token: self.token},
                 success: function(response) {
 
-                    if (response && response.status) {
-                        if (response.data.type) self.dataType = response.data.type;
-                        if (response.data.type === 'blogs') {
-                            self.dataTypeDisplayName = 'Blog';
-                        } else if (response.type === 'projects') {
-                            self.dataTypeDisplayName = 'Project';
-                        }
+                    console.log(response);
 
+                    if (response && response.status) {
                         if (response.data.contentData) self.data = response.data;
                         if (callback) callback(response.data);
                     } else {
@@ -67,7 +78,7 @@ $(document).ready(function() {
             $('<div>').addClass('content-action').append(
                 $('<button>').addClass('action btn btn-sm btn-outline-secondary').attr({
                     'type': 'button',
-                    'id': 'edit',
+                    'id': ACTION_TYPE_EDIT,
                     'data-id': data.id
                 }).append(
                     $('<i>').addClass('fa fa-pencil-square-o')
@@ -94,10 +105,6 @@ $(document).ready(function() {
             container.html('');
 
             if (data.contentData && data.contentData.length) {
-                if (data.type) {
-                    $('.admin-container .content-container .text').text(data.type);
-                }
-
                 for (var i = 0; i < data.contentData.length; i++) {
                     self.buildContentTemplate(data.contentData[i]).appendTo(container);
                 }
@@ -125,15 +132,16 @@ $(document).ready(function() {
                         // Original data saved and set aside for change detection
                         self.objToBeEditOriginal = obj;
 
-                        self.renderModal('edit', obj, function() {
+                        self.renderModal(ACTION_TYPE_EDIT, obj, function() {
+                            self.modalActionType = ACTION_TYPE_EDIT;
                             self.modal.modal('show');
                         });
                     }
                 });
             });
 
-            // Click event for saving changes on the edit modal
-            $(self.modal).on('click', 'button[type=submit]', function() {
+            // Click event for saving changes on the edit/create blog modal
+            $(self.modal).on('click', 'button[type=submit].save-data-button', function() {
                 if (self.ajaxProcessing) return;
 
                 // Getting the data from the edit modal
@@ -141,9 +149,13 @@ $(document).ready(function() {
 
                 if (editModalData) {
                     $.ajax({
-                        url: '/api/admin/update',
+                        url: '/api/admin/blog',
                         method: 'post',
-                        data: {data: editModalData, csrf_token: self.token},
+                        data: {
+                            data: editModalData,
+                            csrf_token: self.token,
+                            actionType: self.modalActionType
+                        },
                         beforeSend: function() {
                             $('button[type=submit]', self.modal).text('Saving').attr('disabled','disabled');
                         },
@@ -172,9 +184,38 @@ $(document).ready(function() {
                 }
             });
 
+            $(this.getContainer()).on('click', 'button.create-new', function() {
+                self.renderModal(ACTION_TYPE_CREATE, this.blankBlogPostData, function() {
+                    self.modalActionType = ACTION_TYPE_CREATE;
+                    self.modal.modal('show');
+                });
+            });
+
             $(this.getContainer()).on('click', 'button.action#delete', function() {
 
             });
+
+            // Listener for detecting changes on input fields on the form
+            $(self.modal).on('input', 'form .form-control', function() {
+                var formValid = self.validateModalForm();
+                $('button[type=submit].save-data-button', self.modal).prop('disabled', !formValid);
+            });
+        },
+        validateModalForm: function() {
+            var self = this;
+            var modalFormInputs = $('.form-control', self.modal);
+
+            for(var i = 0; i < modalFormInputs.length; i++) {
+                var input = $(modalFormInputs[i]);
+
+                // Check if the input is required
+                if (!input.prop('required')) {
+                } else {
+                    if (!input.val()) return false;
+                }
+            }
+
+            return true;
         },
         renderModal: function (actionType, obj, callback) {
             var self = this;
@@ -183,7 +224,11 @@ $(document).ready(function() {
             self.resetModal();
 
             // Update the modal title
-            if (actionType === 'edit') { $('.modal-title', self.modal).text('Edit ' + self.dataTypeDisplayName); }
+            if (actionType === ACTION_TYPE_EDIT) {
+                $('.modal-title', self.modal).text('Edit');
+            } else if (actionType === ACTION_TYPE_CREATE) {
+                $('.modal-title', self.modal).text('Create new post');
+            }
 
             if (obj) {
                 // Update the modal with this data
@@ -215,11 +260,20 @@ $(document).ready(function() {
             var obj = {};
             $('input,textarea', self.modal).each(function(i, el) {
                 var fieldName = $(el).attr('data-id');
-                obj[fieldName] = $(el).val();
+                if ($(el).val()) {
+                    obj[fieldName] = $(el).val();
+                } else {
+                    obj[fieldName] = '';
+                }
             });
 
             // Attach additional data
-            obj['id'] = parseInt($('form', self.modal).attr('data-id'));
+            if ($('form', self.modal).attr('data-id')) {
+                obj['id'] = parseInt($('form', self.modal).attr('data-id'));
+            } else {
+                obj['id'] = null;
+            }
+
             return obj;
         }
     };
