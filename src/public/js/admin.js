@@ -14,7 +14,7 @@ $(document).ready(function() {
             bodyHeader: null,
             description: null,
             fullBody: null,
-            shortDescription: null,
+            description: null,
             thumbnail: null,
             title: null,
             url: null
@@ -72,7 +72,6 @@ $(document).ready(function() {
             timeago().render($('<div>').attr('datetime',data.created.date).addClass('date-created').text(data.created.date).appendTo(rightContainer));
             $('<div>').addClass('title-text').text(data.title).appendTo(rightContainer);
             $('<div>').addClass('topic').text(data.blogTopic).appendTo(rightContainer);
-            $('<div>').addClass('short-description').text(data.shortDescription).appendTo(rightContainer);
             $('<div>').addClass('description').text(data.description).appendTo(rightContainer);
 
             $('<div>').addClass('content-action').append(
@@ -157,6 +156,8 @@ $(document).ready(function() {
                             actionType: self.modalActionType
                         },
                         beforeSend: function() {
+                            $('.status-container .error', self.modal).text('');
+                            $('.status-container .success', self.modal).text('');
                             $('button[type=submit]', self.modal).text('Saving').attr('disabled','disabled');
                         },
                         success: function(response) {
@@ -185,7 +186,7 @@ $(document).ready(function() {
             });
 
             $(this.getContainer()).on('click', 'button.create-new', function() {
-                self.renderModal(ACTION_TYPE_CREATE, this.blankBlogPostData, function() {
+                self.renderModal(ACTION_TYPE_CREATE, self.blankBlogPostData, function() {
                     self.modalActionType = ACTION_TYPE_CREATE;
                     self.modal.modal('show');
                 });
@@ -235,14 +236,14 @@ $(document).ready(function() {
                 $('input#title', self.modal).val(obj.title ? obj.title : '');
                 $('input#url', self.modal).val(obj.url ? obj.url : '');
                 $('input#topic', self.modal).val(obj.blogTopic ? obj.blogTopic : '');
-                $('textarea#short-description', self.modal).val(obj.shortDescription ? obj.shortDescription : '');
+                $('textarea#description', self.modal).val(obj.description ? obj.description : '');
 
                 // Images and thumbnails
                 $('input#thumbnail', self.modal).val(obj.thumbnail ? obj.thumbnail : '');
                 $('input#header-image', self.modal).val(obj.bodyHeaderImage ? obj.bodyHeaderImage : '');
 
                 // Setting the post body
-                $('textarea#full-body', self.modal).html(String(obj.fullBody));
+                $('textarea#full-body', self.modal).html(obj.fullBody ? obj.fullBody : '');
 
                 // Attach the id of the blog
                 $('form', self.modal).attr('data-id', obj.id);

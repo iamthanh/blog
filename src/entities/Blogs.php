@@ -14,25 +14,22 @@ class Blogs extends EntityBase {
     protected $id;
 
     /** @Column(type="string") **/
-    protected $url;
+    protected $url = '';
 
     /** @Column(type="string") **/
-    protected $title;
+    protected $title = '';
 
     /** @Column(type="integer") **/
     protected $blogEntryId;
 
     /** @Column(type="string") **/
-    protected $blogTopic;
-
-    /** @Column(type="string") **/
-    protected $shortDescription;
+    protected $blogTopic = '';
 
     /** @Column(type="text") **/
-    protected $description;
+    protected $description = '';
 
     /** @Column(type="string") **/
-    protected $thumbnail;
+    protected $thumbnail = '';
 
     /**
      * @Column(type="datetime")
@@ -67,9 +64,6 @@ class Blogs extends EntityBase {
     public function getBlogTopic() { return $this->blogTopic; }
     public function setBlogTopic($topic) { $this->blogTopic = $topic; }
 
-    public function getShortDescription() { return $this->shortDescription; }
-    public function setShortDescription($shortDescription) { $this->shortDescription = $shortDescription; }
-
     public function getDescription() { return $this->description; }
     public function setDescription($description) { $this->description = $description; }
 
@@ -77,7 +71,10 @@ class Blogs extends EntityBase {
     public function setThumbnail($thumbnail) { $this->thumbnail = $thumbnail; }
 
     public function getDateCreated() { return $this->created; }
+    public function setDateCreated($dateCreated) { $this->created = $dateCreated; }
+
     public function getDateUpdated() { return $this->updated; }
+    public function setDateUpdated($dateUpdated) { $this->updated = $dateUpdated; }
 
     public function getStatus() { return $this->status; }
     public function setStatus($status) { $this->status = $status; }

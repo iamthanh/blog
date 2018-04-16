@@ -14,7 +14,7 @@ $tags = $m['tags'];
     </div>
     <div class="project-title">
         <div class="title-text"><?= $project->getTitle() ?></div>
-        <div class="title-short-description"><?= $project->getDescription() ?></div>
+        <div class="title-description"><?= $project->getDescription() ?></div>
     </div>
     <?php if (!empty($tags)) { ?>
         <div class="project-tags">

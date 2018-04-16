@@ -11,10 +11,10 @@ class BlogEntry extends EntityBase {
     protected $id;
 
     /** @Column(type="text") **/
-    protected $body;
+    protected $body = '';
 
     /** @Column(type="string") **/
-    protected $headerImage;
+    protected $headerImage = '';
 
     public function __construct($data) {
         parent::convertArrayToObject($data);

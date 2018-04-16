@@ -70,12 +70,11 @@ class Blogs {
      * @return array|boolean
      */
     public static function getSingleBlogDetails($topic, $blogUrl) {
-        /**
-         * @var $blog \Entities\Blogs
-         */
+        /** @var \Entities\Blogs $blogData */
         $blogData = App::$entityManager->getRepository('Entities\Blogs')->findOneBy(['url'=>$blogUrl, 'blogTopic'=>$topic, 'status'=>\Entities\Blogs::STATUS_ACTIVE]);
+
         if ($blogData) {
-            $blogEntryData = App::$entityManager->getRepository('Entities\BlogEntry')->findBy(['id'=>$blogData->getId()]);
+            $blogEntryData = App::$entityManager->getRepository('Entities\BlogEntry')->findBy(['id'=>$blogData->getBlogEntryId()]);
             return [
                 'data' => $blogData,
                 'entry' => $blogEntryData[0]

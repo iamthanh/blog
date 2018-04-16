@@ -48,10 +48,9 @@ class Admin {
                     'title' => $blog->getTitle(),
                     'blogEntryId' => $blogId,
                     'blogTopic' => $blog->getBlogTopic(),
-                    'shortDescription' => $blog->getShortDescription(),
+                    'description' => $blog->getDescription(),
                     'fullBody' => htmlspecialchars($blogEntry->getBody()),
                     'bodyHeaderImage' => $blogEntry->getHeaderImage(),
-                    'description' => $blog->getDescription(),
                     'thumbnail' => $blog->getThumbnail(),
                     'created' => $blog->getDateCreated(),
                     'updated' => $blog->getDateUpdated()
@@ -90,9 +89,9 @@ class Admin {
                 return false;
             }
 
-            $data['shortDescription'] = filter_var(trim($data['shortDescription']), FILTER_SANITIZE_STRING);
-            if (!$data['shortDescription']) {
-                trigger_error('Error: cannot update blog data, shortDescription is invalid');
+            $data['description'] = filter_var(trim($data['description']), FILTER_SANITIZE_STRING);
+            if (!$data['description']) {
+                trigger_error('Error: cannot update blog data, description is invalid');
                 return false;
             }
 
@@ -122,41 +121,46 @@ class Admin {
             /** @var $blog \Entities\Blogs */
             $blog = App::$entityManager->getRepository('Entities\Blogs')->findOneBy(['id'=>$data['id']]);
 
-            /** @var $blogEntry \Entities\BlogEntry */
-            $blogEntry = App::$entityManager->getRepository('Entities\BlogEntry')->findOneBy(['id'=>$data['id']]);
+            if ($blog) {
+                /** @var $blogEntry \Entities\BlogEntry */
+                $blogEntry = App::$entityManager->getRepository('Entities\BlogEntry')->findOneBy(['id'=>$blog->getBlogEntryId()]);
 
-            // Setting the new values
-            $blog->setTitle($data['title']);
-            $blog->setUrl($data['url']);
-            $blog->setBlogTopic($data['blogTopic']);
-            $blog->setThumbnail($data['thumbnail']);
-            $blog->setShortDescription($data['shortDescription']);
+                // Setting the new values
+                $blog->setTitle($data['title']);
+                $blog->setUrl($data['url']);
+                $blog->setBlogTopic($data['blogTopic']);
+                $blog->setThumbnail($data['thumbnail']);
+                $blog->getDescription($data['description']);
 
-            // Setting the new values for BlogEntry
-            $blogEntry->setHeaderImage($data['bodyHeaderImage']);
-            $blogEntry->setBody($data['fullBody']);
+                // Setting the new values for BlogEntry
+                $blogEntry->setHeaderImage($data['headerImage']);
+                $blogEntry->setBody($data['fullBody']);
 
-            // Save/update the Blog entry
-            try {
-                App::$entityManager->persist($blog);
-                App::$entityManager->persist($blogEntry);
+                // Save/update the Blog entry
+                try {
+                    App::$entityManager->persist($blog);
+                    App::$entityManager->persist($blogEntry);
 
-                // Exclude the update
-                App::$entityManager->flush();
+                    // Exclude the update
+                    App::$entityManager->flush();
 
-                return [
-                    'status' => true,
-                    'message'=> 'Update successful'
-                ];
-            } catch (\Exception $e) {
-                return [
-                    'status' => false,
-                    'message'=> 'Error: Update failed'
-                ];
+                    return [
+                        'status' => true,
+                        'message'=> 'Update successful'
+                    ];
+                } catch (\Exception $e) {
+                    return [
+                        'status' => false,
+                        'message'=> 'Error: Update failed'
+                    ];
+                }
             }
         }
 
-        return false;
+        return [
+            'status' => false,
+            'message'=> 'Error: Update failed'
+        ];
     }
 
     /**
@@ -164,8 +168,6 @@ class Admin {
      *
      * @param $data
      * @return array
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public static function createNewBlogPost($data) {
 
@@ -183,14 +185,18 @@ class Admin {
                 $blog = new \Entities\Blogs($data);
                 $blog->setBlogEntryId($blogEntryId);
                 $blog->setStatus(\Entities\Blogs::STATUS_ACTIVE);
+                $blog->setDateCreated(new \DateTime('NOW'));
+                $blog->setDateUpdated(new \DateTime('NOW'));
+
                 App::$entityManager->persist($blog);
                 App::$entityManager->flush();
 
                 return [
                     'status' => true,
-                    'message'=> 'Update successful'
+                    'message'=> 'New blog created successful'
                 ];
             } catch (\Exception $exception) {
+
                 return [
                     'status' => false,
                     'message'=> 'There was an error, could not create new blog. Message: ' . $exception->getMessage()

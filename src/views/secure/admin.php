@@ -74,8 +74,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="short-description">Short Description</label>
-                        <textarea class="form-control form-control-sm" data-id='shortDescription' id="short-description" placeholder="Enter a short description" required></textarea>
+                        <label for="description">Description</label>
+                        <textarea rows='4' class="form-control form-control-sm" data-id='description' id="description" placeholder="Enter a description" required></textarea>
                     </div>
                     <div class="form-group">
                         <label for="full-body">Full body</label>

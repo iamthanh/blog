@@ -58,6 +58,11 @@
 .admin-container .content-container .content-list-container .content .left {
   margin-right: 40px;
 }
+.admin-container .content-container .content-list-container .content .left .thumbnail img {
+  min-width: 300px;
+  min-height: 225px;
+  background: #ccc;
+}
 .admin-container .content-container .content-list-container .content .title-text {
   font-size: 24px;
 }
@@ -65,7 +70,7 @@
   font-size: 14px;
   color: #a3a3a3;
 }
-.admin-container .content-container .content-list-container .content .short-description {
+.admin-container .content-container .content-list-container .content .description {
   font-size: 16px;
 }
 .admin-container .content-container .content-list-container .content .description {
