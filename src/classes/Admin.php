@@ -31,7 +31,7 @@ class Admin {
      */
     public static function getBlogsForAdmin() {
         // Get all blogs
-        $blogs = Blogs::getAll([], ['created'=>'DESC']);
+        $blogs = Blogs::getAll(['status'=>\Entities\Blogs::STATUS_ACTIVE], ['created'=>'DESC']);
         if ($blogs) {
             $results = [];
             /** @var \Entities\Blogs $blog */
@@ -136,6 +136,9 @@ class Admin {
                 $blogEntry->setHeaderImage($data['headerImage']);
                 $blogEntry->setBody($data['fullBody']);
 
+                // Set the new update date
+                $blog->setDateUpdated(new \DateTime('NOW'));
+
                 // Save/update the Blog entry
                 try {
                     App::$entityManager->persist($blog);
@@ -208,6 +211,49 @@ class Admin {
         return [
             'status' => true,
             'message'=> 'There was an error, could not create new blog.'
+        ];
+    }
+
+    /**
+     * This function will deactivate a blog post and set it as inactive
+     *
+     * @param $id
+     * @return array
+     */
+    public static function deleteBlogPost($id) {
+        if (!$id) return ['status'=>false];
+
+        try {
+
+            // Try to fetch this blog
+            /** @var \Entities\Blogs $blog */
+            $blog = App::$entityManager->getRepository('Entities\Blogs')->findOneBy(['id'=>$id]);
+
+            if ($blog) {
+                // Update the status as inactive
+                $blog->setStatus(\Entities\Blogs::STATUS_INACTIVE);
+                $blog->setDateUpdated(new \DateTime('NOW'));
+
+                App::$entityManager->persist($blog);
+                App::$entityManager->flush();
+
+                return [
+                    'status' => true,
+                    'message'=> 'Blog deleted successfully'
+                ];
+            }
+        } catch (\Exception $exception) {
+            // There was a problem
+            return [
+                'status' => true,
+                'message'=> 'There was an error, could not delete blog. Message: ' . $exception->getMessage()
+            ];
+        }
+
+        // There was a problem
+        return [
+            'status' => true,
+            'message'=> 'There was an error, could not delete blog.'
         ];
     }
 

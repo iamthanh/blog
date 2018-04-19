@@ -7,7 +7,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 class Routes {
 
-    private $allowed_api_methods = ['post','get'];
+//    private $allowed_api_methods = ['post','get'];
 
     /**
      * Takes the \Slim\App object as a parameter
@@ -205,6 +205,20 @@ class Routes {
                     return $response->withJson(['status'=>false,'message'=>'Error: failed to verify the post data.']);
                 }
             }
+        });
+
+        /** Endpoint for deleting blogs */
+        $app->delete('/api/admin/blog', function(Request $request, Response $response, $args) {
+
+            $postData = $request->getParsedBody();
+
+            if (!empty($postData) && !empty($postData['id'])) {
+                $results = Admin::deleteBlogPost($postData['id']);
+
+                return $response->withJson(['status'=>$results['status'], 'message'=>$results['message']]);
+            }
+
+            return $response->withJson(['status'=>false, 'message'=> 'There was an error, could not delete blog']);
         });
 
         $app->get('/api/admin/{dataType}', function(Request $request, Response $response, $args) {

@@ -5,10 +5,12 @@ $(document).ready(function() {
 
     var admin = {
         ajaxProcessing: false,
-        modal: $('.modal#admin-editor-modal'),
+        blogAdminModal: $('.modal#admin-editor-modal'),
+        deleteBlogModal: $('.modal#delete-blog-modal'),
         token: $('div[data-token]').data('token'),
         data: null,
         objToBeEditOriginal: null,
+        objToBeDeleted: null,
         blankBlogPostData: {
             blogTopic: null,
             bodyHeader: null,
@@ -29,7 +31,7 @@ $(document).ready(function() {
                     self.setListeners();
 
                     var formValid = self.validateModalForm();
-                    $('button[type=submit].save-data-button', self.modal).prop('disabled', !formValid);
+                    $('button[type=submit].save-data-button', self.blogAdminModal).prop('disabled', !formValid);
                 });
             });
         },
@@ -131,16 +133,16 @@ $(document).ready(function() {
                         // Original data saved and set aside for change detection
                         self.objToBeEditOriginal = obj;
 
-                        self.renderModal(ACTION_TYPE_EDIT, obj, function() {
+                        self.renderBlogAdminModal(ACTION_TYPE_EDIT, obj, function() {
                             self.modalActionType = ACTION_TYPE_EDIT;
-                            self.modal.modal('show');
+                            self.blogAdminModal.modal('show');
                         });
                     }
                 });
             });
 
             // Click event for saving changes on the edit/create blog modal
-            $(self.modal).on('click', 'button[type=submit].save-data-button', function() {
+            $(this.blogAdminModal).on('click', 'button[type=submit].save-data-button', function() {
                 if (self.ajaxProcessing) return;
 
                 // Getting the data from the edit modal
@@ -156,29 +158,29 @@ $(document).ready(function() {
                             actionType: self.modalActionType
                         },
                         beforeSend: function() {
-                            $('.status-container .error', self.modal).text('');
-                            $('.status-container .success', self.modal).text('');
-                            $('button[type=submit]', self.modal).text('Saving').attr('disabled','disabled');
+                            $('.status-container .error', self.blogAdminModal).text('');
+                            $('.status-container .success', self.blogAdminModal).text('');
+                            $('button[type=submit]', self.blogAdminModal).text('Saving').attr('disabled','disabled');
                         },
                         success: function(response) {
                             if (response && response.status) {
-                                $('.status-container .success', self.modal).text(response.message);
+                                $('.status-container .success', self.blogAdminModal).text(response.message);
 
                                 // Update the data on the page
                                 self.getData(function() {
                                     self.renderPage();
-                                    self.modal.modal('hide');
+                                    self.blogAdminModal.modal('hide');
                                 });
                             } else {
                                 // Request failed
-                                $('button[type=submit]', self.modal).text('Save').removeAttr('disabled');
-                                $('.status-container .error', self.modal).text(response.message);
+                                $('button[type=submit]', self.blogAdminModal).text('Save').removeAttr('disabled');
+                                $('.status-container .error', self.blogAdminModal).text(response.message);
                             }
                         },
                         error: function(response) {
                             // Request failed
-                            $('button[type=submit]', self.modal).text('Save').removeAttr('disabled');
-                            $('.status-container .error', self.modal).text('Failed to update, there was an error.');
+                            $('button[type=submit]', self.blogAdminModal).text('Save').removeAttr('disabled');
+                            $('.status-container .error', self.blogAdminModal).text('Failed to update, there was an error.');
                         },
                         complete: function() {
                             self.ajaxProcessing = false;
@@ -188,25 +190,62 @@ $(document).ready(function() {
             });
 
             $(this.getContainer()).on('click', 'button.create-new', function() {
-                self.renderModal(ACTION_TYPE_CREATE, self.blankBlogPostData, function() {
+                self.renderBlogAdminModal(ACTION_TYPE_CREATE, self.blankBlogPostData, function() {
                     self.modalActionType = ACTION_TYPE_CREATE;
-                    self.modal.modal('show');
+                    self.blogAdminModal.modal('show');
                 });
             });
 
+            /** Listener for the delete button for the blogs; */
             $(this.getContainer()).on('click', 'button.action#delete', function() {
+                var dataId = $(this).data('id');
 
+                // Getting the data for this id
+                $.each(self.data.contentData, function(i, obj) {
+                    if (obj.id === dataId) {
+
+                        // Original data saved and set aside for change detection
+                        self.objToBeDeleted = obj;
+                        self.renderBlogDeleteModal(obj, function() {
+                            self.deleteBlogModal.modal('show');
+                        });
+                    }
+                });
+                self.deleteBlogModal.modal('show');
+            });
+
+            $(self.deleteBlogModal).on('click', 'button.delete', function() {
+                if (!self.objToBeDeleted) return;
+
+                $.ajax({
+                    url: '/api/admin/blog',
+                    method: 'delete',
+                    data: {
+                        id: self.objToBeDeleted.id,
+                        csrf_token: self.token
+                    },
+                    success: function(response) {
+                        if (response && response.status) {
+                            // Update the data on the page
+                            self.getData(function() {
+                                self.renderPage();
+                                self.deleteBlogModal.modal('hide');
+                            });
+
+                        }
+                    }
+                })
             });
 
             // Listener for detecting changes on input fields on the form
-            $(self.modal).on('input', 'form .form-control', function() {
+            $(self.blogAdminModal).on('input', 'form .form-control', function() {
                 var formValid = self.validateModalForm();
-                $('button[type=submit].save-data-button', self.modal).prop('disabled', !formValid);
+                $('button[type=submit].save-data-button', self.blogAdminModal).prop('disabled', !formValid);
             });
         },
         validateModalForm: function() {
             var self = this;
-            var modalFormInputs = $('.form-control', self.modal);
+            var modalFormInputs = $('.form-control', self.blogAdminModal);
 
             for(var i = 0; i < modalFormInputs.length; i++) {
                 var input = $(modalFormInputs[i]);
@@ -220,7 +259,16 @@ $(document).ready(function() {
 
             return true;
         },
-        renderModal: function (actionType, obj, callback) {
+        renderBlogDeleteModal: function(obj, callback) {
+            var self = this;
+
+            if (obj) {
+                $('.blog-title', self.deleteBlogModal).text(obj.title);
+            }
+
+            if (callback) callback();
+        },
+        renderBlogAdminModal: function (actionType, obj, callback) {
             var self = this;
 
             // Reset the modal
@@ -228,42 +276,42 @@ $(document).ready(function() {
 
             // Update the modal title
             if (actionType === ACTION_TYPE_EDIT) {
-                $('.modal-title', self.modal).text('Edit');
+                $('.modal-title', self.blogAdminModal).text('Edit');
             } else if (actionType === ACTION_TYPE_CREATE) {
-                $('.modal-title', self.modal).text('Create new post');
+                $('.modal-title', self.blogAdminModal).text('Create new post');
             }
 
             if (obj) {
                 // Update the modal with this data
-                $('input#title', self.modal).val(obj.title ? obj.title : '');
-                $('input#url', self.modal).val(obj.url ? obj.url : '');
-                $('input#topic', self.modal).val(obj.blogTopic ? obj.blogTopic : '');
-                $('textarea#description', self.modal).val(obj.description ? obj.description : '');
+                $('input#title', self.blogAdminModal).val(obj.title ? obj.title : '');
+                $('input#url', self.blogAdminModal).val(obj.url ? obj.url : '');
+                $('input#topic', self.blogAdminModal).val(obj.blogTopic ? obj.blogTopic : '');
+                $('textarea#description', self.blogAdminModal).val(obj.description ? obj.description : '');
 
                 // Images and thumbnails
-                $('input#thumbnail', self.modal).val(obj.thumbnail ? obj.thumbnail : '');
-                $('input#header-image', self.modal).val(obj.bodyHeaderImage ? obj.bodyHeaderImage : '');
+                $('input#thumbnail', self.blogAdminModal).val(obj.thumbnail ? obj.thumbnail : '');
+                $('input#header-image', self.blogAdminModal).val(obj.bodyHeaderImage ? obj.bodyHeaderImage : '');
 
                 // Setting the post body
-                $('textarea#full-body', self.modal).html(obj.fullBody ? obj.fullBody : '');
+                $('textarea#full-body', self.blogAdminModal).html(obj.fullBody ? obj.fullBody : '');
 
                 // Attach the id of the blog
-                $('form', self.modal).attr('data-id', obj.id);
+                $('form', self.blogAdminModal).attr('data-id', obj.id);
             }
 
             if (callback) callback();
         },
         resetModal: function() {
             // Reset the status messages
-            $('.status-container .error', self.modal).text('');
-            $('.status-container .success', self.modal).text('');
-            $('button[type=submit]', self.modal).text('Save');
+            $('.status-container .error', self.blogAdminModal).text('');
+            $('.status-container .success', self.blogAdminModal).text('');
+            $('button[type=submit]', self.blogAdminModal).text('Save');
         },
         // Returns the data for the edit modal as an object
         getEditModalData: function() {
             var self = this;
             var obj = {};
-            $('input,textarea', self.modal).each(function(i, el) {
+            $('input,textarea', self.blogAdminModal).each(function(i, el) {
                 var fieldName = $(el).attr('data-id');
                 if ($(el).val()) {
                     obj[fieldName] = $(el).val();
@@ -273,8 +321,8 @@ $(document).ready(function() {
             });
 
             // Attach additional data
-            if ($('form', self.modal).attr('data-id')) {
-                obj['id'] = parseInt($('form', self.modal).attr('data-id'));
+            if ($('form', self.blogAdminModal).attr('data-id')) {
+                obj['id'] = parseInt($('form', self.blogAdminModal).attr('data-id'));
             } else {
                 obj['id'] = null;
             }
