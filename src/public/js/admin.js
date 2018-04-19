@@ -11,6 +11,7 @@ $(document).ready(function() {
         data: null,
         objToBeEditOriginal: null,
         objToBeDeleted: null,
+        quill: null,
         blankBlogPostData: {
             blogTopic: null,
             bodyHeader: null,
@@ -34,6 +35,12 @@ $(document).ready(function() {
                     $('button[type=submit].save-data-button', self.blogAdminModal).prop('disabled', !formValid);
                 });
             });
+
+            // Init the wysiwyg (Quill)
+            self.quill = new Quill('.full-body', {
+                theme: 'snow',
+                placeholder: 'This is the body of the post'
+            });
         },
         getContainer: function() {
             return $('.content-container');
@@ -47,9 +54,6 @@ $(document).ready(function() {
                 method: 'get',
                 data: {csrf_token: self.token},
                 success: function(response) {
-
-                    console.log(response);
-
                     if (response && response.status) {
                         if (response.data.contentData) self.data = response.data;
                         if (callback) callback(response.data);
@@ -123,7 +127,8 @@ $(document).ready(function() {
             var self = this;
 
             // Click event for the edit button; before launching the edit modal
-            $(this.getContainer()).on('click', 'button.action#edit', function() {
+            $(this.getContainer()).on('click', 'button.action#edit', function(e) {
+                e.preventDefault();
                 var dataId = $(this).data('id');
 
                 // Getting the data for this id
@@ -142,12 +147,13 @@ $(document).ready(function() {
             });
 
             // Click event for saving changes on the edit/create blog modal
-            $(this.blogAdminModal).on('click', 'button[type=submit].save-data-button', function() {
+            $(this.blogAdminModal).on('click', 'button[type=submit].save-data-button', function(e) {
+                e.preventDefault();
+
                 if (self.ajaxProcessing) return;
 
                 // Getting the data from the edit modal
                 var editModalData = self.getEditModalData();
-
                 if (editModalData) {
                     $.ajax({
                         url: '/api/admin/blog',
@@ -189,7 +195,8 @@ $(document).ready(function() {
                 }
             });
 
-            $(this.getContainer()).on('click', 'button.create-new', function() {
+            $(this.getContainer()).on('click', 'button.create-new', function(e) {
+                e.preventDefault();
                 self.renderBlogAdminModal(ACTION_TYPE_CREATE, self.blankBlogPostData, function() {
                     self.modalActionType = ACTION_TYPE_CREATE;
                     self.blogAdminModal.modal('show');
@@ -197,7 +204,8 @@ $(document).ready(function() {
             });
 
             /** Listener for the delete button for the blogs; */
-            $(this.getContainer()).on('click', 'button.action#delete', function() {
+            $(this.getContainer()).on('click', 'button.action#delete', function(e) {
+                e.preventDefault();
                 var dataId = $(this).data('id');
 
                 // Getting the data for this id
@@ -214,7 +222,8 @@ $(document).ready(function() {
                 self.deleteBlogModal.modal('show');
             });
 
-            $(self.deleteBlogModal).on('click', 'button.delete', function() {
+            $(self.deleteBlogModal).on('click', 'button.delete', function(e) {
+                e.preventDefault();
                 if (!self.objToBeDeleted) return;
 
                 $.ajax({
@@ -241,6 +250,15 @@ $(document).ready(function() {
             $(self.blogAdminModal).on('input', 'form .form-control', function() {
                 var formValid = self.validateModalForm();
                 $('button[type=submit].save-data-button', self.blogAdminModal).prop('disabled', !formValid);
+            });
+
+            self.quill.on('text-change', function(delta, oldDelta, source) {
+                var valid = false;
+                if (self.quill.getText() && self.quill.getText() !== '\n') {
+                    valid = true;
+                }
+
+                $('button[type=submit].save-data-button', self.blogAdminModal).prop('disabled', !valid);
             });
         },
         validateModalForm: function() {
@@ -293,7 +311,7 @@ $(document).ready(function() {
                 $('input#header-image', self.blogAdminModal).val(obj.bodyHeaderImage ? obj.bodyHeaderImage : '');
 
                 // Setting the post body
-                $('textarea#full-body', self.blogAdminModal).html(obj.fullBody ? obj.fullBody : '');
+                self.quill.root.innerHTML = obj.fullBody ? obj.fullBody : '';
 
                 // Attach the id of the blog
                 $('form', self.blogAdminModal).attr('data-id', obj.id);
@@ -313,12 +331,17 @@ $(document).ready(function() {
             var obj = {};
             $('input,textarea', self.blogAdminModal).each(function(i, el) {
                 var fieldName = $(el).attr('data-id');
-                if ($(el).val()) {
-                    obj[fieldName] = $(el).val();
-                } else {
-                    obj[fieldName] = '';
+                if (fieldName) {
+                    if ($(el).val()) {
+                        obj[fieldName] = $(el).val();
+                    } else {
+                        obj[fieldName] = '';
+                    }
                 }
             });
+
+            // Get quill text data
+            obj['fullBody'] = self.quill.root.innerHTML;
 
             // Attach additional data
             if ($('form', self.blogAdminModal).attr('data-id')) {
