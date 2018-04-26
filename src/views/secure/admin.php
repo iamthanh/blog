@@ -100,7 +100,7 @@
                     </div>
                     <div class="form-group">
                         <label for="full-body">Full body</label>
-                        <textarea rows="8" class="form-control form-control-sm" data-id='body' id="full-body" placeholder="This is the body of the post" required></textarea>
+                        <div class="full-body"></div>
                     </div>
 
                     <div class="button-container">
@@ -117,4 +117,7 @@
     </div>
 </div>
 
+<link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+<script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
 <script type="text/javascript" src="/src/public/js/admin.js"></script>

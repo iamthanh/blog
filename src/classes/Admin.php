@@ -49,7 +49,7 @@ class Admin {
                     'blogEntryId' => $blogId,
                     'blogTopic' => $blog->getBlogTopic(),
                     'description' => $blog->getDescription(),
-                    'fullBody' => htmlspecialchars($blogEntry->getBody()),
+                    'fullBody' => html_entity_decode($blogEntry->getBody()),
                     'bodyHeaderImage' => $blogEntry->getHeaderImage(),
                     'thumbnail' => $blog->getThumbnail(),
                     'created' => $blog->getDateCreated(),
