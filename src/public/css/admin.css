@@ -106,7 +106,16 @@
 .modal#admin-editor-modal form {
   margin: 0;
 }
+.modal#admin-editor-modal form .only-edit-body {
+  cursor: pointer;
+  text-decoration: none;
+  margin-left: 10px;
+}
+.modal#admin-editor-modal form .ql-toolbar {
+  margin-top: 20px;
+}
 .modal#admin-editor-modal form .full-body {
+  margin-top: 10px;
   max-height: 250px;
 }
 .modal#admin-editor-modal .modal-dialog {
