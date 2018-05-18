@@ -96,10 +96,11 @@
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea rows='4' class="form-control form-control-sm" data-id='description' id="description" placeholder="Enter a description" required></textarea>
+                        <textarea rows='2' class="form-control form-control-sm" data-id='description' id="description" placeholder="Enter a description" required></textarea>
                     </div>
                     <div class="form-group">
                         <label for="full-body">Full body</label>
+                        <button type="button" class="btn btn-outline-secondary btn-sm only-edit-body" data-action="extend">Only edit the body</button>
                         <div class="full-body"></div>
                     </div>
 
