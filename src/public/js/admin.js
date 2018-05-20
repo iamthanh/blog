@@ -7,7 +7,7 @@ $(document).ready(function() {
         ajaxProcessing: false,
         blogAdminModal: $('.modal#admin-editor-modal'),
         deleteBlogModal: $('.modal#delete-blog-modal'),
-        token: $('div[data-token]').data('token'),
+        csrfToken: $('div[data-csrf-token]').data('csrfToken'),
         data: null,
         objToBeEditOriginal: null,
         objToBeDeleted: null,
@@ -52,7 +52,7 @@ $(document).ready(function() {
             $.ajax({
                 url: '/api/admin/blogs',
                 method: 'get',
-                data: {csrf_token: self.token},
+                data: {csrfToken: self.csrfToken},
                 success: function(response) {
                     if (response && response.status) {
                         if (response.data.contentData) self.data = response.data;
