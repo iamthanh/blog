@@ -174,6 +174,7 @@ class ComposerStaticInitcb18df7809ae61d5ad07a8082f0b6e6a
         'Blog\\Routes\\BlogsRoutes' => __DIR__ . '/../..' . '/src/classes/routes/Blogs.routes.php',
         'Blog\\Routes\\DebugRoutes' => __DIR__ . '/../..' . '/src/classes/routes/Debug.routes.php',
         'Blog\\Routes\\IndexRoutes' => __DIR__ . '/../..' . '/src/classes/routes/Index.routes.php',
+        'Blog\\Routes\\Middlewares\\CsrfMiddleware' => __DIR__ . '/../..' . '/src/classes/routes/middleswares/Csrf.middleware.php',
         'Blog\\Routes\\ProjectsRoutes' => __DIR__ . '/../..' . '/src/classes/routes/Projects.routes.php',
         'Blog\\SideNav' => __DIR__ . '/../..' . '/src/classes/SideNav.php',
         'Blog\\Template' => __DIR__ . '/../..' . '/src/classes/Template.php',

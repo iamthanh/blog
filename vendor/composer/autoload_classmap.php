@@ -18,6 +18,7 @@ return array(
     'Blog\\Routes\\BlogsRoutes' => $baseDir . '/src/classes/routes/Blogs.routes.php',
     'Blog\\Routes\\DebugRoutes' => $baseDir . '/src/classes/routes/Debug.routes.php',
     'Blog\\Routes\\IndexRoutes' => $baseDir . '/src/classes/routes/Index.routes.php',
+    'Blog\\Routes\\Middlewares\\CsrfMiddleware' => $baseDir . '/src/classes/routes/middleswares/Csrf.middleware.php',
     'Blog\\Routes\\ProjectsRoutes' => $baseDir . '/src/classes/routes/Projects.routes.php',
     'Blog\\SideNav' => $baseDir . '/src/classes/SideNav.php',
     'Blog\\Template' => $baseDir . '/src/classes/Template.php',

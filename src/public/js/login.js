@@ -3,6 +3,7 @@ $(document).ready(function() {
         loginAjaxPath: '/api/login',
         messageContainer: $('.login-container form .message-container'),
         submitButton: $('.login-container form [type=submit]'),
+        csrfToken: $('div[data-csrf-token]').data('csrfToken'),
         init: function() {
             // Init the login page
 
@@ -17,7 +18,7 @@ $(document).ready(function() {
                     obj[item.name] = item.value;
                     return obj;
                 }, {});
-                self.submitLogin(data.username, data.password, $('div[data-token]').data('token'));
+                self.submitLogin(data.username, data.password, self.csrfToken);
             });
         },
         submitLogin: function(username, password, token) {
@@ -32,7 +33,7 @@ $(document).ready(function() {
             $.ajax({
                 url: self.loginAjaxPath,
                 method: 'post',
-                data: {username: username, password: password, token: token},
+                data: {username: username, password: password, csrfToken: token},
                 success: function(resp) {
                     if (resp && resp.status) {
                         self.displayMessage('success', 'Log in successful');
