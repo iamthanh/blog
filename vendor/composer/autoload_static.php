@@ -1055,7 +1055,6 @@ class ComposerStaticInitcb18df7809ae61d5ad07a8082f0b6e6a
         'Doctrine\\ORM\\Utility\\IdentifierFlattener' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Utility/IdentifierFlattener.php',
         'Doctrine\\ORM\\Utility\\PersisterHelper' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Utility/PersisterHelper.php',
         'Doctrine\\ORM\\Version' => __DIR__ . '/..' . '/doctrine/orm/lib/Doctrine/ORM/Version.php',
-        'Entities\\BlogEntry' => __DIR__ . '/../..' . '/src/entities/BlogEntry.php',
         'Entities\\Blogs' => __DIR__ . '/../..' . '/src/entities/Blogs.php',
         'Entities\\EntityBase' => __DIR__ . '/../..' . '/src/entities/EntityBase.php',
         'Entities\\ProjectTags' => __DIR__ . '/../..' . '/src/entities/ProjectTags.php',

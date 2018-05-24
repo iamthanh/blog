@@ -62,7 +62,7 @@ class BlogsRoutes {
 
             if ($blog) {
                 return $response->getBody()->write(
-                    View::generateBlogDetailView($blog['data'], $blog['entry'])
+                    View::generateBlogDetailView($blog)
                 );
             } else {
                 return $response->getBody()->write(View::generateNotFoundView());

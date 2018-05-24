@@ -8,7 +8,6 @@
 <div class="main-blog-title">
     <div class="blog-title">
         <div class="title-text"><?= $m->getTitle() ?></div>
-        <div class="title-description"><?= $m->getDescription() ?></div>
     </div>
     <div class="blog-topic"><a href="<?= Blog\View::BLOGS_PREFIX ?>/<?= $m->getBlogTopic() ?>"><?= $m->getBlogTopic() ?></a></div>
     <div class="blog-date-created"><?= $m->getDateCreated()->format('F jS, Y') ?></div>

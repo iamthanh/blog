@@ -72,6 +72,7 @@
   font-family: 'Quicksand';
 }
 .listing-page-container .side-nav-container .side-nav ul.calender-container li.year {
+  margin-bottom: 10px;
   list-style-type: none;
 }
 .listing-page-container .side-nav-container .side-nav ul.calender-container li.year span.year-text {
@@ -87,7 +88,6 @@
   max-width: 1000px;
   margin: 30px auto 0;
   box-sizing: border-box;
-  text-align: center;
 }
 .main-blog-title .blog-title {
   padding-top: 50px;
