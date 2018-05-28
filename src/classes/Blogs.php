@@ -67,29 +67,15 @@ class Blogs {
      *
      * @param $topic
      * @param $blogUrl
-     * @return array|boolean
+     * @return bool|\Entities\Blogs|null|object
      */
     public static function getSingleBlogDetails($topic, $blogUrl) {
         /** @var \Entities\Blogs $blogData */
         $blogData = App::$entityManager->getRepository('Entities\Blogs')->findOneBy(['url'=>$blogUrl, 'blogTopic'=>$topic, 'status'=>\Entities\Blogs::STATUS_ACTIVE]);
 
         if ($blogData) {
-            $blogEntryData = App::$entityManager->getRepository('Entities\BlogEntry')->findBy(['id'=>$blogData->getBlogEntryId()]);
-            return [
-                'data' => $blogData,
-                'entry' => $blogEntryData[0]
-            ];
+            return $blogData;
         }
         return false;
-    }
-
-    /**
-     * This will return the blog entry data based on the blog entry id
-     *
-     * @param $blogEntryId
-     * @return \Entities\BlogEntry|Object
-     */
-    public static function getBlogEntryDataByBlogEntryId($blogEntryId) {
-        return App::$entityManager->getRepository('Entities\BlogEntry')->findOneBy(['id'=>$blogEntryId]);
     }
 }

@@ -56,15 +56,14 @@ class View {
      * Page for single blog detail page
      *
      * @param \Entities\Blogs $data
-     * @param \Entities\BlogEntry $entry
      * @return string
      */
-    public static function generateBlogDetailView(\Entities\Blogs $data, \Entities\BlogEntry $entry) {
+    public static function generateBlogDetailView(\Entities\Blogs $data) {
 
         $page = Template::load(static::PATH_HEADER);
         $page .= Template::load(static::PATH_TOP_NAV);
         $page .= Template::load(static::BLOG_TITLE_PATH, $data);
-        $page .= Template::load(static::BLOG_BODY_PATH, $entry);
+        $page .= Template::load(static::BLOG_BODY_PATH, $data);
         $page .= Template::load(static::PATH_FOOTER, []);
 
         return $page;

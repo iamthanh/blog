@@ -36,21 +36,13 @@ class Admin {
             $results = [];
             /** @var \Entities\Blogs $blog */
             foreach($blogs as $blog) {
-
-                $blogId = $blog->getBlogEntryId();
-
-                /** @var $blogEntry \Entities\BlogEntry */
-                $blogEntry = App::$entityManager->getRepository('Entities\BlogEntry')->findOneBy(['id'=>$blogId]);
-
                 $results[] = [
                     'id' => $blog->getId(),
                     'url' => $blog->getUrl(),
                     'title' => $blog->getTitle(),
-                    'blogEntryId' => $blogId,
                     'blogTopic' => $blog->getBlogTopic(),
                     'description' => $blog->getDescription(),
-                    'fullBody' => html_entity_decode($blogEntry->getBody()),
-                    'bodyHeaderImage' => $blogEntry->getHeaderImage(),
+                    'fullBody' => html_entity_decode($blog->getBody()),
                     'thumbnail' => $blog->getThumbnail(),
                     'created' => $blog->getDateCreated(),
                     'updated' => $blog->getDateUpdated()
@@ -122,8 +114,6 @@ class Admin {
             $blog = App::$entityManager->getRepository('Entities\Blogs')->findOneBy(['id'=>$data['id']]);
 
             if ($blog) {
-                /** @var $blogEntry \Entities\BlogEntry */
-                $blogEntry = App::$entityManager->getRepository('Entities\BlogEntry')->findOneBy(['id'=>$blog->getBlogEntryId()]);
 
                 // Setting the new values
                 $blog->setTitle($data['title']);
@@ -131,10 +121,7 @@ class Admin {
                 $blog->setBlogTopic($data['blogTopic']);
                 $blog->setThumbnail($data['thumbnail']);
                 $blog->getDescription($data['description']);
-
-                // Setting the new values for BlogEntry
-                $blogEntry->setHeaderImage($data['headerImage']);
-                $blogEntry->setBody($data['fullBody']);
+                $blog->setBody($data['fullBody']);
 
                 // Set the new update date
                 $blog->setDateUpdated(new \DateTime('NOW'));
@@ -142,7 +129,6 @@ class Admin {
                 // Save/update the Blog entry
                 try {
                     App::$entityManager->persist($blog);
-                    App::$entityManager->persist($blogEntry);
 
                     // Exclude the update
                     App::$entityManager->flush();
@@ -177,16 +163,9 @@ class Admin {
         if (!empty($data)) {
 
             try {
-                /** @var $blogEntry \Entities\EntityBase */
-                $blogEntry = new \Entities\BlogEntry($data);
-                App::$entityManager->persist($blogEntry);
-                App::$entityManager->flush();
-
-                $blogEntryId = $blogEntry->getId();
 
                 /** @var $blog \Entities\Blogs */
                 $blog = new \Entities\Blogs($data);
-                $blog->setBlogEntryId($blogEntryId);
                 $blog->setStatus(\Entities\Blogs::STATUS_ACTIVE);
                 $blog->setDateCreated(new \DateTime('NOW'));
                 $blog->setDateUpdated(new \DateTime('NOW'));

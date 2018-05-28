@@ -19,14 +19,14 @@ class Blogs extends EntityBase {
     /** @Column(type="string") **/
     protected $title = '';
 
-    /** @Column(type="integer") **/
-    protected $blogEntryId;
-
     /** @Column(type="string") **/
     protected $blogTopic = '';
 
     /** @Column(type="text") **/
     protected $description = '';
+
+    /** @Column(type="text") **/
+    protected $body = '';
 
     /** @Column(type="string") **/
     protected $thumbnail = '';
@@ -58,14 +58,14 @@ class Blogs extends EntityBase {
     public function getTitle() { return $this->title; }
     public function setTitle($title) { $this->title = $title; }
 
-    public function getBlogEntryId() { return $this->blogEntryId; }
-    public function setBlogEntryId($blogEntryId) { $this->blogEntryId = $blogEntryId; }
-
     public function getBlogTopic() { return $this->blogTopic; }
     public function setBlogTopic($topic) { $this->blogTopic = $topic; }
 
     public function getDescription() { return $this->description; }
     public function setDescription($description) { $this->description = $description; }
+
+    public function getBody() { return $this->body; }
+    public function setBody($body) { $this->body = $body; }
 
     public function getThumbnail() { return $this->thumbnail; }
     public function setThumbnail($thumbnail) { $this->thumbnail = $thumbnail; }

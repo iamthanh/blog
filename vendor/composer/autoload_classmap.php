@@ -899,7 +899,6 @@ return array(
     'Doctrine\\ORM\\Utility\\IdentifierFlattener' => $vendorDir . '/doctrine/orm/lib/Doctrine/ORM/Utility/IdentifierFlattener.php',
     'Doctrine\\ORM\\Utility\\PersisterHelper' => $vendorDir . '/doctrine/orm/lib/Doctrine/ORM/Utility/PersisterHelper.php',
     'Doctrine\\ORM\\Version' => $vendorDir . '/doctrine/orm/lib/Doctrine/ORM/Version.php',
-    'Entities\\BlogEntry' => $baseDir . '/src/entities/BlogEntry.php',
     'Entities\\Blogs' => $baseDir . '/src/entities/Blogs.php',
     'Entities\\EntityBase' => $baseDir . '/src/entities/EntityBase.php',
     'Entities\\ProjectTags' => $baseDir . '/src/entities/ProjectTags.php',
