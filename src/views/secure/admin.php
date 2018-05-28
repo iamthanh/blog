@@ -60,47 +60,50 @@
             </div>
             <div class="modal-body">
                 <form>
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="title">Title</label>
-                                <input type="text" data-id='title' class="form-control form-control-sm" id="title" placeholder="Title of blog/project" required>
+                    <div class="form-top-section">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="title">Title</label>
+                                    <input type="text" data-id='title' class="form-control form-control-sm" id="title" placeholder="Title of blog/project" required>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="url">Url</label>
+                                    <input type="text" data-id='url' class="form-control form-control-sm" id="url" placeholder="Url for this blog" required>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="topic">Topic</label>
+                                    <input type="text" data-id='blogTopic' class="form-control form-control-sm" id="topic" placeholder="Topic" required>
+                                </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="url">Url</label>
-                                <input type="text" data-id='url' class="form-control form-control-sm" id="url" placeholder="Url for this blog" required>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="thumbnail">Thumbnail</label>
+                                    <input type="text" data-id='thumbnail' class="form-control form-control-sm" id="thumbnail" placeholder="Path to thumbnail">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="header-image">Header image</label>
+                                    <input type="text" data-id='headerImage' class="form-control form-control-sm" id="header-image" placeholder="Path to header image">
+                                </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="topic">Topic</label>
-                                <input type="text" data-id='blogTopic' class="form-control form-control-sm" id="topic" placeholder="Topic" required>
-                            </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea rows='2' class="form-control form-control-sm" data-id='description' id="description" placeholder="Enter a description" required></textarea>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="thumbnail">Thumbnail</label>
-                                <input type="text" data-id='thumbnail' class="form-control form-control-sm" id="thumbnail" placeholder="Path to thumbnail">
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="header-image">Header image</label>
-                                <input type="text" data-id='headerImage' class="form-control form-control-sm" id="header-image" placeholder="Path to header image">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Description</label>
-                        <textarea rows='2' class="form-control form-control-sm" data-id='description' id="description" placeholder="Enter a description" required></textarea>
-                    </div>
-                    <div class="form-group">
+
+                    <div class="form-group full-body-container">
                         <label for="full-body">Full body</label>
-                        <button type="button" class="btn btn-outline-secondary btn-sm only-edit-body" data-action="extend">Only edit the body</button>
+                        <button type="button" class="btn btn-outline-secondary btn-sm only-edit-body not-hidden" data-fullscreen="false">Expand</button>
                         <div class="full-body"></div>
                     </div>
 

@@ -146,6 +146,11 @@ $(document).ready(function() {
                 });
             });
 
+            $(this.blogAdminModal).on('click', 'button.only-edit-body', function(e) {
+                e.preventDefault();
+                self.setFullScreenEditor(!self.blogAdminModal.hasClass('full-screen'));
+            });
+
             // Click event for saving changes on the edit/create blog modal
             $(this.blogAdminModal).on('click', 'button[type=submit].save-data-button', function(e) {
                 e.preventDefault();
@@ -259,6 +264,20 @@ $(document).ready(function() {
                 $('button[type=submit].save-data-button', self.blogAdminModal).prop('disabled', !formValid);
             });
         },
+        setFullScreenEditor: function(enable) {
+            var self = this;
+
+            if (!enable) {
+                self.blogAdminModal.removeClass('full-screen');
+                $('.form-top-section', self.blogAdminModal).show();
+                $(this).text('Expand');
+            } else {
+                self.blogAdminModal.addClass('full-screen');
+                $('.form-top-section', self.blogAdminModal).hide();
+                $(this).text('Collapse');
+            }
+
+        },
         validateModalForm: function() {
             var self = this;
             var modalFormInputs = $('.form-control', self.blogAdminModal);
@@ -318,10 +337,15 @@ $(document).ready(function() {
             if (callback) callback();
         },
         resetModal: function() {
+            var self = this;
+
             // Reset the status messages
             $('.status-container .error', self.blogAdminModal).text('');
             $('.status-container .success', self.blogAdminModal).text('');
             $('button[type=submit]', self.blogAdminModal).text('Save');
+
+            // Reset the full-screen
+            self.setFullScreenEditor(false);
         },
         // Returns the data for the edit modal as an object
         getEditModalData: function() {
