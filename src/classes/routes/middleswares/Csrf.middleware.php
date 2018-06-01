@@ -15,14 +15,16 @@ use \Psr\Http\Message\ResponseInterface as Response;
  */
 class CsrfMiddleware {
 
+    const CSRF_TOKEN_KEY = 'csrfToken';
+
     public function __invoke(Request $request, Response $response, $next) {
         $tokenFromRequest = null;
         $body = $request->getParsedBody();
         $queryParams = $request->getQueryParams();
-        if (!empty($queryParams['csrfToken'])) {
-            $tokenFromRequest = $queryParams['csrfToken'];
-        } else if (!empty($body['csrfToken'])) {
-            $tokenFromRequest = $body['csrfToken'];
+        if (!empty($queryParams[self::CSRF_TOKEN_KEY])) {
+            $tokenFromRequest = $queryParams[self::CSRF_TOKEN_KEY];
+        } else if (!empty($body[self::CSRF_TOKEN_KEY])) {
+            $tokenFromRequest = $body[self::CSRF_TOKEN_KEY];
         }
 
         // Making sure that the request body has the token

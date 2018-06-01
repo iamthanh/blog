@@ -17,7 +17,6 @@ $(document).ready(function() {
             bodyHeader: null,
             description: null,
             fullBody: null,
-            description: null,
             thumbnail: null,
             title: null,
             url: null
@@ -36,8 +35,38 @@ $(document).ready(function() {
                 });
             });
 
+            var BackgroundClass = Quill.import('attributors/class/background');
+            var ColorClass = Quill.import('attributors/class/color');
+            var SizeStyle = Quill.import('attributors/style/size');
+            Quill.register(BackgroundClass, true);
+            Quill.register(ColorClass, true);
+            Quill.register(SizeStyle, true);
+
+            var toolbarOptions = [
+                ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+                ['blockquote', 'code-block', 'image'],
+
+                [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+                [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+                [{ 'direction': 'rtl' }],                         // text direction
+
+                [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+                [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+                [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+                [{ 'font': [] }],
+                [{ 'align': [] }],
+
+                ['clean']                                         // remove formatting button
+            ];
+
             // Init the wysiwyg (Quill)
             self.quill = new Quill('.full-body', {
+                modules: {
+                    toolbar: toolbarOptions
+                },
                 theme: 'snow',
                 placeholder: 'This is the body of the post'
             });
@@ -165,7 +194,7 @@ $(document).ready(function() {
                         method: 'post',
                         data: {
                             data: editModalData,
-                            csrf_token: self.token,
+                            csrfToken: self.csrfToken,
                             actionType: self.modalActionType
                         },
                         beforeSend: function() {
@@ -236,7 +265,7 @@ $(document).ready(function() {
                     method: 'delete',
                     data: {
                         id: self.objToBeDeleted.id,
-                        csrf_token: self.token
+                        csrfToken: self.token
                     },
                     success: function(response) {
                         if (response && response.status) {
@@ -270,11 +299,11 @@ $(document).ready(function() {
             if (!enable) {
                 self.blogAdminModal.removeClass('full-screen');
                 $('.form-top-section', self.blogAdminModal).show();
-                $(this).text('Expand');
+                $('.only-edit-body', self.blogAdminModal).text('Expand');
             } else {
                 self.blogAdminModal.addClass('full-screen');
                 $('.form-top-section', self.blogAdminModal).hide();
-                $(this).text('Collapse');
+                $('.only-edit-body', self.blogAdminModal).text('Collapse');
             }
 
         },
@@ -325,7 +354,12 @@ $(document).ready(function() {
 
                 // Images and thumbnails
                 $('input#thumbnail', self.blogAdminModal).val(obj.thumbnail ? obj.thumbnail : '');
-                $('input#header-image', self.blogAdminModal).val(obj.bodyHeaderImage ? obj.bodyHeaderImage : '');
+
+
+                $('input#header-image', self.blogAdminModal).val(obj.headerImage ? obj.headerImage : '');
+
+
+                console.log(obj);
 
                 // Setting the post body
                 self.quill.root.innerHTML = obj.fullBody ? obj.fullBody : '';

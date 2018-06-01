@@ -37,15 +37,16 @@ class Admin {
             /** @var \Entities\Blogs $blog */
             foreach($blogs as $blog) {
                 $results[] = [
-                    'id' => $blog->getId(),
-                    'url' => $blog->getUrl(),
-                    'title' => $blog->getTitle(),
-                    'blogTopic' => $blog->getBlogTopic(),
+                    'id'          => $blog->getId(),
+                    'url'         => $blog->getUrl(),
+                    'title'       => $blog->getTitle(),
+                    'blogTopic'   => $blog->getBlogTopic(),
                     'description' => $blog->getDescription(),
-                    'fullBody' => html_entity_decode($blog->getBody()),
-                    'thumbnail' => $blog->getThumbnail(),
-                    'created' => $blog->getDateCreated(),
-                    'updated' => $blog->getDateUpdated()
+                    'headerImage' => $blog->getHeaderImage(),
+                    'fullBody'    => $blog->getBody(),
+                    'thumbnail'   => $blog->getThumbnail(),
+                    'created'     => $blog->getDateCreated(),
+                    'updated'     => $blog->getDateUpdated()
                 ];
             }
 
@@ -120,7 +121,8 @@ class Admin {
                 $blog->setUrl($data['url']);
                 $blog->setBlogTopic($data['blogTopic']);
                 $blog->setThumbnail($data['thumbnail']);
-                $blog->getDescription($data['description']);
+                $blog->setHeaderImage($data['headerImage']);
+                $blog->setDescription($data['description']);
                 $blog->setBody($data['fullBody']);
 
                 // Set the new update date

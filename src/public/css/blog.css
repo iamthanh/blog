@@ -85,46 +85,56 @@
   font-size: 15px;
 }
 .main-blog-title {
-  max-width: 1000px;
-  margin: 30px auto 0;
+  width: 100%;
   box-sizing: border-box;
+  background-size: cover;
+  background-position: center;
+  height: 600px;
+  position: relative;
 }
-.main-blog-title .blog-title {
-  padding-top: 50px;
+.main-blog-title .blog-title-container {
+  position: absolute;
+  bottom: 50px;
+  left: 0;
+  right: 0;
 }
-.main-blog-title .blog-title .title-text {
-  font-family: 'Quicksand';
-  font-size: 33px;
-  color: #444;
-}
-.main-blog-title .blog-title .title-description {
-  font-family: 'Quicksand';
-  font-size: 15px;
-  color: #777;
-}
-.main-blog-title .blog-topic {
-  font-family: 'Quicksand';
-  font-size: 15px;
-}
-.main-blog-title .blog-topic a {
-  color: #444;
-}
-.main-blog-title .blog-date-created {
-  font-size: 15px;
-  font-family: 'Quicksand';
+.main-blog-title .blog-title-container .blog-title {
   max-width: 1000px;
-  margin-top: 40px;
-  text-align: left;
+  margin: 0 auto;
+}
+.main-blog-title .blog-title-container .blog-title .title-detail {
+  font-family: 'Quicksand';
+  color: black;
+  display: table;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 5px 12px;
+  margin: 7px 0;
+}
+.main-blog-title .blog-title-container .blog-title .title-detail.title-text {
+  font-size: 40px;
+}
+.main-blog-title .blog-title-container .blog-title .title-detail.blog-topic {
+  font-size: 16px;
+}
+.main-blog-title .blog-title-container .blog-title .title-detail.blog-topic a {
+  text-decoration: none;
+  color: #444;
+}
+.main-blog-title .blog-title-container .blog-title .title-detail.blog-date-created {
+  font-size: 16px;
 }
 .main-body-container {
   max-width: 1000px;
-  margin: 25px auto 100px;
+  margin: 50px auto;
   box-sizing: border-box;
 }
 .main-body-container .body {
   font-size: 18px;
   font-family: 'Quicksand';
   font-weight: 300;
+}
+.main-body-container .body img.full-width {
+  max-width: 100%;
 }
 .not-found-container {
   max-width: 1000px;

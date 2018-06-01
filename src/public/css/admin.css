@@ -103,6 +103,10 @@
 .admin-container .content-container .content-list-container .content .content-action .action i {
   margin-right: 5px;
 }
+.modal#admin-editor-modal button:focus,
+.modal#admin-editor-modal a:focus {
+  box-shadow: none;
+}
 .modal#admin-editor-modal.full-screen {
   padding: 0 !important;
 }

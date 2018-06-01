@@ -29,6 +29,9 @@ class Blogs extends EntityBase {
     protected $body = '';
 
     /** @Column(type="string") **/
+    protected $headerImage = '';
+
+    /** @Column(type="string") **/
     protected $thumbnail = '';
 
     /**
@@ -66,6 +69,9 @@ class Blogs extends EntityBase {
 
     public function getBody() { return $this->body; }
     public function setBody($body) { $this->body = $body; }
+
+    public function getHeaderImage() { return $this->headerImage; }
+    public function setHeaderImage($headerImage) { $this->headerImage = $headerImage; }
 
     public function getThumbnail() { return $this->thumbnail; }
     public function setThumbnail($thumbnail) { $this->thumbnail = $thumbnail; }

@@ -116,60 +116,69 @@
   }
 }
 
+
+
 .main-blog-title {
-  max-width: 1000px;
-  margin: 30px auto 0;
+  width: 100%;
   box-sizing: border-box;
+  background-size: cover;
+  background-position: center;
+  height: 600px;
+  position: relative;
 
-  .blog-title {
-    padding-top: 50px;
+  .blog-title-container {
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+    right: 0;
 
-    .title-text {
-      font-family: 'Quicksand';
-      font-size: 33px;
-      color: #444;
+    .blog-title {
+      max-width: 1000px;
+      margin: 0 auto;
+
+      .title-detail {
+        font-family: 'Quicksand';
+        color: black;
+        display: table;
+        background: rgba(255, 255, 255, 0.85);
+        padding: 5px 12px;
+        margin: 7px 0;
+
+        &.title-text { font-size: 40px; }
+
+        &.blog-topic {
+          font-size: 16px;
+
+          a {
+            text-decoration: none;
+            color: #444;
+          }
+        }
+
+        &.blog-date-created {
+          font-size: 16px;
+        }
+      }
     }
-
-    .title-description {
-      font-family: 'Quicksand';
-      font-size: 15px;
-      color: #777;
-    }
-  }
-
-  .blog-topic {
-    font-family: 'Quicksand';
-    font-size: 15px;
-
-    a {
-      color: #444;
-    }
-  }
-
-  .blog-date-created {
-    font-size: 15px;
-    font-family: 'Quicksand';
-    max-width: 1000px;
-    margin-top: 40px;
-    text-align: left;
   }
 }
 
 .main-body-container {
   max-width: 1000px;
-  margin: 25px auto 100px;
+  margin: 50px auto;
   box-sizing: border-box;
-
-  .header-image {
-    img {
-
-    }
-  }
 
   .body {
     font-size: 18px;
     font-family: 'Quicksand';
     font-weight: 300;
+
+    img {
+
+      &.full-width {
+        max-width: 100%;
+      }
+    }
   }
 
   .blog-comments {

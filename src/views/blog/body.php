@@ -8,7 +8,7 @@
 <?php if (!empty($m)) { ?>
     <div class="main-body-container">
         <div class="body">
-            <?= $m->getBody() ?>
+            <?= htmlspecialchars_decode($m->getBody()) ?>
         </div>
         <div class="blog-comments"></div>
     </div>
