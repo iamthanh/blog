@@ -354,12 +354,7 @@ $(document).ready(function() {
 
                 // Images and thumbnails
                 $('input#thumbnail', self.blogAdminModal).val(obj.thumbnail ? obj.thumbnail : '');
-
-
                 $('input#header-image', self.blogAdminModal).val(obj.headerImage ? obj.headerImage : '');
-
-
-                console.log(obj);
 
                 // Setting the post body
                 self.quill.root.innerHTML = obj.fullBody ? obj.fullBody : '';
