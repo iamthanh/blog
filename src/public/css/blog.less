@@ -123,7 +123,7 @@
   box-sizing: border-box;
   background-size: cover;
   background-position: center;
-  height: 600px;
+  height: 800px;
   position: relative;
 
   .blog-title-container {
@@ -163,6 +163,12 @@
   }
 }
 
+img {
+  &.full-width {
+    max-width: 100%;
+  }
+}
+
 .main-body-container {
   max-width: 1000px;
   margin: 50px auto;
@@ -172,13 +178,6 @@
     font-size: 18px;
     font-family: 'Quicksand';
     font-weight: 300;
-
-    img {
-
-      &.full-width {
-        max-width: 100%;
-      }
-    }
   }
 
   .blog-comments {
