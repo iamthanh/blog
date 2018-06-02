@@ -59,10 +59,10 @@
 }
 .listing-page-container .listing-container .blog-collection .single-blog .blog-body {
   text-align: justify;
-  font-family: 'Quicksand';
-  font-size: 16px;
+  font-family: Raleway;
+  font-size: 18px;
   margin-top: 18px;
-  color: #808080;
+  color: #444;
 }
 .listing-page-container .side-nav-container {
   flex: 0 0 225px;
@@ -150,9 +150,11 @@ section.images-grid .media-object img {
   box-sizing: border-box;
 }
 .main-body-container .body {
+  text-align: justify;
+  font-family: Raleway;
   font-size: 18px;
-  font-family: 'Quicksand';
-  font-weight: 300;
+  margin-top: 18px;
+  color: #444;
 }
 .not-found-container {
   max-width: 1000px;
