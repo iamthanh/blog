@@ -20,7 +20,7 @@ $items = !empty($m['sideNav']['items']) ? $m['sideNav']['items'] : [];
                             <span class="title-text"><a href="<?= \Blog\View::BLOG_PREFIX ?>/<?= $blog->getBlogTopic() ?>/<?= $blog->getUrl() ?>"><?= $blog->getTitle() ?></a></span>
                             <span class="title-topic"><a href="<?= \Blog\View::BLOGS_PREFIX ?>/<?= $blog->getBlogTopic() ?>"><?= $blog->getBlogTopic() ?></a></span>
                         </div>
-                        <div class="blog-body"><?= $blog->getBody() ?></div>
+                        <div class="blog-body"><?= htmlspecialchars_decode($blog->getBody()) ?></div>
                         <?php
 
                         ?>

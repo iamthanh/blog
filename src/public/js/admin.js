@@ -209,7 +209,7 @@ $(document).ready(function() {
                                 // Update the data on the page
                                 self.getData(function() {
                                     self.renderPage();
-                                    self.blogAdminModal.modal('hide');
+                                    $('button[type=submit]', self.blogAdminModal).text('Save');
                                 });
                             } else {
                                 // Request failed

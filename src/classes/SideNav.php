@@ -19,11 +19,12 @@ class SideNav {
 
         /** @var $blog \Entities\Blogs */
         foreach($blogs as $blog) {
-            /** @var $dateUpdated \DateTime */
-            $dateUpdated = $blog->getDateUpdated();
+            
+            /** @var $dateCreated \DateTime */
+            $dateCreated = $blog->getDateCreated();
 
-            $month = $dateUpdated->format('F');
-            $year = $dateUpdated->format('Y');
+            $month = $dateCreated->format('F');
+            $year = $dateCreated->format('Y');
 
             if (isset($calender[$year])) {
                 if (isset($calender[$year][$month])) {

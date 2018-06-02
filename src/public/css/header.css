@@ -5,10 +5,9 @@
   text-align: center;
 }
 .nav-header .top-nav {
-  margin: 40px;
+  margin: 20px;
   display: flex;
   justify-content: center;
-  border-bottom: 1px solid lightgrey;
 }
 .nav-header .top-nav .nav-item {
   text-align: center;
