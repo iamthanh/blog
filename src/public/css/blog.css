@@ -89,16 +89,25 @@
 .main-blog-title {
   width: 100%;
   box-sizing: border-box;
+  position: relative;
+  margin-top: 75px;
+}
+.main-blog-title[has-header-image] {
+  margin: 0;
   background-size: cover;
   background-position: center;
   height: 791px;
-  position: relative;
 }
-.main-blog-title .blog-title-container {
+.main-blog-title[has-header-image] .blog-title-container {
   position: absolute;
   bottom: 50px;
   left: 0;
   right: 0;
+}
+.main-blog-title[has-header-image] .blog-title-container .title-detail {
+  background: rgba(255, 255, 255, 0.85);
+  padding: 5px 12px;
+  margin: 7px 0;
 }
 .main-blog-title .blog-title-container .blog-title {
   max-width: 1000px;
@@ -108,9 +117,6 @@
   font-family: 'Quicksand';
   color: black;
   display: table;
-  background: rgba(255, 255, 255, 0.85);
-  padding: 5px 12px;
-  margin: 7px 0;
 }
 .main-blog-title .blog-title-container .blog-title .title-detail.title-text {
   font-size: 40px;
