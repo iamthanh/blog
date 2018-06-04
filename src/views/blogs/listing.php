@@ -25,6 +25,7 @@ $items = !empty($m['sideNav']['items']) ? $m['sideNav']['items'] : [];
 
                         ?>
                     </div>
+                    <hr>
                 <?php }
             } else { ?>
                 No blogs found

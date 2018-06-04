@@ -1,6 +1,6 @@
 .listing-page-container {
   max-width: 1000px;
-  margin: 20px auto 100px;
+  margin: 20px auto;
   padding-top: 50px;
   border-top: 1px solid #afafaf;
   box-sizing: border-box;
@@ -22,10 +22,12 @@
       flex: 0 1 75%;
       order: 0;
 
+      hr {
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+      }
+
       .single-blog {
-        margin: 0 0 50px;
-        border-bottom: 2px dashed #efefef;
-        padding-bottom: 50px;
 
         &:last-child {
           margin-bottom: 0;
@@ -42,7 +44,7 @@
 
           .title-text {
             text-transform: uppercase;
-            font-size: 22px;
+            font-size: 30px;
 
             a {
               color: #444;
@@ -64,16 +66,8 @@
         }
 
         .blog-date-created {
-          font-size: 12px;
+          font-size: 16px;
           font-family: 'Raleway';
-        }
-
-        .blog-body {
-          text-align: justify;
-          font-family: Raleway;
-          font-size: 18px;
-          margin-top: 18px;
-          color: #444;
         }
       }
     }
@@ -201,11 +195,7 @@ section.images-grid {
   box-sizing: border-box;
 
   .body {
-    text-align: justify;
-    font-family: Raleway;
-    font-size: 18px;
     margin-top: 18px;
-    color: #444;
   }
 
   .blog-comments {
@@ -229,4 +219,14 @@ section.images-grid {
     margin-top: 35px;
     color: #444;
   }
+}
+
+.blog-body {
+  text-align: justify;
+  font-family: Raleway;
+  font-size: 16px;
+  margin-top: 18px;
+  color: #222;
+  line-height: 29px;
+  text-rendering: optimizeLegibility;
 }
