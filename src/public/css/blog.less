@@ -177,6 +177,7 @@ section.images-grid {
 
   .media-object {
     margin: 3px;
+    flex: 1;
 
     &.landscape { flex: 1.5; }
     &.portrait { flex: 0.666; }
@@ -225,8 +226,24 @@ section.images-grid {
   text-align: justify;
   font-family: Raleway;
   font-size: 16px;
-  margin-top: 18px;
+  margin-top: 30px;
   color: #222;
   line-height: 29px;
   text-rendering: optimizeLegibility;
+
+  p {
+    margin: 0;
+  }
+}
+
+blockquote {
+  margin-bottom: 1rem;
+  border-left: 3px solid #93c9ff;
+  padding-left: 15px;
+
+  p { font-size: 16px; }
+  footer {
+    display: block;
+    color: #868e96;
+  }
 }

@@ -130,6 +130,7 @@ section.images-grid {
 }
 section.images-grid .media-object {
   margin: 3px;
+  flex: 1;
 }
 section.images-grid .media-object.landscape {
   flex: 1.5;
@@ -169,8 +170,23 @@ section.images-grid .media-object img {
   text-align: justify;
   font-family: Raleway;
   font-size: 16px;
-  margin-top: 18px;
+  margin-top: 30px;
   color: #222;
   line-height: 29px;
   text-rendering: optimizeLegibility;
+}
+.blog-body p {
+  margin: 0;
+}
+blockquote {
+  margin-bottom: 1rem;
+  border-left: 3px solid #93c9ff;
+  padding-left: 15px;
+}
+blockquote p {
+  font-size: 16px;
+}
+blockquote footer {
+  display: block;
+  color: #868e96;
 }
