@@ -1,3 +1,8 @@
+.nav-header {
+  padding: 20px 0;
+  border-bottom: 1px solid #d0d0d0;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
 .nav-header a {
   text-decoration: none;
 }
@@ -5,7 +10,6 @@
   text-align: center;
 }
 .nav-header .top-nav {
-  margin: 20px;
   display: flex;
   justify-content: center;
 }
