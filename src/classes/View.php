@@ -58,7 +58,7 @@ class View {
      * @param \Entities\Blogs $data
      * @return string
      */
-    public static function generateBlogDetailView(\Entities\Blogs $data) {
+    public static function generateBlogDetailView($data) {
 
         $page = Template::load(static::PATH_HEADER);
         $page .= Template::load(static::PATH_TOP_NAV);

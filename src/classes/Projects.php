@@ -42,7 +42,6 @@ class Projects {
                 ->setParameter('tag', $tag);
         }
 
-        // Checking if we have any tags to filter
         if ($status) {
             $qb->andWhere($qb->expr()->eq('p.status', ':status'))
                 ->setParameter('status', $status);

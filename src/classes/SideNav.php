@@ -15,30 +15,30 @@ class SideNav {
             return false;
         }
 
-        $calender = [];
-
-        /** @var $blog \Entities\Blogs */
-        foreach($blogs as $blog) {
-            
-            /** @var $dateCreated \DateTime */
-            $dateCreated = $blog->getDateCreated();
-
-            $month = $dateCreated->format('F');
-            $year = $dateCreated->format('Y');
-
-            if (isset($calender[$year])) {
-                if (isset($calender[$year][$month])) {
-                    $calender[$year][$month]++;
-                } else {
-                    $calender[$year][$month] = 1;
-                }
-            } else {
-                $calender[$year] = [$month=>1];
-            }
-        }
-
-        return [
-            'calender'=>$calender
-        ];
+//        $calender = [];
+//
+//        /** @var $blog \Entities\Blogs */
+//        foreach($blogs as $blog) {
+//
+//            /** @var $dateCreated \DateTime */
+//            $dateCreated = $blog->getDateCreated();
+//
+//            $month = $dateCreated->format('F');
+//            $year = $dateCreated->format('Y');
+//
+//            if (isset($calender[$year])) {
+//                if (isset($calender[$year][$month])) {
+//                    $calender[$year][$month]++;
+//                } else {
+//                    $calender[$year][$month] = 1;
+//                }
+//            } else {
+//                $calender[$year] = [$month=>1];
+//            }
+//        }
+//
+//        return [
+//            'calender'=>$calender
+//        ];
     }
 }

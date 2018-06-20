@@ -26,11 +26,11 @@ class BlogsRoutes {
             // @todo sanitize $args to make sure its safe
 
             // Getting all blogs by topic
-            $blogs = Blogs::getAllRecentBlogsByTopic($args['topic']);
-            $sideNav = SideNav::generateSideNavFromBlogs($blogs);
+            $blogsFound = Blogs::getBlogs($args['topic']);
+            $sideNav = SideNav::generateSideNavFromBlogs($blogsFound);
 
-            if (!empty($blogs)) {
-                return $response->getBody()->write(View::generateBlogView($blogs,$sideNav));
+            if (!empty($blogsFound)) {
+                return $response->getBody()->write(View::generateBlogView($blogsFound,$sideNav));
             } else {
                 return $response->getBody()->write(View::generateNotFoundView());
             }
@@ -54,11 +54,11 @@ class BlogsRoutes {
         /**
          * Route for displaying a single blog posting
          */
-        $app->get('/blog/{topic}/{blogUrl}', function (Request $request, Response $response, $args) {
+        $app->get('/blog/{blogUrl}', function (Request $request, Response $response, $args) {
             // @todo sanitize $args to make sure its safe
 
             // Getting details about this specific blog
-            $blog = Blogs::getSingleBlogDetails($args['topic'], $args['blogUrl']);
+            $blog = Blogs::getSingleBlogDetails($args['blogUrl']);
 
             if ($blog) {
                 return $response->getBody()->write(

@@ -3,6 +3,7 @@
  * The template for the single blog body
  * @var $m \Entities\Blogs
  */
+
 ?>
 
 <?php if (!empty($m)) { ?>

@@ -4,27 +4,77 @@ namespace Blog;
 
 class Blogs {
 
-    public static function getAll($criteria = [], $orderBy = []) {
-        return App::$entityManager->getRepository('Entities\Blogs')->findBy($criteria, $orderBy);
+    const BLOGS_FETCH_LIMIT = 8;
+
+    const STATUS_ACTIVE = 'active';
+    const STATUS_INACTIVE = 'inactive';
+
+    const ORDER_BY_DEFAULT = 'DESC';
+
+    const BLOG_TOPICS_DELIMITER = ';';
+
+    /**
+     * Fetches blogs based on some parameters/conditions
+     *
+     * @param bool $topic
+     * @param string $sort
+     * @param int $limit
+     * @param string $status
+     * @param bool $month
+     * @param bool $year
+     * @return mixed
+     */
+    public static function getBlogs(
+        $topic  = false,
+        $sort   = self::ORDER_BY_DEFAULT,
+        $limit  = self::BLOGS_FETCH_LIMIT,
+        $status = self::STATUS_ACTIVE,
+        $month  = false,
+        $year   = false) {
+
+        $qb = App::$entityManager->createQueryBuilder();
+        $qb->select('b')
+            ->from('Entities\Blogs', 'b')
+
+            // Joining with the BlogTopics table
+            ->where($qb->expr()->eq('b.status', ':status'))
+            ->orderBy('b.created',$sort)
+            ->setMaxResults($limit)
+            ->setParameters(['status' => $status])
+            ->groupBy('b.id');
+
+        // Checking if we have any tags to filter
+        if ($topic) {
+            $qb->andWhere('b.topics LIKE :topic')
+               ->setParameter('topic', '%'.$topic.'%');
+        }
+
+        if ($month) $qb->andWhere('Month(b.updated)=:month')->setParameter('month', $month);
+        if ($year) $qb->andWhere('Year(b.updated)=:year')->setParameter('year', $year);
+
+        $query = $qb->getQuery();
+        $results = $query->getResult();
+
+        return $results;
     }
 
     /**
-     * This will return all of the recent blogs of any topic
+     * This will fetch all blogs
      *
-     * @return array
+     * @return mixed
      */
-    public static function getAllRecentBlogs() {
-        return App::$entityManager->getRepository('Entities\Blogs')->findBy(['status'=>[\Entities\Blogs::STATUS_ACTIVE]], ['created'=>'DESC'], 10);
+    public static function getAll() {
+        return self::getBlogs();
     }
 
     /**
      * This will fetch all recent blogs by a specific blog topic
      *
-     * @param string $topic
-     * @return array
+     * @param bool $topic
+     * @return mixed
      */
-    public static function getAllRecentBlogsByTopic($topic='') {
-        return App::$entityManager->getRepository('Entities\Blogs')->findBy(['blogTopic'=>$topic,'status'=>\Entities\Blogs::STATUS_ACTIVE]);
+    public static function getAllRecentBlogsByTopic($topic = false) {
+        return self::getBlogs($topic);
     }
 
     /**
@@ -35,46 +85,33 @@ class Blogs {
      * @return array
      */
     public static function getAllBlogsByYearMonth($year='', $month='') {
-
-        /**
-         * SELECT * FROM Blogs
-         * WHERE YEAR(updated)={year} AND MONTH(updated)={month} AND status='active'
-         * ORDER BY `updated` DESC
-         */
-
-        $qb = App::$entityManager->createQueryBuilder();
-        $qb->select('b')
-            ->from('Entities\Blogs', 'b')
-            ->where($qb->expr()->eq('b.status', ':status'))
-            ->andWhere('Month(b.updated)=:month')
-            ->andWhere('Year(b.updated)=:year')
-            ->orderBy('b.updated','DESC')
-
-            ->setParameters([
-                'status'=>\Entities\Blogs::STATUS_ACTIVE,
-                'month'=>$month,
-                'year'=>$year
-            ]);
-
-        $query = $qb->getQuery();
-        $results = $query->getResult();
-
-        return $results;
+        return self::getBlogs(false, self::ORDER_BY_DEFAULT, self::BLOGS_FETCH_LIMIT, self::STATUS_ACTIVE, $month, $year);
     }
 
     /**
      * Gets the data for a single blog posting
-     *
-     * @param $topic
      * @param $blogUrl
      * @return bool|\Entities\Blogs|null|object
      */
-    public static function getSingleBlogDetails($topic, $blogUrl) {
-        /** @var \Entities\Blogs $blogData */
-        $blogData = App::$entityManager->getRepository('Entities\Blogs')->findOneBy(['url'=>$blogUrl, 'blogTopic'=>$topic, 'status'=>\Entities\Blogs::STATUS_ACTIVE]);
+    public static function getSingleBlogDetails($blogUrl) {
+        if ($blogUrl) {
+            $qb = App::$entityManager->createQueryBuilder();
+            $qb->select('b')
+                ->from('Entities\Blogs', 'b')
 
-        if ($blogData) {
-            return $blogData;
+                ->where($qb->expr()->eq('b.status', ':status'))
+                ->setParameters(['status' => self::STATUS_ACTIVE])
+
+                ->andWhere($qb->expr()->eq('b.url', ':url'))
+                ->setParameter('url', $blogUrl);
+
+            $query = $qb->getQuery();
+            $results = $query->getResult();
+
+            // Just return 1 single result
+            if(!empty($results[0])) {
+                return $results[0];
+            }
         }
         return false;
     }

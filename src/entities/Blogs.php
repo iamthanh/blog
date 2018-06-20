@@ -7,9 +7,6 @@ namespace Entities;
  **/
 class Blogs extends EntityBase {
 
-    const STATUS_ACTIVE = 'active';
-    const STATUS_INACTIVE = 'inactive';
-
     /** @Id @Column(type="integer") @GeneratedValue **/
     protected $id;
 
@@ -19,11 +16,11 @@ class Blogs extends EntityBase {
     /** @Column(type="string") **/
     protected $title = '';
 
-    /** @Column(type="string") **/
-    protected $blogTopic = '';
-
     /** @Column(type="text") **/
     protected $description = '';
+
+    /** @Column(type="text") **/
+    protected $topics = '';
 
     /** @Column(type="text") **/
     protected $body = '';
@@ -61,11 +58,11 @@ class Blogs extends EntityBase {
     public function getTitle() { return $this->title; }
     public function setTitle($title) { $this->title = $title; }
 
-    public function getBlogTopic() { return $this->blogTopic; }
-    public function setBlogTopic($topic) { $this->blogTopic = $topic; }
-
     public function getDescription() { return $this->description; }
     public function setDescription($description) { $this->description = $description; }
+
+    public function getTopics() { return $this->topics; }
+    public function setTopics($topics) { $this->topics = $topics; }
 
     public function getBody() { return $this->body; }
     public function setBody($body) { $this->body = $body; }
