@@ -5,7 +5,7 @@ namespace Entities;
 class EntityBase {
 
     /**
-     * This function will convert a given array to an object of \Entities\Blogs
+     * This function will convert a given array to an object
      *
      * @param array $array
      * @return $this|bool

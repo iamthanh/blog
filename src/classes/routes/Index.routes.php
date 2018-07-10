@@ -25,7 +25,7 @@ class IndexRoutes {
         $app->get('/', function (Request $request, Response $response) {
 
             // Getting all recent blogs (all topics)
-            $blogs = Blogs::getAllRecentBlogs();
+            $blogs = Blogs::getAll();
             $sideNav = SideNav::generateSideNavFromBlogs($blogs);
 
             $response->getBody()->write(
