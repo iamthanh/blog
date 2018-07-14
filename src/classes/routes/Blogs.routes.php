@@ -6,7 +6,6 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
 use \Blog\Blogs as Blogs;
-use \Blog\SideNav as SideNav;
 use \Blog\View as View;
 
 class BlogsRoutes {
@@ -27,10 +26,9 @@ class BlogsRoutes {
 
             // Getting all blogs by topic
             $blogsFound = Blogs::getBlogs($args['topic']);
-            $sideNav = SideNav::generateSideNavFromBlogs($blogsFound);
 
             if (!empty($blogsFound)) {
-                return $response->getBody()->write(View::generateBlogView($blogsFound,$sideNav));
+                return $response->getBody()->write(View::generateBlogView($blogsFound));
             } else {
                 return $response->getBody()->write(View::generateNotFoundView());
             }
