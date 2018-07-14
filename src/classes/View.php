@@ -40,13 +40,12 @@ class View {
     /**
      * This will put together the templates necessary for a blogs listing
      * @param array $blogsModel
-     * @param array $sideNavModel
      * @return string
      */
-    public static function generateBlogView($blogsModel=[], $sideNavModel=[]) {
+    public static function generateBlogView($blogsModel=[]) {
         $page = Template::load(static::PATH_HEADER);
         $page .= Template::load(static::PATH_TOP_NAV);
-        $page .= Template::load(static::BLOGS_PATH_LISTING, ['blogs'=>$blogsModel, 'sideNav'=>$sideNavModel]);
+        $page .= Template::load(static::BLOGS_PATH_LISTING, ['blogs'=>$blogsModel]);
         $page .= Template::load(static::PATH_FOOTER, []);
 
         return $page;
