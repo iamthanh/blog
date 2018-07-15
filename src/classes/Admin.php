@@ -115,11 +115,11 @@ class Admin {
                 // Setting the new values
                 $blog->setTitle($data['title']);
                 $blog->setUrl($data['url']);
-                $blog->setTopics($data['blogTopic']);
+                $blog->setTopics($data['topics']);
                 $blog->setThumbnail($data['thumbnail']);
                 $blog->setHeaderImage($data['headerImage']);
                 $blog->setDescription($data['description']);
-                $blog->setBody($data['fullBody']);
+                $blog->setBody($data['body']);
 
                 // Set the new update date
                 $blog->setDateUpdated(new \DateTime('NOW'));
