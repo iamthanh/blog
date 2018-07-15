@@ -4,6 +4,14 @@ $blogs = !empty($m['blogs']) ? $m['blogs'] : [];
 
 ?>
 
+<?php
+// Just a short message if viewing projects
+if (!empty($m['topic']) && $m['topic'] === 'projects') { ?>
+    <div class="projects-intro">
+        <p class="intro-text">I enjoy building stuff and working on projects, here's some of my work.</p>
+    </div>
+<?php } ?>
+
 <div class="listing-page-container">
     <div class="listing-container">
         <div class="blog-collection">
