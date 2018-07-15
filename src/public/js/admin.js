@@ -108,13 +108,8 @@ $(document).ready(function() {
         },
         buildContentTemplate: function(data) {
             var contentContainer = $('<div>').addClass('content').attr('data-id', data.id);
-            var leftContainer = $('<div>').addClass('left').appendTo(contentContainer);
-
-            $('<img>').attr('src', data.thumbnail ? data.thumbnail : '//via.placeholder.com/300x225').appendTo(
-                $('<div>').addClass('thumbnail').appendTo(leftContainer)
-            );
-
             var rightContainer = $('<div>').addClass('right');
+
             timeago().render($('<div>').attr('datetime',data.created.date).addClass('date-created').text(data.created.date).appendTo(rightContainer));
             $('<div>').addClass('title-text').text(data.title).appendTo(rightContainer);
             $('<div>').addClass('topic').text(data.blogTopic).appendTo(rightContainer);
