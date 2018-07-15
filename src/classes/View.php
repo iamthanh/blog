@@ -7,8 +7,6 @@ class View {
     // Defining prefixes for paths
     const BLOGS_PREFIX = '/blogs';
     const BLOG_PREFIX = '/blog';
-    const PROJECTS_PREFIX = '/projects';
-    const PROJECT_PREFIX = '/project';
     const CONTACT_ME_PATH = '/contact';
 
     // Defined universal template paths
@@ -24,13 +22,6 @@ class View {
     // Defined paths for a single blog posting
     const BLOG_TITLE_PATH = 'blog/title.php';
     const BLOG_BODY_PATH = 'blog/body.php';
-
-    // Defined projects listing template paths
-    const PROJECTS_PATH_LISTING = 'projects/listing.php';
-    const PROJECTS_PATH_SIDE = 'projects/side.php';
-
-    // Defined single project detail page paths
-    const PROJECT_DETAIL_PATH = 'project/detail.php';
 
     // Defined secure paths
     const SECURE_ADMIN_PATH = 'secure/admin.php';
@@ -65,31 +56,6 @@ class View {
         $page .= Template::load(static::PATH_TOP_NAV);
         $page .= Template::load(static::BLOG_TITLE_PATH, $data);
         $page .= Template::load(static::BLOG_BODY_PATH, $data);
-        $page .= Template::load(static::PATH_FOOTER, []);
-
-        return $page;
-    }
-
-    /**
-     * This will be the page for the projects
-     *
-     * @param array $model
-     * @return string
-     */
-    public static function generateProjectsView($model=[]) {
-        $page = Template::load(static::PATH_HEADER);
-        $page .= Template::load(static::PATH_TOP_NAV);
-        $page .= Template::load(static::PROJECTS_PATH_LISTING, $model);
-        $page .= Template::load(static::PROJECTS_PATH_SIDE, $model);
-        $page .= Template::load(static::PATH_FOOTER, []);
-
-        return $page;
-    }
-
-    public static function generateSingleProjectView($model=[]) {
-        $page = Template::load(static::PATH_HEADER);
-        $page .= Template::load(static::PATH_TOP_NAV);
-        $page .= Template::load(static::PROJECT_DETAIL_PATH, $model);
         $page .= Template::load(static::PATH_FOOTER, []);
 
         return $page;

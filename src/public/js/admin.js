@@ -206,7 +206,6 @@ $(document).ready(function() {
                         beforeSend: function() {
                             $('.status-container .error', self.blogAdminModal).text('');
                             $('.status-container .success', self.blogAdminModal).text('');
-                            $('button[type=submit]', self.blogAdminModal).text('Saving').attr('disabled','disabled');
                         },
                         success: function(response) {
                             if (response && response.status) {
@@ -219,13 +218,11 @@ $(document).ready(function() {
                                 });
                             } else {
                                 // Request failed
-                                $('button[type=submit]', self.blogAdminModal).text('Save').removeAttr('disabled');
                                 $('.status-container .error', self.blogAdminModal).text(response.message);
                             }
                         },
                         error: function(response) {
                             // Request failed
-                            $('button[type=submit]', self.blogAdminModal).text('Save').removeAttr('disabled');
                             $('.status-container .error', self.blogAdminModal).text('Failed to update, there was an error.');
                         },
                         complete: function() {
@@ -271,7 +268,7 @@ $(document).ready(function() {
                     method: 'delete',
                     data: {
                         id: self.objToBeDeleted.id,
-                        csrfToken: self.token
+                        csrfToken: self.csrfToken
                     },
                     success: function(response) {
                         if (response && response.status) {

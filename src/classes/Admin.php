@@ -7,9 +7,7 @@ class Admin {
     const ACTION_TYPE_EDIT = 'edit';
     const ACTION_TYPE_CREATE = 'create';
 
-
     const EDIT_TYPE_BLOGS = 'blogs';
-    const EDIT_TYPE_PROJECTS = 'projects';
 
     const DEFAULT_ACTION = self::ACTION_TYPE_EDIT;
     const DEFAULT_EDIT_TYPE = self::EDIT_TYPE_BLOGS;
@@ -20,8 +18,7 @@ class Admin {
     ];
 
     public static $allowedTypes = [
-        self::EDIT_TYPE_BLOGS,
-        self::EDIT_TYPE_PROJECTS
+        self::EDIT_TYPE_BLOGS
     ];
 
     /**
@@ -31,7 +28,7 @@ class Admin {
      */
     public static function getBlogsForAdmin() {
         // Get all blogs
-        $blogs = Blogs::getAll(['status'=> Blogs::STATUS_ACTIVE], ['created'=>'DESC']);
+        $blogs = Blogs::getAll();
         if ($blogs) {
             $results = [];
             /** @var \Entities\Blogs $blog */
