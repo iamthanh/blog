@@ -30,9 +30,6 @@ $(document).ready(function() {
             this.getData(function() {
                 self.renderPage(function() {
                     self.setListeners();
-
-                    var formValid = self.validateModalForm();
-                    $('button[type=submit].save-data-button', self.blogAdminModal).prop('disabled', !formValid);
                 });
             });
 
@@ -292,19 +289,6 @@ $(document).ready(function() {
                         }
                     }
                 })
-            });
-
-            // Listener for detecting changes on input fields on the form
-            $(self.blogAdminModal).on('input text-change keydown', function() {
-                // This validates all but the quill editor
-                var formValid = self.validateModalForm();
-
-                // Now we, validate the quill editor
-                if (!self.quill.getText() || self.quill.getText() === '\n') {
-                    formValid = false;
-                }
-
-                $('button[type=submit].save-data-button', self.blogAdminModal).prop('disabled', !formValid);
             });
         },
         setFullScreenEditor: function(enable) {
