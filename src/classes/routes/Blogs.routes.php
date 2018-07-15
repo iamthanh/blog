@@ -28,7 +28,7 @@ class BlogsRoutes {
             $blogsFound = Blogs::getBlogs($args['topic']);
 
             if (!empty($blogsFound)) {
-                return $response->getBody()->write(View::generateBlogView($blogsFound));
+                return $response->getBody()->write(View::generateBlogView($blogsFound, $args['topic']));
             } else {
                 return $response->getBody()->write(View::generateNotFoundView());
             }

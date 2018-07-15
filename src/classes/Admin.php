@@ -31,7 +31,7 @@ class Admin {
      */
     public static function getBlogsForAdmin() {
         // Get all blogs
-        $blogs = Blogs::getAll(['status'=>\Entities\Blogs::STATUS_ACTIVE], ['created'=>'DESC']);
+        $blogs = Blogs::getAll(['status'=> Blogs::STATUS_ACTIVE], ['created'=>'DESC']);
         if ($blogs) {
             $results = [];
             /** @var \Entities\Blogs $blog */
@@ -40,7 +40,7 @@ class Admin {
                     'id'          => $blog->getId(),
                     'url'         => $blog->getUrl(),
                     'title'       => $blog->getTitle(),
-                    'blogTopic'   => $blog->getBlogTopic(),
+                    'blogTopic'   => $blog->getTopics(),
                     'description' => $blog->getDescription(),
                     'headerImage' => $blog->getHeaderImage(),
                     'fullBody'    => $blog->getBody(),
@@ -108,7 +108,6 @@ class Admin {
      * @return array|bool
      */
     public static function updateBlogDataByBlogId($data) {
-
         if ($data['id']) {
 
             /** @var $blog \Entities\Blogs */
@@ -119,7 +118,7 @@ class Admin {
                 // Setting the new values
                 $blog->setTitle($data['title']);
                 $blog->setUrl($data['url']);
-                $blog->setBlogTopic($data['blogTopic']);
+                $blog->setTopics($data['blogTopic']);
                 $blog->setThumbnail($data['thumbnail']);
                 $blog->setHeaderImage($data['headerImage']);
                 $blog->setDescription($data['description']);
@@ -168,7 +167,7 @@ class Admin {
 
                 /** @var $blog \Entities\Blogs */
                 $blog = new \Entities\Blogs($data);
-                $blog->setStatus(\Entities\Blogs::STATUS_ACTIVE);
+                $blog->setStatus(Blogs::STATUS_ACTIVE);
                 $blog->setDateCreated(new \DateTime('NOW'));
                 $blog->setDateUpdated(new \DateTime('NOW'));
 
@@ -212,7 +211,7 @@ class Admin {
 
             if ($blog) {
                 // Update the status as inactive
-                $blog->setStatus(\Entities\Blogs::STATUS_INACTIVE);
+                $blog->setStatus(Blogs::STATUS_INACTIVE);
                 $blog->setDateUpdated(new \DateTime('NOW'));
 
                 App::$entityManager->persist($blog);
@@ -236,15 +235,5 @@ class Admin {
             'status' => true,
             'message'=> 'There was an error, could not delete blog.'
         ];
-    }
-
-    protected static function getProjectsForEditing() {
-        // Get all projects
-        $projects = Projects::getProjects('',null);
-        if ($projects) {
-
-        }
-
-        return [];
     }
 }

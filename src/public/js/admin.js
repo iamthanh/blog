@@ -12,6 +12,7 @@ $(document).ready(function() {
         objToBeEditOriginal: null,
         objToBeDeleted: null,
         quill: null,
+        selectize: null,
         blankBlogPostData: {
             blogTopic: null,
             bodyHeader: null,
@@ -70,6 +71,19 @@ $(document).ready(function() {
                 theme: 'snow',
                 placeholder: 'This is the body of the post'
             });
+
+            // Start the selectize tagging system
+            var selectizeEl = $('.form-control[data-id="blogTopic"]').selectize({
+                'delimiter': ';',
+                'persist': false,
+                'create': function(input) {
+                    return {
+                        value: input,
+                        text: input
+                    }
+                }
+            });
+            this.selectize = selectizeEl[0].selectize;
         },
         getContainer: function() {
             return $('.content-container');
@@ -350,6 +364,16 @@ $(document).ready(function() {
                 $('input#title', self.blogAdminModal).val(obj.title ? obj.title : '');
                 $('input#url', self.blogAdminModal).val(obj.url ? obj.url : '');
                 $('input#topic', self.blogAdminModal).val(obj.blogTopic ? obj.blogTopic : '');
+
+                if (obj.blogTopic) {
+                    var topics = obj.blogTopic.split(';');
+                    for(var i = 0; i < topics.length; i++) {
+                        this.selectize.createItem(topics[i])
+                    }
+                    this.selectize.refreshItems();
+                }
+                this.selectize.refreshItems();
+
                 $('textarea#description', self.blogAdminModal).val(obj.description ? obj.description : '');
 
                 // Images and thumbnails
@@ -372,6 +396,9 @@ $(document).ready(function() {
             $('.status-container .error', self.blogAdminModal).text('');
             $('.status-container .success', self.blogAdminModal).text('');
             $('button[type=submit]', self.blogAdminModal).text('Save');
+
+            // Destroy all of the items in the selectize
+            this.selectize.clear();
 
             // Reset the full-screen
             self.setFullScreenEditor(false);
