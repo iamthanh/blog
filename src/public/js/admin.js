@@ -14,10 +14,10 @@ $(document).ready(function() {
         quill: null,
         selectize: null,
         blankBlogPostData: {
-            blogTopic: null,
-            bodyHeader: null,
+            topics: null,
+            headerImage: null,
             description: null,
-            fullBody: null,
+            body: null,
             thumbnail: null,
             title: null,
             url: null
@@ -70,7 +70,7 @@ $(document).ready(function() {
             });
 
             // Start the selectize tagging system
-            var selectizeEl = $('.form-control[data-id="blogTopic"]').selectize({
+            var selectizeEl = $('.form-control[data-id="topics"]').selectize({
                 'delimiter': ';',
                 'persist': false,
                 'create': function(input) {
@@ -395,7 +395,7 @@ $(document).ready(function() {
             });
 
             // Get quill text data
-            obj['fullBody'] = self.quill.root.innerHTML;
+            obj['body'] = self.quill.root.innerHTML;
 
             // Attach additional data
             if ($('form', self.blogAdminModal).attr('data-id')) {

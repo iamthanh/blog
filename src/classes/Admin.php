@@ -73,9 +73,9 @@ class Admin {
                 return false;
             }
 
-            $data['blogTopic'] = filter_var(trim($data['blogTopic']), FILTER_SANITIZE_STRING);
-            if (!$data['blogTopic']) {
-                trigger_error('Error: cannot update blog data, blogTopic is invalid');
+            $data['topics'] = filter_var(trim($data['topics']), FILTER_SANITIZE_STRING);
+            if (!$data['topics']) {
+                trigger_error('Error: cannot update blog data, topics is invalid');
                 return false;
             }
 

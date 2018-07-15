@@ -77,7 +77,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="topic">Topic</label>
-                                    <input type="text" data-id='blogTopic' class="form-control form-control-sm" id="topic" placeholder="Topic" required>
+                                    <input type="text" data-id='topics' class="form-control form-control-sm" id="topic" placeholder="Topic" required>
                                 </div>
                             </div>
                         </div>
