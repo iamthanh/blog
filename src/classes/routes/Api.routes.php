@@ -106,6 +106,38 @@ class ApiRoutes {
 
         })->add(\Blog\Routes\Middlewares\CsrfMiddleware::class);
 
+        $app->post('/api/contact/submitMessage', function(Request $request, Response $response, $args) {
+
+            // First, sanitize and validate the form data; making sure that its not empty and valid
+            $formData = $request->getParsedBody()['formData'];
+            $formData = \Blog\ContactPage::sanitizeFormData($formData);
+            if (\Blog\ContactPage::validateFormData($formData)) {
+
+                // Save the form data
+                if (\Blog\ContactPage::saveFormData($formData)) {
+
+                    // Successful
+                    return $response->withJson(['status' => true]);
+
+                } else {
+
+                    // Failed trying to save the form data
+                    return $response->withJson([
+                        'status' => false,
+                        'message' => 'Sorry, there was an error saving the message data.'
+                    ]);
+                }
+
+            }
+
+            // Failed validation
+            return $response->withJson([
+                'status' => false,
+                'message' => 'Sorry, there was an error validating the message data.'
+            ]);
+
+        })->add(\Blog\Routes\Middlewares\CsrfMiddleware::class);
+
         return $app;
     }
 }

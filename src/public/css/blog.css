@@ -204,3 +204,14 @@ blockquote footer {
   display: block;
   color: #868e96;
 }
+pre.prettyprint li.L0,
+pre.prettyprint li.L1,
+pre.prettyprint li.L2,
+pre.prettyprint li.L3,
+pre.prettyprint li.L4,
+pre.prettyprint li.L5,
+pre.prettyprint li.L6,
+pre.prettyprint li.L7,
+pre.prettyprint li.L8 {
+  list-style-type: initial;
+}
