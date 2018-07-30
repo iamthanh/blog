@@ -1,0 +1,38 @@
+@import 'admin.less';
+@import 'blog.less';
+@import 'contactPage.less';
+@import 'footer.less';
+@import 'header.less';
+@import 'secure.less';
+
+.form-control {
+  border-radius: 0;
+
+  &:focus {
+    border: 1px solid rgba(0, 86, 179,0.3);
+    box-shadow: 2px 2px 5px rgba(0, 86, 179,0.3);
+  }
+}
+
+.btn {
+  cursor: pointer;
+
+  &:focus {
+    box-shadow: initial;
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+  }
+
+  &.btn-primary {
+    background: #3b86d6;
+    border-color: #3b86d6;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+
+    &:hover:not([disabled]) {
+      background: #0056b3;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    }
+  }
+}

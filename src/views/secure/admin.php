@@ -124,4 +124,8 @@
 <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
 <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/10.1.0/classic/ckeditor.js"></script>
+
+<link rel="stylesheet" href="/lib/selectize/selectize.default.css">
+<script src="/lib/selectize/selectize.min.js"></script>
 <script type="text/javascript" src="/src/public/js/admin.js"></script>

@@ -1,0 +1,53 @@
+.contact-page-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding-top: 50px;
+  box-sizing: border-box;
+}
+.contact-page-container .form {
+  font-family: 'Quicksand';
+}
+.contact-page-container .form .contact-header {
+  margin-bottom: 50px;
+  text-align: center;
+}
+.contact-page-container .form .contact-header i {
+  color: #3b86d6;
+  font-size: 50px;
+}
+.contact-page-container .form .contact-header .header-text {
+  font-family: 'Quicksand';
+  font-size: 20px;
+  font-weight: lighter;
+  margin-top: 15px;
+}
+.contact-page-container .form .form-group {
+  margin-top: 25px;
+}
+.contact-page-container .form .button-container {
+  text-align: right;
+}
+.contact-page-container .form .form-status-messages {
+  text-align: right;
+  margin-top: 25px;
+}
+.contact-page-container .form .current-message-length {
+  font-size: 14px;
+  float: right;
+  margin-top: 10px;
+}
+.contact-page-container .sent-success {
+  margin-top: 50px;
+  display: none;
+  text-align: center;
+}
+.contact-page-container .sent-success i {
+  color: #3b86d6;
+  font-size: 50px;
+}
+.contact-page-container .sent-success .message {
+  font-family: 'Quicksand';
+  font-size: 20px;
+  font-weight: lighter;
+  margin-top: 30px;
+}

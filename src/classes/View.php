@@ -28,6 +28,8 @@ class View {
     const SECURE_LOG_IN_PATH = 'secure/login.php';
     const SECURE_FOOTER_PATH = 'secure/footer.php';
 
+    const CONTACT_PATH = 'contactPage/form.php';
+
     /**
      * This will put together the templates necessary for a blogs listing
      *
@@ -100,6 +102,20 @@ class View {
         $page = Template::load(static::PATH_HEADER);
         $page .= Template::load(static::SECURE_ADMIN_PATH, $model);
         $page .= Template::load(static::SECURE_FOOTER_PATH, []);
+
+        return $page;
+    }
+
+    /**
+     * Creates the contact page/form
+     *
+     * @return string
+     */
+    public static function generateContactPage() {
+        $page = Template::load(static::PATH_HEADER);
+        $page .= Template::load(static::PATH_TOP_NAV);
+        $page .= Template::load(static::CONTACT_PATH);
+        $page .= Template::load(static::PATH_FOOTER, []);
 
         return $page;
     }
