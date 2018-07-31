@@ -4,6 +4,7 @@
 @import 'footer.less';
 @import 'header.less';
 @import 'secure.less';
+@import 'modals.less';
 
 .form-control {
   border-radius: 0;
@@ -32,7 +33,12 @@
 
     &:hover:not([disabled]) {
       background: #0056b3;
+      border-color: #0056b3;
       box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
     }
   }
+}
+
+.modal-backdrop.show {
+  opacity: .9;
 }

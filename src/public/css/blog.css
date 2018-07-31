@@ -192,6 +192,9 @@ section.images-grid .media-object img {
 .blog-body p {
   margin: 0;
 }
+.blog-body img {
+  cursor: pointer;
+}
 blockquote {
   margin-bottom: 1rem;
   border-left: 3px solid #93c9ff;
