@@ -361,6 +361,9 @@ section.images-grid .media-object img {
 .blog-body p {
   margin: 0;
 }
+.blog-body img {
+  cursor: pointer;
+}
 blockquote {
   margin-bottom: 1rem;
   border-left: 3px solid #93c9ff;
@@ -523,6 +526,31 @@ body .login-container .form .message-container.success {
 body .login-container .form .message-container.error {
   color: #f05a5a;
 }
+@media (min-width: 992px) {
+  .modal.view-expanded-image .modal-dialog {
+    max-width: 1000px;
+  }
+}
+@media (max-width: 992px) {
+  .modal.view-expanded-image .modal-dialog {
+    max-width: 800px;
+  }
+}
+.modal.view-expanded-image .modal-dialog .modal-content {
+  border-radius: 0;
+}
+.modal.view-expanded-image .modal-dialog .modal-content .modal-body {
+  padding: 0;
+}
+.modal.view-expanded-image .modal-dialog .modal-content .modal-body img {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+}
+.modal.view-expanded-image .modal-dialog button[data-dismiss="modal"] {
+  float: right;
+  margin-top: 20px;
+}
 .form-control {
   border-radius: 0;
 }
@@ -546,5 +574,9 @@ body .login-container .form .message-container.error {
 }
 .btn.btn-primary:hover:not([disabled]) {
   background: #0056b3;
+  border-color: #0056b3;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+.modal-backdrop.show {
+  opacity: .9;
 }
