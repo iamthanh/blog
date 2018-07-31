@@ -461,6 +461,8 @@ pre.prettyprint li.L8 {
   padding: 20px 0;
   border-bottom: 1px solid #e7e7e7;
   background: #f5f5f5;
+  margin: 0 auto;
+  position: relative;
 }
 .nav-header a {
   text-decoration: none;
@@ -470,16 +472,50 @@ pre.prettyprint li.L8 {
 }
 .nav-header .top-nav {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
+  max-width: 800px;
+  position: relative;
+  margin: 0 auto;
+}
+.nav-header .top-nav.search-input-on .nav-item {
+  opacity: 0.18;
+}
+.nav-header .top-nav.search-input-on .nav-item[data-item="search"] {
+  opacity: 1;
+}
+.nav-header .top-nav.search-input-on form.search-input {
+  display: block;
 }
 .nav-header .top-nav .nav-item {
   text-align: center;
-  min-width: 150px;
   font-size: 16px;
 }
 .nav-header .top-nav .nav-item a {
   color: #606060;
   font-family: Raleway;
+}
+.nav-header .top-nav .nav-item[data-item="search"] i {
+  font-size: 20px;
+  margin-top: 2px;
+  color: #3b86d6;
+  cursor: pointer;
+}
+.nav-header .top-nav form.search-input {
+  display: none;
+  position: absolute;
+  left: 305px;
+  right: 100px;
+  top: -7px;
+  margin: 0;
+}
+.nav-header .top-nav form.search-input .form-group {
+  margin: 0;
+}
+.nav-header .top-nav form.search-input .form-group input {
+  border: none;
+  background: #f5f5f5;
+  border-bottom: 3px solid #3b86d6;
+  box-shadow: none;
 }
 body .login-container {
   font-family: 'Quicksand';
@@ -550,6 +586,23 @@ body .login-container .form .message-container.error {
 .modal.view-expanded-image .modal-dialog button[data-dismiss="modal"] {
   float: right;
   margin-top: 20px;
+}
+.search-blogs-detail-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding-top: 15px;
+  box-sizing: border-box;
+}
+.search-blogs-detail-container .search-results-count {
+  font-family: Raleway;
+  font-size: 18px;
+  color: #888;
+}
+.search-blogs-detail-container .search-results-count span.count {
+  color: #333;
+}
+.search-blogs-detail-container .search-results-count span.query {
+  text-decoration: underline;
 }
 .form-control {
   border-radius: 0;

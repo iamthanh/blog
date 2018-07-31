@@ -176,6 +176,7 @@ class ComposerStaticInitcb18df7809ae61d5ad07a8082f0b6e6a
         'Blog\\Routes\\DebugRoutes' => __DIR__ . '/../..' . '/src/classes/routes/Debug.routes.php',
         'Blog\\Routes\\IndexRoutes' => __DIR__ . '/../..' . '/src/classes/routes/Index.routes.php',
         'Blog\\Routes\\Middlewares\\CsrfMiddleware' => __DIR__ . '/../..' . '/src/classes/routes/middleswares/Csrf.middleware.php',
+        'Blog\\Routes\\SearchRoutes' => __DIR__ . '/../..' . '/src/classes/routes/Search.routes.php',
         'Blog\\Template' => __DIR__ . '/../..' . '/src/classes/Template.php',
         'Blog\\View' => __DIR__ . '/../..' . '/src/classes/View.php',
         'DoctrineExtensions\\Query\\MysqlWalker' => __DIR__ . '/..' . '/beberlei/DoctrineExtensions/src/Query/MysqlWalker.php',

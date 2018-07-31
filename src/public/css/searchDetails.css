@@ -1,0 +1,17 @@
+.search-blogs-detail-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding-top: 15px;
+  box-sizing: border-box;
+}
+.search-blogs-detail-container .search-results-count {
+  font-family: Raleway;
+  font-size: 18px;
+  color: #888;
+}
+.search-blogs-detail-container .search-results-count span.count {
+  color: #333;
+}
+.search-blogs-detail-container .search-results-count span.query {
+  text-decoration: underline;
+}
