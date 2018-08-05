@@ -7,6 +7,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 use \Blog\Blogs as Blogs;
 use \Blog\View as View;
+use \Blog\SideNav as SideNav;
 
 class IndexRoutes {
 
@@ -24,10 +25,11 @@ class IndexRoutes {
         $app->get('/', function (Request $request, Response $response) {
 
             // Getting all recent blogs (all topics)
-            $blogs = Blogs::getAll();
+            $allBlogs = Blogs::getAll();
+            $sideNav = SideNav::generateSideNavFromBlogs($allBlogs);
 
             $response->getBody()->write(
-                View::generateBlogView($blogs)
+                View::generateBlogView($allBlogs, $sideNav)
             );
             return $response;
         });

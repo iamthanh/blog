@@ -1,0 +1,22 @@
+.side-nav-container {
+  flex: 0 0 200px;
+  padding-left: 40px;
+}
+.side-nav-container .side-nav ul.calender-container {
+  margin: 0;
+  padding: 0;
+  font-family: 'Quicksand';
+}
+.side-nav-container .side-nav ul.calender-container li.year {
+  margin-bottom: 10px;
+  list-style-type: none;
+}
+.side-nav-container .side-nav ul.calender-container li.year span.year-text {
+  font-weight: bold;
+}
+.side-nav-container .side-nav ul.calender-container li.year a.month-link div.month {
+  margin-left: 20px;
+}
+.side-nav-container .side-nav ul.calender-container li.year a.month-link div.month span.month-name {
+  font-size: 15px;
+}

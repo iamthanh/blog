@@ -4,16 +4,15 @@ $blogs = !empty($m['blogs']) ? $m['blogs'] : [];
 
 ?>
 
-<div class="listing-page-container">
+<?php
+// Just a short message if viewing projects
+if (!empty($m['topic']) && $m['topic'] === 'projects') { ?>
+    <div class="projects-intro">
+        <p class="intro-text">I enjoy building stuff and working on projects, here's some of my work.</p>
+    </div>
+<?php } ?>
 
-    <?php
-    // Just a short message if viewing projects
-    if (!empty($m['topic']) && $m['topic'] === 'projects') { ?>
-        <div class="projects-intro">
-            <p class="intro-text">I enjoy building stuff and working on projects, here's some of my work.</p>
-        </div>
-    <?php } ?>
-
+<div class="listing-page-container <?= !empty($m['sideNav']) ? 'has-side-nav' : '' ?>">
     <div class="listing-container">
         <div class="blog-collection">
             <?php if (!empty($blogs)) {
@@ -46,7 +45,13 @@ $blogs = !empty($m['blogs']) ? $m['blogs'] : [];
             } ?>
         </div>
     </div>
+
+    <?php if (!empty($m['sideNav'])) {
+        echo \Blog\Template::load(\Blog\View::BLOGS_SIDE_NAV_PATH, $m['sideNav']);
+    } ?>
 </div>
+
+
 
 
 

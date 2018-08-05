@@ -167,17 +167,14 @@
 .modal#admin-editor-modal .button-container button {
   margin: 0 10px;
 }
-.listing-page-container {
+.projects-intro {
   max-width: 800px;
   margin: 20px auto;
   padding-top: 50px;
   box-sizing: border-box;
-}
-.listing-page-container .projects-intro {
-  margin-bottom: 100px;
   text-align: center;
 }
-.listing-page-container .projects-intro .intro-text {
+.projects-intro .intro-text {
   font-family: 'Quicksand';
   display: inline-block;
   font-size: 18px;
@@ -186,11 +183,17 @@
   padding-bottom: 5px;
   margin-bottom: 0;
 }
+.listing-page-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding-top: 50px;
+  box-sizing: border-box;
+}
+.listing-page-container.has-side-nav {
+  display: flex;
+}
 .listing-page-container a {
   text-decoration: none;
-}
-.listing-page-container .listing-container {
-  padding-right: 40px;
 }
 .listing-page-container .listing-container .side-bar {
   flex: 0 1 25%;
@@ -235,28 +238,6 @@
 .listing-page-container .listing-container .blog-collection .single-blog .blog-date-created {
   font-size: 16px;
   font-family: 'Raleway';
-}
-.listing-page-container .side-nav-container {
-  flex: 0 0 225px;
-  padding-left: 40px;
-}
-.listing-page-container .side-nav-container .side-nav ul.calender-container {
-  margin: 0;
-  padding: 0;
-  font-family: 'Quicksand';
-}
-.listing-page-container .side-nav-container .side-nav ul.calender-container li.year {
-  margin-bottom: 10px;
-  list-style-type: none;
-}
-.listing-page-container .side-nav-container .side-nav ul.calender-container li.year span.year-text {
-  font-weight: bold;
-}
-.listing-page-container .side-nav-container .side-nav ul.calender-container li.year a.month-link div.month {
-  margin-left: 20px;
-}
-.listing-page-container .side-nav-container .side-nav ul.calender-container li.year a.month-link div.month span.month-name {
-  font-size: 15px;
 }
 .main-blog-title {
   width: 100%;
@@ -603,6 +584,28 @@ body .login-container .form .message-container.error {
 }
 .search-blogs-detail-container .search-results-count span.query {
   text-decoration: underline;
+}
+.side-nav-container {
+  flex: 0 0 200px;
+  padding-left: 40px;
+}
+.side-nav-container .side-nav ul.calender-container {
+  margin: 0;
+  padding: 0;
+  font-family: 'Quicksand';
+}
+.side-nav-container .side-nav ul.calender-container li.year {
+  margin-bottom: 10px;
+  list-style-type: none;
+}
+.side-nav-container .side-nav ul.calender-container li.year span.year-text {
+  font-weight: bold;
+}
+.side-nav-container .side-nav ul.calender-container li.year a.month-link div.month {
+  margin-left: 20px;
+}
+.side-nav-container .side-nav ul.calender-container li.year a.month-link div.month span.month-name {
+  font-size: 15px;
 }
 .form-control {
   border-radius: 0;
