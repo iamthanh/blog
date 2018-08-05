@@ -21,6 +21,7 @@ return array(
     'Blog\\Routes\\IndexRoutes' => $baseDir . '/src/classes/routes/Index.routes.php',
     'Blog\\Routes\\Middlewares\\CsrfMiddleware' => $baseDir . '/src/classes/routes/middleswares/Csrf.middleware.php',
     'Blog\\Routes\\SearchRoutes' => $baseDir . '/src/classes/routes/Search.routes.php',
+    'Blog\\SideNav' => $baseDir . '/src/classes/SideNav.php',
     'Blog\\Template' => $baseDir . '/src/classes/Template.php',
     'Blog\\View' => $baseDir . '/src/classes/View.php',
     'DoctrineExtensions\\Query\\MysqlWalker' => $vendorDir . '/beberlei/DoctrineExtensions/src/Query/MysqlWalker.php',

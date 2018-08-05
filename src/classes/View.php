@@ -17,6 +17,7 @@ class View {
 
     // Defined blogs (recent/by topic) template paths
     const BLOGS_PATH_LISTING = 'blogs/listing.php';
+    const BLOGS_SIDE_NAV_PATH = 'blogs/sideNav.php';
     const BLOGS_SEARCH_DETAILS_PATH = 'blogs/searchDetails.php';
 
     // Defined paths for a single blog posting
@@ -28,20 +29,24 @@ class View {
     const SECURE_LOG_IN_PATH = 'secure/login.php';
     const SECURE_FOOTER_PATH = 'secure/footer.php';
 
-
     const CONTACT_PATH = 'contactPage/form.php';
 
     /**
      * This will put together the templates necessary for a blogs listing
      *
      * @param array $blogsModel
+     * @param array $sideNav
      * @param string $topic
      * @return string
      */
-    public static function generateBlogView($blogsModel=[], $topic='') {
+    public static function generateBlogView($blogsModel=[], $sideNav=[], $topic='') {
         $page = Template::load(static::PATH_HEADER);
         $page .= Template::load(static::PATH_TOP_NAV);
-        $page .= Template::load(static::BLOGS_PATH_LISTING, ['blogs'=>$blogsModel, 'topic' => $topic]);
+        $page .= Template::load(static::BLOGS_PATH_LISTING, [
+            'blogs'  => $blogsModel,
+            'topic'  => $topic,
+            'sideNav'=> $sideNav
+        ]);
         $page .= Template::load(static::PATH_FOOTER, []);
 
         return $page;

@@ -4,7 +4,7 @@ namespace Blog;
 
 class Blogs {
 
-    const BLOGS_FETCH_LIMIT = 8;
+    const BLOGS_FETCH_LIMIT = 10;
 
     const STATUS_ACTIVE = 'active';
     const STATUS_INACTIVE = 'inactive';
@@ -56,8 +56,8 @@ class Blogs {
                 ->setParameter('search', '%'.$search.'%');
         }
 
-        if ($month) $qb->andWhere('Month(b.updated)=:month')->setParameter('month', $month);
-        if ($year) $qb->andWhere('Year(b.updated)=:year')->setParameter('year', $year);
+        if ($month) $qb->andWhere('Month(b.created)=:month')->setParameter('month', $month);
+        if ($year) $qb->andWhere('Year(b.created)=:year')->setParameter('year', $year);
 
         $query = $qb->getQuery();
         $results = $query->getResult();
