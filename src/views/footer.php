@@ -16,7 +16,9 @@
         <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Close</button>
     </div>
 </div>
+
 <script src="/src/public/js/blogs.js"></script>
+<script src="/src/public/js/header.js"></script>
 
 </body>
 </html>

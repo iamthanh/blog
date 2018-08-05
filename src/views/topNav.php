@@ -7,5 +7,11 @@
         <div class="nav-item" data-item="random"><a href="<?= \Blog\View::BLOGS_PREFIX ?>/random">random</a></div>
         <div class="nav-item" data-item="projects"><a href="<?= \Blog\View::BLOGS_PREFIX ?>/projects">projects</a></div>
         <div class="nav-item" data-item="contact"><a href="<?= \Blog\View::CONTACT_ME_PATH ?>">contact</a></div>
+        <div class="nav-item" data-item="search"><i class="fas fa-search"></i></div>
+        <form class="search-input">
+            <div class="form-group">
+                <input type="text" class="form-control" id="search" placeholder="Search here ...">
+            </div>
+        </form>
     </div>
 </div>

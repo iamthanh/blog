@@ -17,6 +17,7 @@ class Blogs {
      * Fetches blogs based on some parameters/conditions
      *
      * @param bool $topic
+     * @param string $search
      * @param string $sort
      * @param int $limit
      * @param string $status
@@ -26,6 +27,7 @@ class Blogs {
      */
     public static function getBlogs(
         $topic  = false,
+        $search = '',
         $sort   = self::ORDER_BY_DEFAULT,
         $limit  = self::BLOGS_FETCH_LIMIT,
         $status = self::STATUS_ACTIVE,
@@ -47,6 +49,11 @@ class Blogs {
         if ($topic) {
             $qb->andWhere('b.topics LIKE :topic')
                ->setParameter('topic', '%'.$topic.'%');
+        }
+
+        if ($search) {
+            $qb->andWhere('b.title LIKE :search OR b.description LIKE :search OR b.topics LIKE :search')
+                ->setParameter('search', '%'.$search.'%');
         }
 
         if ($month) $qb->andWhere('Month(b.updated)=:month')->setParameter('month', $month);
@@ -77,6 +84,10 @@ class Blogs {
         return self::getBlogs($topic);
     }
 
+    public static function searchBlogs($query) {
+        return self::getBlogs('', $query);
+    }
+
     /**
      * Fetches all of the blogs by certain year/month
      *
@@ -85,7 +96,7 @@ class Blogs {
      * @return array
      */
     public static function getAllBlogsByYearMonth($year='', $month='') {
-        return self::getBlogs(false, self::ORDER_BY_DEFAULT, self::BLOGS_FETCH_LIMIT, self::STATUS_ACTIVE, $month, $year);
+        return self::getBlogs(false, '', self::ORDER_BY_DEFAULT, self::BLOGS_FETCH_LIMIT, self::STATUS_ACTIVE, $month, $year);
     }
 
     /**

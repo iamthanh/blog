@@ -17,7 +17,7 @@ class View {
 
     // Defined blogs (recent/by topic) template paths
     const BLOGS_PATH_LISTING = 'blogs/listing.php';
-    const BLOGS_PATH_SIDE = 'blogs/side.php';
+    const BLOGS_SEARCH_DETAILS_PATH = 'blogs/searchDetails.php';
 
     // Defined paths for a single blog posting
     const BLOG_TITLE_PATH = 'blog/title.php';
@@ -27,6 +27,7 @@ class View {
     const SECURE_ADMIN_PATH = 'secure/admin.php';
     const SECURE_LOG_IN_PATH = 'secure/login.php';
     const SECURE_FOOTER_PATH = 'secure/footer.php';
+
 
     const CONTACT_PATH = 'contactPage/form.php';
 
@@ -67,11 +68,17 @@ class View {
      * This will generate the page for content that was not found
      *
      * @param array $model
+     * @param string $query
      * @return string
      */
-    public static function generateNotFoundView($model=[]) {
+    public static function generateNotFoundView($model=[], $query='') {
         $page = Template::load(static::PATH_HEADER);
         $page .= Template::load(static::PATH_TOP_NAV);
+
+        if(!empty($query)) {
+            $page .= Template::load(static::BLOGS_SEARCH_DETAILS_PATH, ['resultsFound'=>0, 'query'=>$query]);
+        }
+
         $page .= Template::load(static::CONTENT_NOT_FOUND, $model);
         $page .= Template::load(static::PATH_FOOTER, []);
 
@@ -115,6 +122,16 @@ class View {
         $page = Template::load(static::PATH_HEADER);
         $page .= Template::load(static::PATH_TOP_NAV);
         $page .= Template::load(static::CONTACT_PATH);
+        $page .= Template::load(static::PATH_FOOTER, []);
+
+        return $page;
+    }
+
+    public static function generateSearchBlogsView($blogsModel=[], $query, $topic='') {
+        $page = Template::load(static::PATH_HEADER);
+        $page .= Template::load(static::PATH_TOP_NAV);
+        $page .= Template::load(static::BLOGS_SEARCH_DETAILS_PATH, ['resultsFound'=>count($blogsModel), 'query'=>$query]);
+        $page .= Template::load(static::BLOGS_PATH_LISTING, ['blogs'=>$blogsModel, 'topic' => $topic]);
         $page .= Template::load(static::PATH_FOOTER, []);
 
         return $page;
