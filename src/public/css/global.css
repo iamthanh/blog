@@ -168,7 +168,7 @@
   margin: 0 10px;
 }
 .projects-intro {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 20px auto;
   padding-top: 50px;
   box-sizing: border-box;
@@ -184,7 +184,7 @@
   margin-bottom: 0;
 }
 .listing-page-container {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 20px auto;
   padding-top: 50px;
   box-sizing: border-box;
@@ -266,7 +266,7 @@
   display: inline-block !important;
 }
 .main-blog-title .blog-title-container .blog-title {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 .main-blog-title .blog-title-container .blog-title .title-detail {
@@ -308,7 +308,7 @@ section.images-grid .media-object img {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 .main-body-container {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 50px auto;
   box-sizing: border-box;
 }
@@ -316,7 +316,7 @@ section.images-grid .media-object img {
   margin-top: 18px;
 }
 .not-found-container {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 130px auto;
   text-align: center;
   box-sizing: border-box;
@@ -454,7 +454,7 @@ pre.prettyprint li.L8 {
 .nav-header .top-nav {
   display: flex;
   justify-content: space-evenly;
-  max-width: 800px;
+  max-width: 1000px;
   position: relative;
   margin: 0 auto;
 }
@@ -569,7 +569,7 @@ body .login-container .form .message-container.error {
   margin-top: 20px;
 }
 .search-blogs-detail-container {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 20px auto;
   padding-top: 15px;
   box-sizing: border-box;
