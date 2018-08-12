@@ -15,6 +15,8 @@
         setListeners() {
             let self = this;
             $(document).on('click', '.single-blog img, .main-body-container img', function(e) {
+                return false;
+
                 e.preventDefault();
                 $('img', self.expandedImageModal).attr('src', '');
 
