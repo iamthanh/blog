@@ -18,11 +18,11 @@
                 return false;
 
                 e.preventDefault();
-                $('img', self.expandedImageModal).attr('src', '');
+                let image = $('.modal-dialog', self.expandedImageModal);
+                image.css('background-image', 'url()');
 
                 let src = $(this).attr('src').replace(/1000px|500px|250px/gi, 'full');
-
-                $('img', self.expandedImageModal).attr('src', src);
+                image.css('background-image', 'url(' + src + ')');
                 self.expandedImageModal.modal('show');
             });
         }

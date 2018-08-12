@@ -8,12 +8,9 @@
 
 <div class="modal view-expanded-image">
     <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-body">
-                <img>
-            </div>
+        <div class="close-btn-container">
+            <button type="button" class="btn btn-blue btn-sm" data-dismiss="modal">Close</button>
         </div>
-        <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Close</button>
     </div>
 </div>
 
