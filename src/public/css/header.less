@@ -6,6 +6,7 @@
   background: #f5f5f5;
   margin: 0 auto;
   position: relative;
+  text-align: center;
 
   a {
     text-decoration: none;
@@ -20,11 +21,8 @@
   }
 
   .top-nav {
-    display: flex;
-    justify-content: space-evenly;
-    max-width: @page-width-full;
     position: relative;
-    margin: 0 auto;
+    display: inline-block;
 
     &.search-input-on {
       .nav-item {
@@ -41,6 +39,8 @@
     }
 
     .nav-item {
+      display: inline-block;
+      margin: 0 18px;
       text-align: center;
       font-size:16px;
 
@@ -62,9 +62,9 @@
     form.search-input {
       display: none;
       position: absolute;
-      left: 305px;
-      right: 100px;
-      top: -7px;
+      left: 0;
+      right: 50px;
+      top: -4px;
       margin: 0;
 
       .form-group {

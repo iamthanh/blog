@@ -2,6 +2,10 @@
   flex: 0 0 200px;
   padding-left: 40px;
 }
+.side-nav-container .side-nav {
+  border-left: 1px solid #e7e7e7;
+  padding-left: 15px;
+}
 .side-nav-container .side-nav ul.calender-container {
   margin: 0;
   padding: 0;

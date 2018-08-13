@@ -15,6 +15,7 @@
         setListeners() {
             let self = this;
             $(document).on('click', '.single-blog img, .main-body-container img', function(e) {
+                // Disabled for now
                 return false;
 
                 e.preventDefault();
