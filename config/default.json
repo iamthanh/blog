@@ -10,12 +10,11 @@
   },
   "db": {
     "mysql": {
-      "dev": {
-        "host": "",
-        "user": "",
-        "password": "",
-        "dbname": ""
-      }
+      "host": "",
+      "user": "",
+      "password": "",
+      "dbname": "",
+      "doctrine_driver_name": ""
     },
     "mongodb": {
 
