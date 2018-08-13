@@ -18,10 +18,8 @@ class View {
     // Defined blogs (recent/by topic) template paths
     const BLOGS_PATH_LISTING = 'blogs/listing.php';
     const BLOGS_SIDE_NAV_PATH = 'blogs/sideNav.php';
-    const BLOGS_SEARCH_DETAILS_PATH = 'blogs/searchDetails.php';
 
     // Defined paths for a single blog posting
-    const BLOG_TITLE_PATH = 'blog/title.php';
     const BLOG_BODY_PATH = 'blog/body.php';
 
     // Defined secure paths
@@ -30,6 +28,18 @@ class View {
     const SECURE_FOOTER_PATH = 'secure/footer.php';
 
     const CONTACT_PATH = 'contactPage/form.php';
+
+    const MAIN_ARTICLE_BODY = 'mainArticle.php';
+
+    /**
+     * Combines templates together under an <article> tag
+     *
+     * @param array $content
+     * @return string
+     */
+    public static function buildMainArticleBody($content = []) {
+        return Template::load(static::MAIN_ARTICLE_BODY, implode('', $content));
+    }
 
     /**
      * This will put together the templates necessary for a blogs listing
@@ -42,13 +52,17 @@ class View {
     public static function generateBlogView($blogsModel=[], $sideNav=[], $topic='') {
         $page = Template::load(static::PATH_HEADER);
         $page .= Template::load(static::PATH_TOP_NAV);
-        $page .= Template::load(static::BLOGS_PATH_LISTING, [
-            'blogs'  => $blogsModel,
-            'topic'  => $topic,
-            'sideNav'=> $sideNav
-        ]);
-        $page .= Template::load(static::PATH_FOOTER, []);
 
+        $page .= static::buildMainArticleBody([
+            Template::load(static::BLOGS_PATH_LISTING, [
+                    'blogs'  => $blogsModel,
+                    'topic'  => $topic,
+                    'sideNav'=> $sideNav
+                ]
+            )
+        ]);
+
+        $page .= Template::load(static::PATH_FOOTER, []);
         return $page;
     }
 
@@ -62,8 +76,11 @@ class View {
 
         $page = Template::load(static::PATH_HEADER);
         $page .= Template::load(static::PATH_TOP_NAV);
-        $page .= Template::load(static::BLOG_TITLE_PATH, $data);
-        $page .= Template::load(static::BLOG_BODY_PATH, $data);
+
+        $page .= static::buildMainArticleBody([
+            Template::load(static::BLOG_BODY_PATH, $data)
+        ]);
+
         $page .= Template::load(static::PATH_FOOTER, []);
 
         return $page;
@@ -80,11 +97,10 @@ class View {
         $page = Template::load(static::PATH_HEADER);
         $page .= Template::load(static::PATH_TOP_NAV);
 
-        if(!empty($query)) {
-            $page .= Template::load(static::BLOGS_SEARCH_DETAILS_PATH, ['resultsFound'=>0, 'query'=>$query]);
-        }
+        $page .= static::buildMainArticleBody([
+            Template::load(static::CONTENT_NOT_FOUND, $model)
+        ]);
 
-        $page .= Template::load(static::CONTENT_NOT_FOUND, $model);
         $page .= Template::load(static::PATH_FOOTER, []);
 
         return $page;
@@ -135,8 +151,16 @@ class View {
     public static function generateSearchBlogsView($blogsModel=[], $query, $topic='') {
         $page = Template::load(static::PATH_HEADER);
         $page .= Template::load(static::PATH_TOP_NAV);
-        $page .= Template::load(static::BLOGS_SEARCH_DETAILS_PATH, ['resultsFound'=>count($blogsModel), 'query'=>$query]);
-        $page .= Template::load(static::BLOGS_PATH_LISTING, ['blogs'=>$blogsModel, 'topic' => $topic]);
+
+        $page .= static::buildMainArticleBody([
+            Template::load(static::BLOGS_PATH_LISTING, [
+                'blogs' => $blogsModel,
+                'topic' => $topic,
+                'resultsFound' => count($blogsModel),
+                'query' => $query
+            ])
+        ]);
+
         $page .= Template::load(static::PATH_FOOTER, []);
 
         return $page;

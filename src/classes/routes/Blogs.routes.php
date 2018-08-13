@@ -28,12 +28,7 @@ class BlogsRoutes {
             // Getting all blogs by topic
             $blogsFound = Blogs::getBlogs($args['topic']);
             $sideNav = SideNav::generateSideNavFromBlogs($blogsFound);
-
-            if (!empty($blogsFound)) {
-                return $response->getBody()->write(View::generateBlogView($blogsFound, $sideNav, $args['topic']));
-            } else {
-                return $response->getBody()->write(View::generateNotFoundView());
-            }
+            return $response->getBody()->write(View::generateBlogView($blogsFound, $sideNav, $args['topic']));
         });
 
         /**
@@ -45,12 +40,7 @@ class BlogsRoutes {
             // Getting all blogs by topic
             $blogs = Blogs::getAllBlogsByYearMonth($args['year'],$args['month']);
             $sideNav = SideNav::generateSideNavFromBlogs($blogs);
-
-            if (!empty($blogs)) {
-                return $response->getBody()->write(View::generateBlogView($blogs, $sideNav));
-            } else {
-                return $response->getBody()->write(View::generateNotFoundView());
-            }
+            return $response->getBody()->write(View::generateBlogView($blogs, $sideNav));
         });
 
         /**
@@ -61,14 +51,9 @@ class BlogsRoutes {
 
             // Getting details about this specific blog
             $blog = Blogs::getSingleBlogDetails($args['blogUrl']);
-
-            if ($blog) {
-                return $response->getBody()->write(
-                    View::generateBlogDetailView($blog)
-                );
-            } else {
-                return $response->getBody()->write(View::generateNotFoundView());
-            }
+            return $response->getBody()->write(
+                View::generateBlogDetailView($blog)
+            );
         });
 
         return $app;

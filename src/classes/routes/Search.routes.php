@@ -29,14 +29,9 @@ class SearchRoutes {
 
             // Getting all recent blogs (all topics)
             $blogs = Blogs::searchBlogs($args['query']);
-
-            if (!empty($blogs)) {
-                $response->getBody()->write(
-                    View::generateSearchBlogsView($blogs, $args['query'])
-                );
-            } else {
-                return $response->getBody()->write(View::generateNotFoundView([], $args['query']));
-            }
+            $response->getBody()->write(
+                View::generateSearchBlogsView($blogs, $args['query'])
+            );
         });
 
         return $app;

@@ -2,13 +2,19 @@
 
 $blogs = !empty($m['blogs']) ? $m['blogs'] : [];
 
-?>
-
-<?php
 // Just a short message if viewing projects
 if (!empty($m['topic']) && $m['topic'] === 'projects') { ?>
     <div class="projects-intro">
         <p class="intro-text">I enjoy building stuff and working on projects, here's some of my work.</p>
+    </div>
+<?php } ?>
+
+<?php if (!empty($m['query'])) { ?>
+    <div class="search-blogs-detail-container">
+        <div class="search-results-count">
+            <span class="count"><?= $m['resultsFound'] ?></span> results were found for
+            <span class="query"><?= $m['query'] ?></span>
+        </div>
     </div>
 <?php } ?>
 
@@ -42,6 +48,8 @@ if (!empty($m['topic']) && $m['topic'] === 'projects') { ?>
                     </div>
                     <hr>
                 <?php }
+            } else {
+                echo \Blog\Template::load(\Blog\View::CONTENT_NOT_FOUND);
             } ?>
         </div>
     </div>
@@ -50,9 +58,3 @@ if (!empty($m['topic']) && $m['topic'] === 'projects') { ?>
         echo \Blog\Template::load(\Blog\View::BLOGS_SIDE_NAV_PATH, $m['sideNav']);
     } ?>
 </div>
-
-
-
-
-
-
