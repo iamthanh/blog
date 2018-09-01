@@ -1,3 +1,7 @@
 .idea*
+
 config/config.json
+config/.config.json.swp
+config/config.json.save
+
 vendor/
