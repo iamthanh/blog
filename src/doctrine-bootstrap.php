@@ -9,17 +9,21 @@ use Doctrine\ORM\EntityManager;
 $entitiesPath = array(__DIR__ . '/entities');
 $proxiesPath = __DIR__ . '/proxies';
 $proxiesNamespace = 'Proxies';
-$isDevMode = true;
+
+$serverConfig = \Blog\Config::getConfig('server');
+$isDevMode = $serverConfig['isProduction'] ? false : true;
 
 // Connection configuration
 $dbConfig = \Blog\Config::getConfig('db');
 $mysqlConfig = $dbConfig['mysql'];
 $dbParams = array(
-    'dbname' => $mysqlConfig['dbname'],
-    'host'=>$mysqlConfig['host'],
-    'user'=>$mysqlConfig['user'],
-    'password'=>$mysqlConfig['password'],
-    'driver'=>$mysqlConfig['doctrine_driver_name']
+    'dbname'       => $mysqlConfig['dbname'],
+    'host'         => $mysqlConfig['host'],
+    'user'         => $mysqlConfig['user'],
+    'port'         => $mysqlConfig['port'],
+    'password'     => $mysqlConfig['password'],
+    'driver'       => $mysqlConfig['doctrine_driver_name'],
+    'charset'      => $mysqlConfig['charset']
 );
 
 if ($isDevMode) {

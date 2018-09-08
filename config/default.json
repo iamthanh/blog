@@ -8,13 +8,18 @@
     "addContentLengthHeader": true,
     "routerCacheFile": false
   },
+  "server": {
+    "isProduction": false
+  }
   "db": {
     "mysql": {
       "host": "",
       "user": "",
       "password": "",
+      "port": 3306,
       "dbname": "",
-      "doctrine_driver_name": ""
+      "doctrine_driver_name": "pdo_mysql",
+      "charset": "utf8mb4"
     },
     "mongodb": {
 
