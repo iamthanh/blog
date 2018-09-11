@@ -169,6 +169,7 @@ class ComposerStaticInitcb18df7809ae61d5ad07a8082f0b6e6a
         'Blog\\Config' => __DIR__ . '/../..' . '/src/classes/Config.php',
         'Blog\\ContactPage' => __DIR__ . '/../..' . '/src/classes/ContactPage.php',
         'Blog\\GoogleAnalytics' => __DIR__ . '/../..' . '/src/classes/GoogleAnalytics.php',
+        'Blog\\Meta' => __DIR__ . '/../..' . '/src/classes/Meta.php',
         'Blog\\Routes' => __DIR__ . '/../..' . '/src/classes/Routes.php',
         'Blog\\Routes\\AdminRoutes' => __DIR__ . '/../..' . '/src/classes/routes/Admin.routes.php',
         'Blog\\Routes\\ApiRoutes' => __DIR__ . '/../..' . '/src/classes/routes/Api.routes.php',

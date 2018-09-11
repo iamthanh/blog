@@ -50,9 +50,10 @@ class View {
      * @return string
      */
     public static function generateBlogView($blogsModel=[], $sideNav=[], $topic='') {
-        $page = Template::load(static::PATH_HEADER);
+        $page = Template::load(static::PATH_HEADER, [
+            'pageTitle' => $topic ? 'Blogs about ' . $topic : false
+        ]);
         $page .= Template::load(static::PATH_TOP_NAV);
-
         $page .= static::buildMainArticleBody([
             Template::load(static::BLOGS_PATH_LISTING, [
                     'blogs'  => $blogsModel,
@@ -73,8 +74,9 @@ class View {
      * @return string
      */
     public static function generateBlogDetailView($data) {
-
-        $page = Template::load(static::PATH_HEADER);
+        $page = Template::load(static::PATH_HEADER, [
+            'pageTitle' => $data ? $data->getTitle() : false
+        ]);
         $page .= Template::load(static::PATH_TOP_NAV);
 
         $page .= static::buildMainArticleBody([
@@ -94,7 +96,9 @@ class View {
      * @return string
      */
     public static function generateNotFoundView($model=[], $query='') {
-        $page = Template::load(static::PATH_HEADER);
+        $page = Template::load(static::PATH_HEADER, [
+            'pageTitle' => 'Nothing was found!'
+        ]);
         $page .= Template::load(static::PATH_TOP_NAV);
 
         $page .= static::buildMainArticleBody([
@@ -140,7 +144,9 @@ class View {
      * @return string
      */
     public static function generateContactPage() {
-        $page = Template::load(static::PATH_HEADER);
+        $page = Template::load(static::PATH_HEADER, [
+            'pageTitle' => 'Contact me'
+        ]);
         $page .= Template::load(static::PATH_TOP_NAV);
         $page .= Template::load(static::CONTACT_PATH);
         $page .= Template::load(static::PATH_FOOTER, []);
@@ -149,7 +155,9 @@ class View {
     }
 
     public static function generateSearchBlogsView($blogsModel=[], $query, $topic='') {
-        $page = Template::load(static::PATH_HEADER);
+        $page = Template::load(static::PATH_HEADER, [
+            'pageTitle' => $query ? 'Results for '.$query : false
+        ]);
         $page .= Template::load(static::PATH_TOP_NAV);
 
         $page .= static::buildMainArticleBody([

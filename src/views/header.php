@@ -1,6 +1,23 @@
-<?php // Template for the header ?>
+<?php
+// Template for the header
+
+// Logic for page title
+$pageTitle = "Thanh's Blog";
+if (!empty($m['pageTitle'])) {
+    $pageTitle = $m['pageTitle'] . ' | ' . $pageTitle;
+}
+
+?>
 <html>
 <head>
+    <?= \Blog\Meta::createMetaTag(['charset'=>'UTF-8']);?>
+    <?= \Blog\Meta::createMetaTag(['name'=>'description', 'content'=>'A blog about the thoughts and projects worked on by Thanh Tran']); ?>
+    <?= \Blog\Meta::createMetaTag(['name'=>'keywords',    'content'=>'blog,projects,programming,audio']); ?>
+    <?= \Blog\Meta::createMetaTag(['name'=>'author',      'content'=>'Thanh Tran']); ?>
+    <?= \Blog\Meta::createMetaTag(['name'=>'viewport',    'content'=>'width=device-width, initial-scale=1.0']); ?>
+
+    <title><?= $pageTitle ?></title>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
           integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans|Quicksand:300,400|Raleway" rel="stylesheet">

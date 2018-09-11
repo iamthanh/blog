@@ -13,6 +13,7 @@ return array(
     'Blog\\Config' => $baseDir . '/src/classes/Config.php',
     'Blog\\ContactPage' => $baseDir . '/src/classes/ContactPage.php',
     'Blog\\GoogleAnalytics' => $baseDir . '/src/classes/GoogleAnalytics.php',
+    'Blog\\Meta' => $baseDir . '/src/classes/Meta.php',
     'Blog\\Routes' => $baseDir . '/src/classes/Routes.php',
     'Blog\\Routes\\AdminRoutes' => $baseDir . '/src/classes/routes/Admin.routes.php',
     'Blog\\Routes\\ApiRoutes' => $baseDir . '/src/classes/routes/Api.routes.php',
