@@ -10,7 +10,11 @@
   },
   "server": {
     "isProduction": false
-  }
+  },
+  "google_analytics": {
+    "tracking_id": "",
+    "enabled": false
+  },
   "db": {
     "mysql": {
       "host": "",
