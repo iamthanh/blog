@@ -2,11 +2,11 @@
 
 namespace Blog\Routes;
 
+use Blog\View;
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
 use \Blog\Blogs as Blogs;
-use \Blog\View as View;
 use \Blog\SideNav as SideNav;
 
 class BlogsRoutes {
@@ -27,6 +27,8 @@ class BlogsRoutes {
 
             // Getting all blogs by topic
             $blogsFound = Blogs::getBlogs($args['topic']);
+            View::setPageTitle('Blogs about ' . $args['topic']);
+
             $sideNav = SideNav::generateSideNavFromBlogs($blogsFound);
             return $response->getBody()->write(View::generateBlogView($blogsFound, $sideNav, $args['topic']));
         });
@@ -39,6 +41,8 @@ class BlogsRoutes {
 
             // Getting all blogs by topic
             $blogs = Blogs::getAllBlogsByYearMonth($args['year'],$args['month']);
+            View::setPageTitle('Blogs from ' . $args['month'] . '/' . $args['year']);
+
             $sideNav = SideNav::generateSideNavFromBlogs($blogs);
             return $response->getBody()->write(View::generateBlogView($blogs, $sideNav));
         });
@@ -51,6 +55,10 @@ class BlogsRoutes {
 
             // Getting details about this specific blog
             $blog = Blogs::getSingleBlogDetails($args['blogUrl']);
+            if ($blog) {
+                View::setPageTitle($blog->getTitle());
+            }
+
             return $response->getBody()->write(
                 View::generateBlogDetailView($blog)
             );

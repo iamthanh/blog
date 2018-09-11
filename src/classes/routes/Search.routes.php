@@ -29,6 +29,9 @@ class SearchRoutes {
 
             // Getting all recent blogs (all topics)
             $blogs = Blogs::searchBlogs($args['query']);
+
+            View::setPageTitle('Results for ' . $args['query']);
+
             $response->getBody()->write(
                 View::generateSearchBlogsView($blogs, $args['query'])
             );

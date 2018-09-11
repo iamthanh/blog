@@ -28,6 +28,8 @@ class IndexRoutes {
             $allBlogs = Blogs::getAll();
             $sideNav = SideNav::generateSideNavFromBlogs($allBlogs);
 
+            View::setPageTitle('All recent blogs');
+
             $response->getBody()->write(
                 View::generateBlogView($allBlogs, $sideNav)
             );

@@ -22,10 +22,10 @@ class ContactPageRoutes {
          */
         $app->get('/contact', function (Request $request, Response $response) {
 
-            $response->getBody()->write(
+            View::setPageTitle('Contact me');
+            return $response->getBody()->write(
                 View::generateContactPage()
             );
-            return $response;
         });
 
         return $app;
