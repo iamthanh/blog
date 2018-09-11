@@ -39,9 +39,8 @@ class GoogleAnalytics {
             $ga_tracking_id = self::getGATrackingID();
 
             return <<<EOT
-
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125386673-1"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=$ga_tracking_id"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -50,9 +49,7 @@ class GoogleAnalytics {
     gtag('config', '$ga_tracking_id');
 </script>
 EOT;
-
         }
-
         return null;
     }
 }
