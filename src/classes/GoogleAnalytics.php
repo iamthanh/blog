@@ -10,6 +10,14 @@ class GoogleAnalytics {
      * This function will check if the GA is enabled
      */
     public static function isGAEnabled() {
+        // Check if the server is dev, if so, don't run GA
+        $server_config = Config::getConfig('server');
+        if ($server_config) {
+            if (isset($server_config['isProduction']) && !$server_config['isProduction']) {
+                return false;
+            }
+        }
+
         if (!static::$ga_config) {
             static::$ga_config = Config::getConfig('google_analytics');
         }
@@ -27,14 +35,6 @@ class GoogleAnalytics {
     }
 
     public static function getGATrackingScript() {
-        // Check if the server is dev, if so, don't run GA
-        $server_config = Config::getConfig('server');
-        if ($server_config) {
-            if (isset($server_config['isProduction']) && !$server_config['isProduction']) {
-                return null;
-            }
-        }
-
         if (self::isGAEnabled()) {
             $ga_tracking_id = self::getGATrackingID();
 

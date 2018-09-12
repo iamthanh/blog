@@ -11,6 +11,9 @@
   "server": {
     "isProduction": false
   },
+  "google_adSense": {
+    "enabled": true
+  },
   "google_analytics": {
     "tracking_id": "",
     "enabled": false

@@ -31,5 +31,6 @@
     <script>hljs.initHighlightingOnLoad();</script>
 
     <?= \Blog\GoogleAnalytics::getGATrackingScript(); ?>
+    <?= \Blog\Ads::getAdSenseHeadScript(); ?>
 </head>
 <body>
