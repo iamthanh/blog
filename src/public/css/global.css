@@ -27,7 +27,6 @@
 }
 .admin-container .content-container {
   padding: 35px;
-  font-family: Raleway;
 }
 .admin-container .content-container .content-title .text {
   font-size: 22px;
@@ -212,9 +211,6 @@
   border-bottom: none;
   padding-bottom: 0;
 }
-.listing-page-container .listing-container .blog-collection .single-blog .blog-title {
-  font-family: Raleway;
-}
 .listing-page-container .listing-container .blog-collection .single-blog .blog-title span {
   vertical-align: middle;
 }
@@ -237,7 +233,6 @@
 }
 .listing-page-container .listing-container .blog-collection .single-blog .blog-date-created {
   font-size: 16px;
-  font-family: 'Raleway';
 }
 .main-blog-title {
   width: 100%;
@@ -270,7 +265,6 @@
   margin: 0 auto;
 }
 .main-blog-title .blog-title-container .blog-title .title-detail {
-  font-family: Raleway;
   color: black;
   display: table;
 }
@@ -333,8 +327,8 @@ section.images-grid .media-object img {
 }
 .blog-body {
   text-align: justify;
-  font-family: Raleway;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: 100;
   margin-top: 30px;
   color: #222;
   line-height: 29px;
@@ -471,7 +465,6 @@ pre.prettyprint li.L8 {
 }
 .nav-header .top-nav .nav-item a {
   color: #606060;
-  font-family: Raleway;
 }
 .nav-header .top-nav .nav-item[data-item="search"] i {
   font-size: 20px;
@@ -573,7 +566,6 @@ body .login-container .form .message-container.error {
   box-sizing: border-box;
 }
 .search-blogs-detail-container .search-results-count {
-  font-family: Raleway;
   font-size: 18px;
   color: #888;
 }
@@ -608,6 +600,9 @@ body .login-container .form .message-container.error {
 }
 .side-nav-container .side-nav ul.calender-container li.year a.month-link div.month span.month-name {
   font-size: 15px;
+}
+* {
+  font-family: Quicksand;
 }
 .form-control {
   border-radius: 0;
