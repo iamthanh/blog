@@ -17,7 +17,7 @@
 .listing-page-container {
   max-width: 1000px;
   margin: 20px auto;
-  padding-top: 50px;
+  padding: 50px 20px 0;
   box-sizing: border-box;
 }
 .listing-page-container.has-side-nav {
@@ -95,6 +95,7 @@
 .main-blog-title .blog-title-container .blog-title {
   max-width: 1000px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 .main-blog-title .blog-title-container .blog-title .title-detail {
   color: black;
@@ -138,6 +139,7 @@ section.images-grid .media-object img {
   max-width: 1000px;
   margin: 50px auto;
   box-sizing: border-box;
+  padding: 0 20px;
 }
 .main-body-container .body {
   margin-top: 18px;

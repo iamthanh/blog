@@ -2,6 +2,11 @@
   flex: 0 0 200px;
   padding-left: 40px;
 }
+@media screen and (max-width: 768px) {
+  .side-nav-container {
+    display: none;
+  }
+}
 .side-nav-container .side-nav {
   border-left: 1px solid #e7e7e7;
   padding-left: 15px;
