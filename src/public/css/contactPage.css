@@ -4,9 +4,6 @@
   padding-top: 50px;
   box-sizing: border-box;
 }
-.contact-page-container .form {
-  font-family: 'Quicksand';
-}
 .contact-page-container .form .contact-header {
   margin-bottom: 50px;
   text-align: center;
@@ -16,7 +13,6 @@
   font-size: 50px;
 }
 .contact-page-container .form .contact-header .header-text {
-  font-family: 'Quicksand';
   font-size: 20px;
   font-weight: lighter;
   margin-top: 15px;
@@ -46,7 +42,6 @@
   font-size: 50px;
 }
 .contact-page-container .sent-success .message {
-  font-family: 'Quicksand';
   font-size: 20px;
   font-weight: lighter;
   margin-top: 30px;
