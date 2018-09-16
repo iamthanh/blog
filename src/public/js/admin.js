@@ -123,7 +123,7 @@ $(document).ready(function() {
                     'id': ACTION_TYPE_EDIT,
                     'data-id': data.id
                 }).append(
-                    $('<i>').addClass('fa fa-pencil-square-o')
+                    $('<i>').addClass('fas fa-pencil-alt')
                 ).append($('<span>').text('Edit'))
             ).append(
                 $('<button>').addClass('action btn btn-sm btn-outline-danger').attr({
@@ -131,7 +131,7 @@ $(document).ready(function() {
                     'id': 'delete',
                     'data-id': data.id
                 }).append(
-                    $('<i>').addClass('fa fa-trash-o')
+                    $('<i>').addClass('far fa-trash-alt')
                 ).append($('<span>').text('Delete'))
             ).appendTo(rightContainer);
 
