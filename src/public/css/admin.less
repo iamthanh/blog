@@ -58,11 +58,18 @@
       margin-top: 50px;
 
       .content {
-        margin: 10px 0;
-        padding: 15px 15px 20px;
-        border-bottom: 1px solid #dbdbdb;
+        margin: 25px 0;
+        padding: 15px;
         display: flex;
         align-items: center;
+
+        &.unpublished {
+          border-left: 10px solid #ffc107;
+        }
+
+        &.published {
+          border-left: 10px solid #28a745;
+        }
 
         &:last-child {
           border-bottom: none;
@@ -193,6 +200,13 @@
 
     .full-body {
       max-height: 250px;
+    }
+
+    #published-state {
+      display: block;
+      height: 31px;
+      width: 100%;
+      font-size: .875rem;
     }
   }
 

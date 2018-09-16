@@ -94,6 +94,15 @@
                                     <input type="text" data-id='headerImage' class="form-control form-control-sm" id="header-image" placeholder="Path to header image">
                                 </div>
                             </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <label for="published-state">Published</label>
+                                    <select id="published-state" data-id="published-state" class="custom-select-sm custom-select">
+                                        <option value="active">Active</option>
+                                        <option value="inactive">Inactive</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>

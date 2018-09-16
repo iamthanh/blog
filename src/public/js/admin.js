@@ -110,6 +110,8 @@ $(document).ready(function() {
             var contentContainer = $('<div>').addClass('content').attr('data-id', data.id);
             var rightContainer = $('<div>').addClass('right');
 
+            contentContainer.addClass(data.status === 'active' ? 'published' : 'unpublished');
+
             timeago().render($('<div>').attr('datetime',data.created.date).addClass('date-created').text(data.created.date).appendTo(rightContainer));
             $('<div>').addClass('title-text').text(data.title).appendTo(rightContainer);
             $('<div>').addClass('topic').text(data.blogTopic).appendTo(rightContainer);
@@ -356,6 +358,9 @@ $(document).ready(function() {
                 $('input#thumbnail', self.blogAdminModal).val(obj.thumbnail ? obj.thumbnail : '');
                 $('input#header-image', self.blogAdminModal).val(obj.headerImage ? obj.headerImage : '');
 
+                // Setting the correct select option based on blog's status
+                $('#published-state option[value="' + obj.status + '"]').prop('selected', true);
+
                 // Setting the post body
                 self.quill.root.innerHTML = obj.fullBody ? obj.fullBody : '';
 
@@ -393,6 +398,9 @@ $(document).ready(function() {
                     }
                 }
             });
+
+            // Getting the status
+            obj['status'] = $('#published-state').val();
 
             // Get quill text data
             obj['body'] = self.quill.root.innerHTML;

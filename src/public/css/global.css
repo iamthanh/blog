@@ -45,11 +45,16 @@
   margin-top: 50px;
 }
 .admin-container .content-container .content-list-container .content {
-  margin: 10px 0;
-  padding: 15px 15px 20px;
-  border-bottom: 1px solid #dbdbdb;
+  margin: 25px 0;
+  padding: 15px;
   display: flex;
   align-items: center;
+}
+.admin-container .content-container .content-list-container .content.unpublished {
+  border-left: 10px solid #ffc107;
+}
+.admin-container .content-container .content-list-container .content.published {
+  border-left: 10px solid #28a745;
 }
 .admin-container .content-container .content-list-container .content:last-child {
   border-bottom: none;
@@ -149,6 +154,12 @@
 }
 .modal#admin-editor-modal form .full-body {
   max-height: 250px;
+}
+.modal#admin-editor-modal form #published-state {
+  display: block;
+  height: 31px;
+  width: 100%;
+  font-size: .875rem;
 }
 .modal#admin-editor-modal .modal-dialog {
   max-width: 800px;

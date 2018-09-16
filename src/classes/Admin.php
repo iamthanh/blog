@@ -28,12 +28,13 @@ class Admin {
      */
     public static function getBlogsForAdmin() {
         // Get all blogs
-        $blogs = Blogs::getAll();
+        $blogs = Blogs::getBlogs(false, '', Blogs::ORDER_BY_DEFAULT, 50, null);
         if ($blogs) {
             $results = [];
             /** @var \Entities\Blogs $blog */
             foreach($blogs as $blog) {
                 $results[] = [
+                    'status'      => $blog->getStatus(),
                     'id'          => $blog->getId(),
                     'url'         => $blog->getUrl(),
                     'title'       => $blog->getTitle(),
@@ -79,6 +80,11 @@ class Admin {
                 return false;
             }
 
+            if ($data['status'] !== Blogs::STATUS_ACTIVE && $data['status'] !== Blogs::STATUS_INACTIVE) {
+                trigger_error('Error: cannot update blog data, status is invalid');
+                return false;
+            }
+
             $data['description'] = filter_var(trim($data['description']), FILTER_SANITIZE_STRING);
             if (!$data['description']) {
                 trigger_error('Error: cannot update blog data, description is invalid');
@@ -113,6 +119,7 @@ class Admin {
             if ($blog) {
 
                 // Setting the new values
+                $blog->setStatus($data['status']);
                 $blog->setTitle($data['title']);
                 $blog->setUrl($data['url']);
                 $blog->setTopics($data['topics']);
@@ -164,7 +171,7 @@ class Admin {
 
                 /** @var $blog \Entities\Blogs */
                 $blog = new \Entities\Blogs($data);
-                $blog->setStatus(Blogs::STATUS_ACTIVE);
+                $blog->setStatus($data['status']);
                 $blog->setDateCreated(new \DateTime('NOW'));
                 $blog->setDateUpdated(new \DateTime('NOW'));
 

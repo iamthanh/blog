@@ -39,16 +39,20 @@ class Blogs {
             ->from('Entities\Blogs', 'b')
 
             // Joining with the BlogTopics table
-            ->where($qb->expr()->eq('b.status', ':status'))
             ->orderBy('b.created',$sort)
             ->setMaxResults($limit)
-            ->setParameters(['status' => $status])
             ->groupBy('b.id');
 
         // Checking if we have any tags to filter
         if ($topic) {
             $qb->andWhere('b.topics LIKE :topic')
                ->setParameter('topic', '%'.$topic.'%');
+        }
+
+        // Checking if status is being used
+        if ($status !== null) {
+            $qb->andWhere('b.status=:status')
+                ->setParameter('status', $status);
         }
 
         if ($search) {
