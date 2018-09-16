@@ -171,6 +171,18 @@ section.images-grid .media-object img {
 .blog-body p {
   margin: 0;
 }
+.blog-body li.ql-indent-1 {
+  margin-left: 2em;
+}
+.blog-body li.ql-indent-2 {
+  margin-left: 4em;
+}
+.blog-body li.ql-indent-3 {
+  margin-left: 6em;
+}
+.blog-body li.ql-indent-4 {
+  margin-left: 8em;
+}
 blockquote {
   margin-bottom: 1rem;
   border-left: 3px solid #93c9ff;
