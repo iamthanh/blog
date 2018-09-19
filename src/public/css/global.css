@@ -446,7 +446,6 @@ pre.prettyprint li.L8 {
   background: #4489d3;
 }
 .nav-header {
-  padding: 20px 0;
   border-bottom: 1px solid #e7e7e7;
   background: #f5f5f5;
   margin: 0 auto;
@@ -460,8 +459,14 @@ pre.prettyprint li.L8 {
   text-align: center;
 }
 .nav-header .top-nav {
+  padding: 20px 0;
   position: relative;
   display: inline-block;
+}
+@media (max-width: 480px) {
+  .nav-header .top-nav {
+    display: none;
+  }
 }
 .nav-header .top-nav.search-input-on .nav-item {
   opacity: 0.18;
@@ -503,6 +508,32 @@ pre.prettyprint li.L8 {
   background: #f5f5f5;
   border-bottom: 3px solid #3b86d6;
   box-shadow: none;
+}
+.nav-header .mobile-nav-switch {
+  display: none;
+  padding: 10px 20px;
+  text-align: right;
+  font-size: 25px;
+  border-bottom: 1px solid #e7e7e7;
+}
+@media (max-width: 480px) {
+  .nav-header .mobile-nav-switch {
+    display: block;
+  }
+}
+.nav-header .mobile-top-nav {
+  display: none;
+}
+@media (max-width: 480px) {
+  .nav-header .mobile-top-nav.expanded {
+    display: block;
+  }
+}
+.nav-header .mobile-top-nav .nav-item {
+  padding: 10px 0;
+}
+.nav-header .mobile-top-nav .nav-item a {
+  color: #606060;
 }
 body .login-container .form {
   position: absolute;

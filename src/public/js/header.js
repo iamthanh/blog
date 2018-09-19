@@ -5,6 +5,8 @@ $(document).ready(function() {
                 this.topNav = $('.top-nav');
                 this.searchInputTrigger = $('.nav-item[data-item="search"]', this.topNav);
                 this.searchInputForm = $('form.search-input', this.topNav);
+                this.mobileTopNavSwitch = $('.mobile-nav-switch');
+                this.mobileTopNav = $('.mobile-top-nav');
             }
             submitSearch() {
                 let searchValue = this.getSearchFormInputValue();
@@ -35,6 +37,11 @@ $(document).ready(function() {
                 this.searchInputForm.submit(function(e) {
                     e.preventDefault();
                     self.header.submitSearch();
+                });
+
+                // Listener for the mobile top nav switch (used for expanding/collapsing the mobile menu)
+                this.mobileTopNavSwitch.on('click', function () {
+                    $(self.header.mobileTopNav).toggleClass('expanded');
                 });
 
                 window.onclick = function(e) {
