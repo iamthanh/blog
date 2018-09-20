@@ -192,6 +192,8 @@ blockquote p {
 blockquote footer {
   display: block;
   color: #868e96;
+  margin-top: 20px;
+  font-size: 14px;
 }
 pre.prettyprint li.L0,
 pre.prettyprint li.L1,
