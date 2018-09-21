@@ -181,6 +181,11 @@ section.images-grid .media-object img {
 .blog-body strong {
   font-weight: bold;
 }
+.blog-body .link-display {
+  background: #9fcdff;
+  padding: 3px 8px;
+  color: #333;
+}
 blockquote {
   margin-bottom: 1rem;
   border-left: 3px solid #93c9ff;
