@@ -360,9 +360,12 @@ section.images-grid .media-object img {
   font-weight: bold;
 }
 .blog-body .link-display {
-  background: #9fcdff;
+  background: #eff0f1;
   padding: 3px 8px;
   color: #333;
+  font-size: 16px;
+  margin: 10px 0;
+  font-family: monospace !important;
 }
 blockquote {
   margin-bottom: 1rem;
