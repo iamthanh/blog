@@ -366,7 +366,6 @@ section.images-grid .media-object img {
   color: #333;
   font-size: 0.9rem;
   margin: 10px 0;
-  font-family: "Open Sans";
   border-right: 1px solid #dcdcdc;
   border-bottom: 1px solid #dcdcdc;
 }
@@ -682,9 +681,6 @@ body .login-container .form .message-container.error {
   font-weight: 400;
   src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFVZ0e.ttf) format('truetype');
 }
-* {
-  font-family: "Open Sans";
-}
 .form-control {
   border-radius: 0;
 }
@@ -713,4 +709,7 @@ body .login-container .form .message-container.error {
 }
 .modal-backdrop.show {
   opacity: .9;
+}
+article.main {
+  font-family: "Open Sans";
 }
