@@ -1,4 +1,5 @@
 <?php // Template for the header ?>
+<!doctype html>
 <html>
 <head>
     <?= \Blog\Meta::createMetaTag(['charset'=>'UTF-8']);?>
