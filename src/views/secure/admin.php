@@ -112,7 +112,9 @@
 
                     <div class="form-group full-body-container">
                         <label for="full-body">Full body</label>
-                        <button type="button" class="btn btn-outline-secondary btn-sm only-edit-body not-hidden" data-fullscreen="false">Expand</button>
+                        <button type="button" class="btn btn-link btn-sm only-edit-body not-hidden" data-fullscreen="false">
+                            Expand <i class="fas fa-angle-up"></i>
+                        </button>
                         <div class="full-body"></div>
                     </div>
 

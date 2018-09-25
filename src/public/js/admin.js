@@ -291,11 +291,11 @@ $(document).ready(function() {
             if (!enable) {
                 self.blogAdminModal.removeClass('full-screen');
                 $('.form-top-section', self.blogAdminModal).show();
-                $('.only-edit-body', self.blogAdminModal).text('Expand');
+                $('.only-edit-body', self.blogAdminModal).html('Expand <i class="fas fa-angle-up"></i>');
             } else {
                 self.blogAdminModal.addClass('full-screen');
                 $('.form-top-section', self.blogAdminModal).hide();
-                $('.only-edit-body', self.blogAdminModal).text('Collapse');
+                $('.only-edit-body', self.blogAdminModal).html('Collapse <i class="fas fa-angle-down"></i>');
             }
 
         },

@@ -173,11 +173,13 @@
           .full-body.ql-container {
             height: 100%;
             max-height: 100%;
+            overflow: hidden;
           }
         }
 
         .button-container {
           position: absolute;
+          top: 0;
           right: 0;
         }
       }
@@ -187,18 +189,20 @@
   form {
     margin: 0;
 
+    .full-body-container {
+      margin-bottom: 0;
+    }
+
     .only-edit-body {
       cursor: pointer;
       text-decoration: none;
       margin-left: 10px;
     }
 
-    .ql-toolbar {
-      margin-top: 20px;
-    }
-
     .full-body {
+      min-height: 250px;
       max-height: 250px;
+      overflow-y: scroll;
     }
 
     #published-state {

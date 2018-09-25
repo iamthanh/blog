@@ -135,24 +135,28 @@
 .modal#admin-editor-modal.full-screen .modal-dialog .modal-content .form-group.full-body-container .full-body.ql-container {
   height: 100%;
   max-height: 100%;
+  overflow: hidden;
 }
 .modal#admin-editor-modal.full-screen .modal-dialog .modal-content .button-container {
   position: absolute;
+  top: 0;
   right: 0;
 }
 .modal#admin-editor-modal form {
   margin: 0;
+}
+.modal#admin-editor-modal form .full-body-container {
+  margin-bottom: 0;
 }
 .modal#admin-editor-modal form .only-edit-body {
   cursor: pointer;
   text-decoration: none;
   margin-left: 10px;
 }
-.modal#admin-editor-modal form .ql-toolbar {
-  margin-top: 20px;
-}
 .modal#admin-editor-modal form .full-body {
+  min-height: 250px;
   max-height: 250px;
+  overflow-y: scroll;
 }
 .modal#admin-editor-modal form #published-state {
   display: block;
