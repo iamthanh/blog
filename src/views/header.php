@@ -6,7 +6,7 @@
     <?= \Blog\Meta::createMetaTag(['name'=>'description', 'content'=>'A blog about the thoughts and projects worked on by Thanh Tran']); ?>
     <?= \Blog\Meta::createMetaTag(['name'=>'keywords',    'content'=>'blog,projects,programming,audio']); ?>
     <?= \Blog\Meta::createMetaTag(['name'=>'author',      'content'=>'Thanh Tran']); ?>
-    <?= \Blog\Meta::createMetaTag(['name'=>'viewport',    'content'=>'width=device-width, initial-scale=1.0']); ?>
+    <?= \Blog\Meta::createMetaTag(['name'=>'viewport',    'content'=>'width=device-width, initial-scale=1, shrink-to-fit=no']); ?>
 
     <title><?= \Blog\View::$pageTitle ?></title>
 
