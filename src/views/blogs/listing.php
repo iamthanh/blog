@@ -31,10 +31,12 @@ if (!empty($m['topic']) && $m['topic'] === 'projects') { ?>
                     }  ?>
 
                     <div class="single-blog">
-                        <div class="blog-date-created"><?= $blog->getDateCreated()->format('F jS, Y') ?></div>
-                        <div class="blog-title">
-                            <span class="title-text"><a href="<?= \Blog\View::BLOG_PREFIX ?>/<?= $blog->getUrl() ?>"><?= $blog->getTitle() ?></a></span>
-
+                        <div class="top-section">
+                            <div class="blog-date-created"><?= $blog->getDateCreated()->format('F jS, Y') ?></div>
+                            <div class="blog-title">
+                                <span class="title-text"><a href="<?= \Blog\View::BLOG_PREFIX ?>/<?= $blog->getUrl() ?>"><?= $blog->getTitle() ?></a></span>
+                            </div>
+                            <div class="blog-description"><?= htmlspecialchars_decode($blog->getDescription()) ?></div>
                             <?php if (!empty($blogTopic)) { ?>
                                 <div class="topics-container">
                                     <?php foreach($blogTopic as $topic) { ?>
@@ -42,7 +44,6 @@ if (!empty($m['topic']) && $m['topic'] === 'projects') { ?>
                                     <?php } ?>
                                 </div>
                             <?php } ?>
-
                         </div>
                         <div class="blog-body"><?= htmlspecialchars_decode($blog->getBody()) ?></div>
                     </div>
