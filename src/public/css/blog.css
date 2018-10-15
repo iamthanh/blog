@@ -48,6 +48,7 @@
 .listing-page-container .listing-container .blog-collection .single-blog .top-section .blog-title .title-text {
   text-transform: uppercase;
   font-size: 30px;
+  text-decoration: underline;
 }
 .listing-page-container .listing-container .blog-collection .single-blog .top-section .blog-title .title-text a {
   color: #444;
