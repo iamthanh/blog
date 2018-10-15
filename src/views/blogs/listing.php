@@ -58,6 +58,9 @@ if (!empty($m['topic']) && $m['topic'] === 'projects') { ?>
                                 </div>
                             </div>
                         </a>
+
+                        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                        <div class="addthis_inline_share_toolbox"></div>
                         <div class="blog-body"><?= htmlspecialchars_decode($blog->getBody()) ?></div>
                     </div>
                     <hr>

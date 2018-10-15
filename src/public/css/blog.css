@@ -99,6 +99,9 @@
 .listing-page-container .listing-container .blog-collection .single-blog .top-section .topics-container .title-topic a:hover {
   color: #333;
 }
+.listing-page-container .listing-container .blog-collection .single-blog .addthis_inline_share_toolbox {
+  margin-top: 30px;
+}
 .main-blog-title {
   width: 100%;
   box-sizing: border-box;
