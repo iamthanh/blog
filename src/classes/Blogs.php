@@ -13,6 +13,17 @@ class Blogs {
 
     const BLOG_TOPICS_DELIMITER = ';';
 
+    public static $blogTopicIconDefault = 'fas fa-pen-fancy';
+    public static $blogTopicIconsMapping = [
+        'audio'          => 'fas fa-headphones',
+        'cars'           => 'fas fa-car',
+        'cycling'        => 'fas fa-bicycle',
+        'programming'    => 'fas fa-code',
+        'finance'        => 'fas fa-dollar-sign',
+        'cryptocurrency' => 'fab fa-btc',
+        'computer'       => 'fas fa-desktop'
+    ];
+
     /**
      * Fetches blogs based on some parameters/conditions
      *
@@ -129,5 +140,20 @@ class Blogs {
             }
         }
         return false;
+    }
+
+    /**
+     * @param array $topics
+     * @return mixed|string
+     */
+    public static function getBlogTopicIcon(array $topics) {
+        foreach(self::$blogTopicIconsMapping as $topic=>$class) {
+            if (in_array($topic, $topics)) {
+                return $class;
+            }
+        }
+
+        // Otherwise, return the default
+        return self::$blogTopicIconDefault;
     }
 }

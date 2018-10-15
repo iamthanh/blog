@@ -56,6 +56,38 @@
         }
 
         .top-section {
+          display: flex;
+          padding: 20px;
+
+          &:hover {
+            background: #f3f3f3;
+            cursor: pointer;
+          }
+
+          .icon-container {
+            font-size: 33px;
+            margin-right: 30px;
+            display: flex;
+            align-items: center;
+
+            .icon-round-border {
+              width: 75px;
+              height: 75px;
+              background: #3b86d6;
+              border-radius: 100%;
+              position: relative;
+
+              i {
+                position: absolute;
+                font-size: 40px;
+                top: 50%;
+                color: white;
+                left: 50%;
+                transform: translate(-50%,-50%);
+              }
+            }
+          }
+
           .blog-title {
 
             span {
