@@ -228,6 +228,7 @@
 .listing-page-container .listing-container .blog-collection .single-blog .top-section {
   display: flex;
   padding: 20px;
+  color: #444;
 }
 .listing-page-container .listing-container .blog-collection .single-blog .top-section:hover {
   background: #f3f3f3;

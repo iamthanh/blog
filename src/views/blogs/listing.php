@@ -34,27 +34,30 @@ if (!empty($m['topic']) && $m['topic'] === 'projects') { ?>
                     ?>
 
                     <div class="single-blog">
-                        <div class="top-section">
-                            <div class="icon-container">
-                                <div class="icon-round-border">
-                                    <i class="<?=$topicIcon?>"></i>
-                                </div>
-                            </div>
-                            <div class="title-container">
-                                <div class="blog-date-created"><?= $blog->getDateCreated()->format('F jS, Y') ?></div>
-                                <div class="blog-title">
-                                    <span class="title-text"><a href="<?= \Blog\View::BLOG_PREFIX ?>/<?= $blog->getUrl() ?>"><?= $blog->getTitle() ?></a></span>
-                                </div>
-                                <div class="blog-description"><?= htmlspecialchars_decode($blog->getDescription()) ?></div>
-                                <?php if (!empty($blogTopic)) { ?>
-                                    <div class="topics-container">
-                                        <?php foreach($blogTopic as $topic) { ?>
-                                            <span class="title-topic"><a href="<?= \Blog\View::BLOGS_PREFIX ?>/<?= $topic ?>"><?= $topic ?></a></span>
-                                        <?php } ?>
+
+                        <a href="<?= \Blog\View::BLOG_PREFIX ?>/<?= $blog->getUrl() ?>">
+                            <div class="top-section">
+                                <div class="icon-container">
+                                    <div class="icon-round-border">
+                                        <i class="<?=$topicIcon?>"></i>
                                     </div>
-                                <?php } ?>
+                                </div>
+                                <div class="title-container">
+                                    <div class="blog-date-created"><?= $blog->getDateCreated()->format('F jS, Y') ?></div>
+                                    <div class="blog-title">
+                                        <span class="title-text"><?= $blog->getTitle() ?></span>
+                                    </div>
+                                    <div class="blog-description"><?= htmlspecialchars_decode($blog->getDescription()) ?></div>
+                                    <?php if (!empty($blogTopic)) { ?>
+                                        <div class="topics-container">
+                                            <?php foreach($blogTopic as $topic) { ?>
+                                                <span class="title-topic"><?= $topic ?></span>
+                                            <?php } ?>
+                                        </div>
+                                    <?php } ?>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                         <div class="blog-body"><?= htmlspecialchars_decode($blog->getBody()) ?></div>
                     </div>
                     <hr>
