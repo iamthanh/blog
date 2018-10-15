@@ -188,15 +188,14 @@ $(document).ready(function() {
                 self.setFullScreenEditor(!self.blogAdminModal.hasClass('full-screen'));
             });
 
-            // Click event for saving changes on the edit/create blog modal
-            $(this.blogAdminModal).on('click', 'button[type=submit].save-data-button', function(e) {
+            $('form', this.blogAdminModal).submit(function(e) {
                 e.preventDefault();
 
                 if (self.ajaxProcessing) return;
 
                 // Getting the data from the edit modal
                 var editModalData = self.getEditModalData();
-                if (editModalData) {
+                if (self.validateModalForm() && editModalData) {
                     $.ajax({
                         url: '/api/admin/blog',
                         method: 'post',
@@ -300,16 +299,46 @@ $(document).ready(function() {
 
         },
         validateModalForm: function() {
-            var self = this;
-            var modalFormInputs = $('.form-control', self.blogAdminModal);
+            let self = this;
+            let modalFormInputs = $('.form-control', self.blogAdminModal);
 
-            for(var i = 0; i < modalFormInputs.length; i++) {
-                var input = $(modalFormInputs[i]);
+            for(let i = 0; i < modalFormInputs.length; i++) {
+                let input = $(modalFormInputs[i]);
 
                 // Check if the input is required
                 if (!input.prop('required')) {
                 } else {
-                    if (!input.val()) return false;
+                    if (!input.val()) {
+                        console.error('Data for input: '+input[0].dataset.id+' is missing');
+                        $('.status-container .error', self.blogAdminModal).text('Sorry, could not process because there are errors.');
+                        return false;
+                    }
+                }
+            }
+
+            // Checking for duplicates in title and url of the blogs
+            let editing = !!(self.objToBeEditOriginal && self.objToBeEditOriginal.id);
+
+            let title = $('input#title', self.blogAdminModal).val();
+            let url = $('input#url', self.blogAdminModal).val();
+
+            let blogs = self.data.contentData;
+            let error = false;
+
+            for(let i = 0; i < blogs.length; i++) {
+                if (editing && self.objToBeEditOriginal.id === blogs[i].id) continue;
+
+                if (title === blogs[i].title) {
+                    console.error('Error: There is another blog with the same title.');
+                    error = true;
+                }
+                if (url === blogs[i].url) {
+                    console.error('Error: There is another blog with the same url.');
+                    error = true;
+                }
+                if (error) {
+                    $('.status-container .error', self.blogAdminModal).text('Sorry, could not process because there are errors.');
+                    return false;
                 }
             }
 
