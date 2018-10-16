@@ -28,8 +28,7 @@ class Ads {
         $ad_client = static::$ad_client;
 
         return <<<EOT
-        <!-- Google AdSense tag -->
-        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- Google AdSense tag -->        
         <script>
           (adsbygoogle = window.adsbygoogle || []).push({
             google_ad_client: '$ad_client',

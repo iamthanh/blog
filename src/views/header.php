@@ -26,3 +26,5 @@
 
     <script src="/lib/timeago.min.js"></script>
     <script src="/lib/selectize/selectize.min.js"></script>
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
