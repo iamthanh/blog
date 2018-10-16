@@ -63,13 +63,12 @@ if (!empty($m['topic']) && $m['topic'] === 'projects') { ?>
                         <div class="addthis_inline_share_toolbox"></div>
                         <div class="blog-body"><?= htmlspecialchars_decode($blog->getBody()) ?></div>
                     </div>
-                    <ins class="adsbygoogle"
-                         style="display:block"
-                         data-ad-format="fluid"
-                         data-ad-layout-key="-fb+5w+4e-db+86"
-                         data-ad-client="ca-pub-8117292460941523"
-                         data-ad-slot="7589493133"></ins>
-                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+                    <?php if (\Blog\Ads::$adUnits['blog-listing']['enabled']) { ?>
+                        <div class="blog-listing-ad-unit">
+                            <?= \Blog\Ads::getBlogListingAds() ?>
+                        </div>
+                    <?php } ?>
                     <hr>
                 <?php }
             } else {

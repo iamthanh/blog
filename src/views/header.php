@@ -18,7 +18,6 @@
           integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
     <?= \Blog\GoogleAnalytics::getGATrackingScript(); ?>
-    <?= \Blog\Ads::getAdSenseHeadScript(); ?>
 </head>
 <body>
     <script src="/lib/jQuery/jquery-3.3.1.min.js"></script>
