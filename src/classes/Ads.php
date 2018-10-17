@@ -10,7 +10,7 @@ class Ads {
     static $autoAdsEnabled = false;
     static $adUnits = [
         'blog-listing' => [
-            'enabled' => true
+            'enabled' => false
         ]
     ];
 
